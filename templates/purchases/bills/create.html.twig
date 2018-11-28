@@ -1,0 +1,1236 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+
+
+
+    <div class="dashboard-headline">
+        <h3>Add bill</h3>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-10 offset-1">
+
+                <div class="row margin-top-10">
+                    <div class="col-4">
+                        <div class="row margin-bottom-15">
+                            <div class="col-4">
+                                <label class="padding-top-10">Vendor*</label>
+                            </div>
+                            <div class="col-8">
+                                <select class="select2 form-control">
+
+                                    <option>Choose</option>
+
+                                </select>
+                                <a href="#add_vendor" class="addEst popup-with-zoom-anim"><b><span
+                                                class="icon-feather-plus-circle"></span>Add new vendor</b></a>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="padding-top-10">Currency</label>
+                            </div>
+                            <div class="col-8">
+                                <select class="select2 form-control">
+
+                                    <option value="c377">AED - UAE dirham</option>
+                                    <option value="c1">AFN - Afghani</option>
+                                    <option value="c5">ALL - Lek</option>
+                                    <option value="c20">AMD - Armenian dram</option>
+                                    <option value="c101">ANG - Netherlands Antillean Guilder</option>
+                                    <option value="c12">AOA - Kwanza</option>
+                                    <option value="c18">ARS - Argentinian peso</option>
+                                    <option value="c24">AUD - Australian dollar</option>
+                                    <option value="c22">AWG - Aruban Guilder</option>
+                                    <option value="c399">AZN - New Manat</option>
+                                    <option value="c51">BAM - Convertible Marks</option>
+                                    <option value="c35">BBD - Barbados dollar</option>
+                                    <option value="c33">BDT - Taka</option>
+                                    <option value="c62">BGN - Lev</option>
+                                    <option value="c31">BHD - Bahraini dinar</option>
+                                    <option value="c65">BIF - Burundi franc</option>
+                                    <option value="c44">BMD - Bermuda dollar</option>
+                                    <option value="c60">BND - Brunei dollar</option>
+                                    <option value="c48">BOB - Boliviano</option>
+                                    <option value="c57">BRL - Real</option>
+                                    <option value="c29">BSD - Bahamian dollar</option>
+                                    <option value="c46">BTN - Ngultrum</option>
+                                    <option value="c53">BWP - Pula</option>
+                                    <option value="c37">BYR - Belarussian rouble</option>
+                                    <option value="c40">BZD - Belize dollar</option>
+                                    <option value="c71">CAD - Canadian dollar</option>
+                                    <option value="c90">CDF - Franc congolais</option>
+                                    <option value="c213">CHF - Swiss franc</option>
+                                    <option value="c79">CLP - Chilean peso</option>
+                                    <option value="c81">CNY - Ren-Min-Bi yuan</option>
+                                    <option value="c85">COP - Colombian peso</option>
+                                    <option value="c94">CRC - Costa Rican colon</option>
+                                    <option value="c99">CUP - Cuban peso</option>
+                                    <option value="c73">CVE - Cape Verde escudo</option>
+                                    <option value="c104">CZK - Czech koruna</option>
+                                    <option value="c108">DJF - Djibouti franc</option>
+                                    <option value="c106">DKK - Danish krone</option>
+                                    <option value="c111">DOP - Dominican peso</option>
+                                    <option value="c7">DZD - Algerian dinar</option>
+                                    <option value="c400">EEK - Estonian kroon</option>
+                                    <option value="c114">EGP - Egyptian pound</option>
+                                    <option value="c118">ERN - Nakfa</option>
+                                    <option value="c121">ETB - Ethiopian birr</option>
+                                    <option value="c3">EUR - Euro</option>
+                                    <option value="c126">FJD - Fiji dollar</option>
+                                    <option value="c123">FKP - Falkland Islands (Malvinas) Pound</option>
+                                    <option value="c151">GBP - Pound sterling</option>
+                                    <option value="c137">GEL - Lari</option>
+                                    <option value="c140">GHS - Ghana Cedi</option>
+                                    <option value="c142">GIP - Gibraltar pound</option>
+                                    <option value="c135">GMD - Dalasi</option>
+                                    <option value="c153">GNF - Guinean franc</option>
+                                    <option value="c149">GTQ - Quetzal</option>
+                                    <option value="c401">GWP - Guinean bissau Peso</option>
+                                    <option value="c156">GYD - Guyana dollar</option>
+                                    <option value="c164">HKD - Hong Kong dollar</option>
+                                    <option value="c162">HNL - Lempira</option>
+                                    <option value="c97">HRK - Kuna</option>
+                                    <option value="c158">HTG - Haitian gourde</option>
+                                    <option value="c166">HUF - Forint</option>
+                                    <option value="c172">IDR - Rupiah</option>
+                                    <option value="c180">ILS - New Israeli sheqel</option>
+                                    <option value="c170">INR - Indian rupee</option>
+                                    <option value="c176">IQD - Iraqi dinar</option>
+                                    <option value="c174">IRR - Iranian rial</option>
+                                    <option value="c168">ISK - Icelandic Krona</option>
+                                    <option value="c183">JMD - Jamaican dollar</option>
+                                    <option value="c188">JOD - Jordanian dinar</option>
+                                    <option value="c185">JPY - Yen</option>
+                                    <option value="c192">KES - Kenyan shilling</option>
+                                    <option value="c200">KGS - Kyrgyz Som</option>
+                                    <option value="c67">KHR - Riel</option>
+                                    <option value="c87">KMF - Comoro franc</option>
+                                    <option value="c195">KRW - Won</option>
+                                    <option value="c198">KWD - Kuwaiti dinar</option>
+                                    <option value="c75">KYD - Cayman Islands dollar</option>
+                                    <option value="c190">KZT - Tenge</option>
+                                    <option value="c202">LAK - Kip</option>
+                                    <option value="c205">LBP - Lebanese pound</option>
+                                    <option value="c337">LKR - Sri Lankan rupee</option>
+                                    <option value="c209">LRD - Liberian dollar</option>
+                                    <option value="c207">LSL - Loti</option>
+                                    <option value="c402">LTL - Lithuanian litus</option>
+                                    <option value="c403">LVL - Latvian lats</option>
+                                    <option value="c211">LYD - Libyan dinar</option>
+                                    <option value="c248">MAD - Moroccan dirham</option>
+                                    <option value="c241">MDL - Moldovan leu</option>
+                                    <option value="c221">MGA - Malagasy Ariary</option>
+                                    <option value="c219">MKD - Denar</option>
+                                    <option value="c252">MMK - Kyat</option>
+                                    <option value="c244">MNT - Tugrik</option>
+                                    <option value="c217">MOP - Pataca</option>
+                                    <option value="c404">MRO - Ouguiya</option>
+                                    <option value="c233">MRU - Ouguiya</option>
+                                    <option value="c235">MUR - Mauritian rupee</option>
+                                    <option value="c227">MVR - Rufiyaa</option>
+                                    <option value="c223">MWK - Kwacha</option>
+                                    <option value="c238">MXN - Mexican peso</option>
+                                    <option value="c225">MYR - Malaysian ringgit</option>
+                                    <option value="c250">MZN - Metical</option>
+                                    <option value="c254">NAD - Namibian dollar</option>
+                                    <option value="c265">NGN - Naira</option>
+                                    <option value="c262">NIO - Cordoba Oro</option>
+                                    <option value="c55">NOK - Norwegian krone</option>
+                                    <option value="c257">NPR - Nepalese rupee</option>
+                                    <option value="c92">NZD - New Zealand dollar</option>
+                                    <option value="c271">OMR - Omani rial</option>
+                                    <option value="c276">PAB - Balboa</option>
+                                    <option value="c282">PEN - Nuevo Sol</option>
+                                    <option value="c278">PGK - Kina</option>
+                                    <option value="c284">PHP - Philippine peso</option>
+                                    <option value="c273">PKR - Pakistani rupee</option>
+                                    <option value="c287">PLN - Zloty</option>
+                                    <option value="c280">PYG - Guarani</option>
+                                    <option value="c291">QAR - Qatari riyal</option>
+                                    <option value="c294">RON - New Leu</option>
+                                    <option value="c316">RSD - Serbian Dinar</option>
+                                    <option value="c296">RUB - Russian rouble</option>
+                                    <option value="c298">RWF - Rwanda franc</option>
+                                    <option value="c313">SAR - Saudi riyal</option>
+                                    <option value="c327">SBD - Solomon Islands Dollar</option>
+                                    <option value="c318">SCR - Seychelles rupee</option>
+                                    <option value="c334">SDG - Sudanese Pound</option>
+                                    <option value="c346">SEK - Swedish Krona</option>
+                                    <option value="c322">SGD - Singapore dollar</option>
+                                    <option value="c301">SHP - Saint Helena Pound</option>
+                                    <option value="c320">SLL - Leone</option>
+                                    <option value="c329">SOS - Somali shilling</option>
+                                    <option value="c341">SRD - Surinam dollar</option>
+                                    <option value="c405">SSP - South Sudanese pound</option>
+                                    <option value="c311">STD - Dobra</option>
+                                    <option value="c406">SVC - El Salvador colon</option>
+                                    <option value="c349">SYP - Syrian pound</option>
+                                    <option value="c344">SZL - Lilangeni</option>
+                                    <option value="c357">THB - Baht</option>
+                                    <option value="c353">TJS - Somoni</option>
+                                    <option value="c27">TMM - Manat</option>
+                                    <option value="c366">TND - Tunisian dinar</option>
+                                    <option value="c362">TOP - Pa'anga</option>
+                                    <option value="c368">TRY - Turkish Lira</option>
+                                    <option value="c364">TTD - Trinidad and Tobago dollar</option>
+                                    <option value="c351">TWD - Taiwan New Dollar</option>
+                                    <option value="c355">TZS - Tanzanian shilling</option>
+                                    <option value="c375">UAH - Hryvnia</option>
+                                    <option value="c373">UGX - Ugandan shilling</option>
+                                    <option value="c9" selected="selected">USD - U.S. dollar</option>
+                                    <option value="c382">UYU - Uruguayo peso</option>
+                                    <option value="c407">UZS - Uzbekistan sum</option>
+                                    <option value="c387">VEF - Bolivar Fuerte</option>
+                                    <option value="c389">VND - Dong</option>
+                                    <option value="c385">VUV - Vatu</option>
+                                    <option value="c308">WST - Samoan Tala</option>
+                                    <option value="c42">XAF - CFA Franc - BEAC</option>
+                                    <option value="c14">XCD - Eastern Caribbean dollar</option>
+                                    <option value="c69">XOF - CFA franc - BCEAO</option>
+                                    <option value="c131">XPF - Comptoirs Francais du Pacifique Francs</option>
+                                    <option value="c395">YER - Yemeni rial</option>
+                                    <option value="c331">ZAR - Rand</option>
+                                    <option value="c408">ZMK - Kwacha</option>
+                                    <option value="c409">ZMW - Kwacha</option>
+                                    <option value="c398">ZWD - Zimbabwean dollar</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--//-->
+
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="padding-top-10">Date</label>
+                            </div>
+                            <div class="col-8">
+                                <div class="input-with-icon-left">
+                                    <input class="form-control calendar padding-left-15" name="date" id="date"
+                                           placeholder="">
+                                    <i class="icon-feather-calendar iconRight borderRIcon2"></i>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="padding-top-10 width100">Due Date</label>
+                            </div>
+                            <div class="col-8">
+                                <div class="input-with-icon-left">
+                                    <input class="form-control calendar padding-left-15" name="duedate" id="duedate"
+                                           placeholder="">
+                                    <i class="icon-feather-calendar iconRight borderRIcon2"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="padding-top-10">P.O./S.O.</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control" type="text" placeholder="">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--//-->
+
+                    <div class="col-4">
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="padding-top-10">Bill #</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control" type="text" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label class="padding-top-10">Notes</label>
+                            </div>
+                            <div class="col-8">
+                                <textarea></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--//-->
+
+                </div>
+
+                <!--table-->
+                <div class="estimateTable">
+
+                    <table class="margin-top-20">
+                        <tbody>
+                        <tr>
+                            <th width="150px" class="item-title-header wv-table__cell">Items</th>
+                            <th width="150px" class="item-title-header wv-table__cell">Expense Category</th>
+                            <th class="wv-table__cell">Description</th>
+                            <th width="100px" class="wv-table__cell">Quantity</th>
+                            <th width="100px" class="wv-table__cell">Price</th>
+                            <th width="150px" class="wv-table__cell">Tax</th>
+                            <th width="90px" class="align-right wv-table__cell">Amount</th>
+                            <th width="70px" class="wv-table__cell"></th>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <select class="select2 form-control">
+
+                                    <option>Choose</option>
+
+                                </select>
+                                <a href="#addProduct" class="addEst addTaxX popup-with-zoom-anim"><b><span
+                                                class="icon-feather-plus-circle"></span>Add new Product</b></a>
+                            </td>
+                            <td>
+
+
+                                <select class="form-control select2" data-placeholder="Choose" name="account"
+                                        tabindex="18">
+                                    <option value="" selected=""></option>
+
+                                    <optgroup label="EXPENSE">
+
+                                        <option value="c410">Accounting Fees</option>
+
+                                        <option value="c414">Contract Services</option>
+
+                                        <option value="c419">Equipment Lease or Rental</option>
+
+                                        <option value="c421">Insurance – Property</option>
+
+                                        <option value="c423">Legal Fees</option>
+
+                                        <option value="c425">Office Supplies</option>
+
+                                        <option value="c428">Payroll – Employee Benefits</option>
+
+                                        <option value="c429">Payroll – Employer's Share of Benefits</option>
+
+                                        <option value="c430">Payroll – Salary &amp; Wages</option>
+
+                                        <option value="c431">Postage &amp; Delivery</option>
+
+                                        <option value="c432">Printing and Reproduction</option>
+
+                                        <option value="c435">Rent Expense</option>
+
+                                        <option value="c436">Repairs &amp; Maintenance</option>
+
+                                        <option value="c439">Telephone – Land Line</option>
+
+                                        <option value="c440">Telephone – Wireless</option>
+
+                                        <option value="c441">Travel Expense</option>
+
+                                        <option value="c444">Utilities</option>
+
+                                    </optgroup>
+
+                                    <optgroup label="ASSET">
+
+                                        <option value="c412">Accounts Receivable</option>
+
+                                    </optgroup>
+
+                                    <optgroup label="INCOME">
+
+                                        <option value="c415">Direct Public Support – Business Contributions</option>
+
+                                        <option value="c416">Direct Public Support – Corporate Contributions</option>
+
+                                        <option value="c417">Direct Public Support – Gifts in Kind</option>
+
+                                        <option value="c418">Direct Public Support – Individual Contributions</option>
+
+                                        <option value="c420">Indirect Public Support</option>
+
+                                        <option value="c422">Investments – Interest</option>
+
+                                        <option value="c424">Miscellaneous Revenue</option>
+
+                                        <option value="c433">Program Income – Membership Dues</option>
+
+                                        <option value="c434">Program Income – Program Service Fees</option>
+
+                                        <option value="c437">Sales</option>
+
+                                        <option value="c438">Security Sales</option>
+
+                                    </optgroup>
+
+                                    <optgroup label="EQUITY">
+
+                                        <option value="c427">Owner's Equity</option>
+
+                                    </optgroup>
+
+                                </select>
+
+                            </td>
+                            <td>
+                                <textarea class="tableTextarea"></textarea>
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="">
+                            </td>
+                            <td>
+
+                                <select class="select2 form-control" multiple="multiple">
+
+                                    <option>Choose</option>
+                                    <option>GST 2.5%</option>
+
+                                </select>
+
+
+                                <a href="#addTax" class="addEst addTaxX popup-with-zoom-anim"><b><span
+                                                class="icon-feather-plus-circle"></span>Add new tax</b></a>
+                            </td>
+                            <td>
+                                <b class="ammountEs">0.00</b>
+                            </td>
+                            <td>
+                                <a href="#"><span title="Delete" data-tippy-placement="top" data-tippy=""
+                                                  data-original-title="Tooltip"
+                                                  class="icon-material-outline-delete deleteicon"></span></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="5">
+
+                                <a href="#" class="addAline"><b><span class="icon-feather-plus-circle"></span> Add a
+                                        line</b></a>
+                            </td>
+
+                            <td colspan="2">
+                                <div>Subtotal:</div>
+
+                                <div>Total (PKR):</div>
+                            </td>
+                            <td>
+                                <div class="subtotal"><b>Rs:0.00</b></div>
+                                <div class="total"><b>Rs:0.00</b></div>
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="margin-top-40 margin-left-auto width200">
+                    <center>
+                        <a href="#" class="btn btn-2 margin-right-10">Cancel</a>
+                        <a href="#" class="btn btn-4">Save</a>
+                    </center>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Add products , vendor , tax popup
+    ================================================== -->
+    <div id="add_vendor" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Add a vendor</h1>
+            </div>
+            <div class="popupbody">
+
+                <div class="row">
+                    <div class="col-5">Vendor name *</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-5">Email</div>
+                    <div class="col-7">
+                        <input class="form-control" type="email" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-5">First name</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-5">Last name</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-5">Currency</div>
+                    <div class="col-7">
+
+                        <select class="form-control" data-live-search="true">
+
+                            <option value="c377">AED - UAE dirham</option>
+                            <option value="c1">AFN - Afghani</option>
+                            <option value="c5">ALL - Lek</option>
+                            <option value="c20">AMD - Armenian dram</option>
+                            <option value="c101">ANG - Netherlands Antillean Guilder</option>
+                            <option value="c12">AOA - Kwanza</option>
+                            <option value="c18">ARS - Argentinian peso</option>
+                            <option value="c24">AUD - Australian dollar</option>
+                            <option value="c22">AWG - Aruban Guilder</option>
+                            <option value="c399">AZN - New Manat</option>
+                            <option value="c51">BAM - Convertible Marks</option>
+                            <option value="c35">BBD - Barbados dollar</option>
+                            <option value="c33">BDT - Taka</option>
+                            <option value="c62">BGN - Lev</option>
+                            <option value="c31">BHD - Bahraini dinar</option>
+                            <option value="c65">BIF - Burundi franc</option>
+                            <option value="c44">BMD - Bermuda dollar</option>
+                            <option value="c60">BND - Brunei dollar</option>
+                            <option value="c48">BOB - Boliviano</option>
+                            <option value="c57">BRL - Real</option>
+                            <option value="c29">BSD - Bahamian dollar</option>
+                            <option value="c46">BTN - Ngultrum</option>
+                            <option value="c53">BWP - Pula</option>
+                            <option value="c37">BYR - Belarussian rouble</option>
+                            <option value="c40">BZD - Belize dollar</option>
+                            <option value="c71">CAD - Canadian dollar</option>
+                            <option value="c90">CDF - Franc congolais</option>
+                            <option value="c213">CHF - Swiss franc</option>
+                            <option value="c79">CLP - Chilean peso</option>
+                            <option value="c81">CNY - Ren-Min-Bi yuan</option>
+                            <option value="c85">COP - Colombian peso</option>
+                            <option value="c94">CRC - Costa Rican colon</option>
+                            <option value="c99">CUP - Cuban peso</option>
+                            <option value="c73">CVE - Cape Verde escudo</option>
+                            <option value="c104">CZK - Czech koruna</option>
+                            <option value="c108">DJF - Djibouti franc</option>
+                            <option value="c106">DKK - Danish krone</option>
+                            <option value="c111">DOP - Dominican peso</option>
+                            <option value="c7">DZD - Algerian dinar</option>
+                            <option value="c400">EEK - Estonian kroon</option>
+                            <option value="c114">EGP - Egyptian pound</option>
+                            <option value="c118">ERN - Nakfa</option>
+                            <option value="c121">ETB - Ethiopian birr</option>
+                            <option value="c3">EUR - Euro</option>
+                            <option value="c126">FJD - Fiji dollar</option>
+                            <option value="c123">FKP - Falkland Islands (Malvinas) Pound</option>
+                            <option value="c151">GBP - Pound sterling</option>
+                            <option value="c137">GEL - Lari</option>
+                            <option value="c140">GHS - Ghana Cedi</option>
+                            <option value="c142">GIP - Gibraltar pound</option>
+                            <option value="c135">GMD - Dalasi</option>
+                            <option value="c153">GNF - Guinean franc</option>
+                            <option value="c149">GTQ - Quetzal</option>
+                            <option value="c401">GWP - Guinean bissau Peso</option>
+                            <option value="c156">GYD - Guyana dollar</option>
+                            <option value="c164">HKD - Hong Kong dollar</option>
+                            <option value="c162">HNL - Lempira</option>
+                            <option value="c97">HRK - Kuna</option>
+                            <option value="c158">HTG - Haitian gourde</option>
+                            <option value="c166">HUF - Forint</option>
+                            <option value="c172">IDR - Rupiah</option>
+                            <option value="c180">ILS - New Israeli sheqel</option>
+                            <option value="c170">INR - Indian rupee</option>
+                            <option value="c176">IQD - Iraqi dinar</option>
+                            <option value="c174">IRR - Iranian rial</option>
+                            <option value="c168">ISK - Icelandic Krona</option>
+                            <option value="c183">JMD - Jamaican dollar</option>
+                            <option value="c188">JOD - Jordanian dinar</option>
+                            <option value="c185">JPY - Yen</option>
+                            <option value="c192">KES - Kenyan shilling</option>
+                            <option value="c200">KGS - Kyrgyz Som</option>
+                            <option value="c67">KHR - Riel</option>
+                            <option value="c87">KMF - Comoro franc</option>
+                            <option value="c195">KRW - Won</option>
+                            <option value="c198">KWD - Kuwaiti dinar</option>
+                            <option value="c75">KYD - Cayman Islands dollar</option>
+                            <option value="c190">KZT - Tenge</option>
+                            <option value="c202">LAK - Kip</option>
+                            <option value="c205">LBP - Lebanese pound</option>
+                            <option value="c337">LKR - Sri Lankan rupee</option>
+                            <option value="c209">LRD - Liberian dollar</option>
+                            <option value="c207">LSL - Loti</option>
+                            <option value="c402">LTL - Lithuanian litus</option>
+                            <option value="c403">LVL - Latvian lats</option>
+                            <option value="c211">LYD - Libyan dinar</option>
+                            <option value="c248">MAD - Moroccan dirham</option>
+                            <option value="c241">MDL - Moldovan leu</option>
+                            <option value="c221">MGA - Malagasy Ariary</option>
+                            <option value="c219">MKD - Denar</option>
+                            <option value="c252">MMK - Kyat</option>
+                            <option value="c244">MNT - Tugrik</option>
+                            <option value="c217">MOP - Pataca</option>
+                            <option value="c404">MRO - Ouguiya</option>
+                            <option value="c233">MRU - Ouguiya</option>
+                            <option value="c235">MUR - Mauritian rupee</option>
+                            <option value="c227">MVR - Rufiyaa</option>
+                            <option value="c223">MWK - Kwacha</option>
+                            <option value="c238">MXN - Mexican peso</option>
+                            <option value="c225">MYR - Malaysian ringgit</option>
+                            <option value="c250">MZN - Metical</option>
+                            <option value="c254">NAD - Namibian dollar</option>
+                            <option value="c265">NGN - Naira</option>
+                            <option value="c262">NIO - Cordoba Oro</option>
+                            <option value="c55">NOK - Norwegian krone</option>
+                            <option value="c257">NPR - Nepalese rupee</option>
+                            <option value="c92">NZD - New Zealand dollar</option>
+                            <option value="c271">OMR - Omani rial</option>
+                            <option value="c276">PAB - Balboa</option>
+                            <option value="c282">PEN - Nuevo Sol</option>
+                            <option value="c278">PGK - Kina</option>
+                            <option value="c284">PHP - Philippine peso</option>
+                            <option value="c273">PKR - Pakistani rupee</option>
+                            <option value="c287">PLN - Zloty</option>
+                            <option value="c280">PYG - Guarani</option>
+                            <option value="c291">QAR - Qatari riyal</option>
+                            <option value="c294">RON - New Leu</option>
+                            <option value="c316">RSD - Serbian Dinar</option>
+                            <option value="c296">RUB - Russian rouble</option>
+                            <option value="c298">RWF - Rwanda franc</option>
+                            <option value="c313">SAR - Saudi riyal</option>
+                            <option value="c327">SBD - Solomon Islands Dollar</option>
+                            <option value="c318">SCR - Seychelles rupee</option>
+                            <option value="c334">SDG - Sudanese Pound</option>
+                            <option value="c346">SEK - Swedish Krona</option>
+                            <option value="c322">SGD - Singapore dollar</option>
+                            <option value="c301">SHP - Saint Helena Pound</option>
+                            <option value="c320">SLL - Leone</option>
+                            <option value="c329">SOS - Somali shilling</option>
+                            <option value="c341">SRD - Surinam dollar</option>
+                            <option value="c405">SSP - South Sudanese pound</option>
+                            <option value="c311">STD - Dobra</option>
+                            <option value="c406">SVC - El Salvador colon</option>
+                            <option value="c349">SYP - Syrian pound</option>
+                            <option value="c344">SZL - Lilangeni</option>
+                            <option value="c357">THB - Baht</option>
+                            <option value="c353">TJS - Somoni</option>
+                            <option value="c27">TMM - Manat</option>
+                            <option value="c366">TND - Tunisian dinar</option>
+                            <option value="c362">TOP - Pa'anga</option>
+                            <option value="c368">TRY - Turkish Lira</option>
+                            <option value="c364">TTD - Trinidad and Tobago dollar</option>
+                            <option value="c351">TWD - Taiwan New Dollar</option>
+                            <option value="c355">TZS - Tanzanian shilling</option>
+                            <option value="c375">UAH - Hryvnia</option>
+                            <option value="c373">UGX - Ugandan shilling</option>
+                            <option value="c9" selected="selected">USD - U.S. dollar</option>
+                            <option value="c382">UYU - Uruguayo peso</option>
+                            <option value="c407">UZS - Uzbekistan sum</option>
+                            <option value="c387">VEF - Bolivar Fuerte</option>
+                            <option value="c389">VND - Dong</option>
+                            <option value="c385">VUV - Vatu</option>
+                            <option value="c308">WST - Samoan Tala</option>
+                            <option value="c42">XAF - CFA Franc - BEAC</option>
+                            <option value="c14">XCD - Eastern Caribbean dollar</option>
+                            <option value="c69">XOF - CFA franc - BCEAO</option>
+                            <option value="c131">XPF - Comptoirs Francais du Pacifique Francs</option>
+                            <option value="c395">YER - Yemeni rial</option>
+                            <option value="c331">ZAR - Rand</option>
+                            <option value="c408">ZMK - Kwacha</option>
+                            <option value="c409">ZMW - Kwacha</option>
+                            <option value="c398">ZWD - Zimbabwean dollar</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col-5"></div>
+                    <div class="col-7 margin-top-15">
+
+                        <a href="#"><span class="icon-material-outline-keyboard-arrow-down popuparrowdown"></span>Add
+                            additional information</a>
+
+                    </div>
+                    <div class="row Addshow">
+                        <div class="w-100 margin-bottom-15"></div>
+
+                        <div class="col-5">Account number</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+
+
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Address line 1</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Address line 2</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+
+
+                        <div class="w-100"></div>
+
+                        <div class="col-5">City</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+
+
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Country</div>
+                        <div class="col-7">
+
+                            <select id="c492_country" name="country" class="form-control" data-live-search="true"
+                                    data-placeholder="Choose" tabindex="-1">
+                                <option></option>
+                                <option value="c0">Afghanistan</option>
+                                <option value="c2">Åland Islands</option>
+                                <option value="c4">Albania</option>
+                                <option value="c6">Algeria</option>
+                                <option value="c8">American Samoa</option>
+                                <option value="c10">Andorra</option>
+                                <option value="c11">Angola</option>
+                                <option value="c13">Anguilla</option>
+                                <option value="c15">Antarctica</option>
+                                <option value="c16">Antigua and Barbuda</option>
+                                <option value="c17">Argentina</option>
+                                <option value="c19">Armenia</option>
+                                <option value="c21">Aruba</option>
+                                <option value="c23">Australia</option>
+                                <option value="c25">Austria</option>
+                                <option value="c26">Azerbaijan</option>
+                                <option value="c28">Bahamas</option>
+                                <option value="c30">Bahrain</option>
+                                <option value="c32">Bangladesh</option>
+                                <option value="c34">Barbados</option>
+                                <option value="c36">Belarus</option>
+                                <option value="c38">Belgium</option>
+                                <option value="c39">Belize</option>
+                                <option value="c41">Benin</option>
+                                <option value="c43">Bermuda</option>
+                                <option value="c45">Bhutan</option>
+                                <option value="c47">Bolivia, Plurinational State of</option>
+                                <option value="c49">Bonaire, Sint Eustatius and Saba</option>
+                                <option value="c50">Bosnia and Herzegovina</option>
+                                <option value="c52">Botswana</option>
+                                <option value="c54">Bouvet Island</option>
+                                <option value="c56">Brazil</option>
+                                <option value="c58">British Indian Ocean Territory</option>
+                                <option value="c59">Brunei Darussalam</option>
+                                <option value="c61">Bulgaria</option>
+                                <option value="c63">Burkina Faso</option>
+                                <option value="c64">Burundi</option>
+                                <option value="c66">Cambodia</option>
+                                <option value="c68">Cameroon</option>
+                                <option value="c70">Canada</option>
+                                <option value="c72">Cape Verde</option>
+                                <option value="c74">Cayman Islands</option>
+                                <option value="c76">Central African Republic</option>
+                                <option value="c77">Chad</option>
+                                <option value="c78">Chile</option>
+                                <option value="c80">China</option>
+                                <option value="c82">Christmas Island</option>
+                                <option value="c83">Cocos (keeling) Islands</option>
+                                <option value="c84">Colombia</option>
+                                <option value="c86">Comoros</option>
+                                <option value="c88">Congo</option>
+                                <option value="c89">Congo, The Democratic Republic of the</option>
+                                <option value="c91">Cook Islands</option>
+                                <option value="c93">Costa Rica</option>
+                                <option value="c95">Cote D'ivoire</option>
+                                <option value="c96">Croatia</option>
+                                <option value="c98">Cuba</option>
+                                <option value="c100">Curaçao</option>
+                                <option value="c102">Cyprus</option>
+                                <option value="c103">Czech Republic</option>
+                                <option value="c105">Denmark</option>
+                                <option value="c107">Djibouti</option>
+                                <option value="c109">Dominica</option>
+                                <option value="c110">Dominican Republic</option>
+                                <option value="c112">Ecuador</option>
+                                <option value="c113">Egypt</option>
+                                <option value="c115">El Salvador</option>
+                                <option value="c116">Equatorial Guinea</option>
+                                <option value="c117">Eritrea</option>
+                                <option value="c119">Estonia</option>
+                                <option value="c120">Ethiopia</option>
+                                <option value="c122">Falkland Islands (malvinas)</option>
+                                <option value="c124">Faroe Islands</option>
+                                <option value="c125">Fiji</option>
+                                <option value="c127">Finland</option>
+                                <option value="c128">France</option>
+                                <option value="c129">French Guiana</option>
+                                <option value="c130">French Polynesia</option>
+                                <option value="c132">French Southern Territories</option>
+                                <option value="c133">Gabon</option>
+                                <option value="c134">Gambia</option>
+                                <option value="c136">Georgia</option>
+                                <option value="c138">Germany</option>
+                                <option value="c139">Ghana</option>
+                                <option value="c141">Gibraltar</option>
+                                <option value="c143">Greece</option>
+                                <option value="c144">Greenland</option>
+                                <option value="c145">Grenada</option>
+                                <option value="c146">Guadeloupe</option>
+                                <option value="c147">Guam</option>
+                                <option value="c148">Guatemala</option>
+                                <option value="c150">Guernsey</option>
+                                <option value="c152">Guinea</option>
+                                <option value="c154">Guinea-bissau</option>
+                                <option value="c155">Guyana</option>
+                                <option value="c157">Haiti</option>
+                                <option value="c159">Heard Island and McDonald Islands</option>
+                                <option value="c160">Holy See (vatican City State)</option>
+                                <option value="c161">Honduras</option>
+                                <option value="c163">Hong Kong</option>
+                                <option value="c165">Hungary</option>
+                                <option value="c167">Iceland</option>
+                                <option value="c169">India</option>
+                                <option value="c171">Indonesia</option>
+                                <option value="c173">Iran, Islamic Republic of</option>
+                                <option value="c175">Iraq</option>
+                                <option value="c177">Ireland</option>
+                                <option value="c178">Isle of Man</option>
+                                <option value="c179">Israel</option>
+                                <option value="c181">Italy</option>
+                                <option value="c182">Jamaica</option>
+                                <option value="c184">Japan</option>
+                                <option value="c186">Jersey</option>
+                                <option value="c187">Jordan</option>
+                                <option value="c189">Kazakhstan</option>
+                                <option value="c191">Kenya</option>
+                                <option value="c193">Kiribati</option>
+                                <option value="c194">Korea, Democratic People's Republic of</option>
+                                <option value="c196">Korea, Republic of</option>
+                                <option value="c197">Kuwait</option>
+                                <option value="c199">Kyrgyzstan</option>
+                                <option value="c201">Lao People's Democratic Republic</option>
+                                <option value="c203">Latvia</option>
+                                <option value="c204">Lebanon</option>
+                                <option value="c206">Lesotho</option>
+                                <option value="c208">Liberia</option>
+                                <option value="c210">Libya</option>
+                                <option value="c212">Liechtenstein</option>
+                                <option value="c214">Lithuania</option>
+                                <option value="c215">Luxembourg</option>
+                                <option value="c216">Macao</option>
+                                <option value="c218">Macedonia, The Former Yugoslav Republic of</option>
+                                <option value="c220">Madagascar</option>
+                                <option value="c222">Malawi</option>
+                                <option value="c224">Malaysia</option>
+                                <option value="c226">Maldives</option>
+                                <option value="c228">Mali</option>
+                                <option value="c229">Malta</option>
+                                <option value="c230">Marshall Islands</option>
+                                <option value="c231">Martinique</option>
+                                <option value="c232">Mauritania</option>
+                                <option value="c234">Mauritius</option>
+                                <option value="c236">Mayotte</option>
+                                <option value="c237">Mexico</option>
+                                <option value="c239">Micronesia, Federated States of</option>
+                                <option value="c240">Moldova, Republic of</option>
+                                <option value="c242">Monaco</option>
+                                <option value="c243">Mongolia</option>
+                                <option value="c245">Montenegro</option>
+                                <option value="c246">Montserrat</option>
+                                <option value="c247">Morocco</option>
+                                <option value="c249">Mozambique</option>
+                                <option value="c251">Myanmar</option>
+                                <option value="c253">Namibia</option>
+                                <option value="c255">Nauru</option>
+                                <option value="c256">Nepal</option>
+                                <option value="c258">Netherlands</option>
+                                <option value="c259">New Caledonia</option>
+                                <option value="c260">New Zealand</option>
+                                <option value="c261">Nicaragua</option>
+                                <option value="c263">Niger</option>
+                                <option value="c264">Nigeria</option>
+                                <option value="c266">Niue</option>
+                                <option value="c267">Norfolk Island</option>
+                                <option value="c268">Northern Mariana Islands</option>
+                                <option value="c269">Norway</option>
+                                <option value="c270">Oman</option>
+                                <option value="c272">Pakistan</option>
+                                <option value="c274">Palau</option>
+                                <option value="c275">Panama</option>
+                                <option value="c277">Papua New Guinea</option>
+                                <option value="c279">Paraguay</option>
+                                <option value="c281">Peru</option>
+                                <option value="c283">Philippines</option>
+                                <option value="c285">Pitcairn</option>
+                                <option value="c286">Poland</option>
+                                <option value="c288">Portugal</option>
+                                <option value="c289">Puerto Rico</option>
+                                <option value="c290">Qatar</option>
+                                <option value="c292">Réunion</option>
+                                <option value="c293">Romania</option>
+                                <option value="c295">Russian Federation</option>
+                                <option value="c297">Rwanda</option>
+                                <option value="c299">Saint Barthelemy</option>
+                                <option value="c300">Saint Helena, Ascension and Tristan da Cunha</option>
+                                <option value="c302">Saint Kitts and Nevis</option>
+                                <option value="c303">Saint Lucia</option>
+                                <option value="c304">Saint Martin</option>
+                                <option value="c305">Saint Pierre and Miquelon</option>
+                                <option value="c306">Saint Vincent and the Grenadines</option>
+                                <option value="c307">Samoa</option>
+                                <option value="c309">San Marino</option>
+                                <option value="c310">Sao Tome and Principe</option>
+                                <option value="c312">Saudi Arabia</option>
+                                <option value="c314">Senegal</option>
+                                <option value="c315">Serbia</option>
+                                <option value="c317">Seychelles</option>
+                                <option value="c319">Sierra Leone</option>
+                                <option value="c321">Singapore</option>
+                                <option value="c323">Sint Maarten</option>
+                                <option value="c324">Slovakia</option>
+                                <option value="c325">Slovenia</option>
+                                <option value="c326">Solomon Islands</option>
+                                <option value="c328">Somalia</option>
+                                <option value="c330">South Africa</option>
+                                <option value="c332">South Georgia and the South Sandwich Islands</option>
+                                <option value="c333">South Sudan</option>
+                                <option value="c335">Spain</option>
+                                <option value="c336">Sri Lanka</option>
+                                <option value="c338">State of Palestine</option>
+                                <option value="c339">Sudan</option>
+                                <option value="c340">Suriname</option>
+                                <option value="c342">Svalbard and Jan Mayen</option>
+                                <option value="c343">Swaziland</option>
+                                <option value="c345">Sweden</option>
+                                <option value="c347">Switzerland</option>
+                                <option value="c348">Syrian Arab Republic</option>
+                                <option value="c350">Taiwan</option>
+                                <option value="c352">Tajikistan</option>
+                                <option value="c354">Tanzania, United Republic of</option>
+                                <option value="c356">Thailand</option>
+                                <option value="c358">Timor-leste</option>
+                                <option value="c359">Togo</option>
+                                <option value="c360">Tokelau</option>
+                                <option value="c361">Tonga</option>
+                                <option value="c363">Trinidad and Tobago</option>
+                                <option value="c365">Tunisia</option>
+                                <option value="c367">Turkey</option>
+                                <option value="c369">Turkmenistan</option>
+                                <option value="c370">Turks and Caicos Islands</option>
+                                <option value="c371">Tuvalu</option>
+                                <option value="c372">Uganda</option>
+                                <option value="c374">Ukraine</option>
+                                <option value="c376">United Arab Emirates</option>
+                                <option value="c378">United Kingdom</option>
+                                <option value="c379">United States</option>
+                                <option value="c380">United States Minor Outlying Islands</option>
+                                <option value="c381">Uruguay</option>
+                                <option value="c383">Uzbekistan</option>
+                                <option value="c384">Vanuatu</option>
+                                <option value="c386">Venezuela, Bolivarian Republic of</option>
+                                <option value="c388">Viet Nam</option>
+                                <option value="c390">Virgin Islands, British</option>
+                                <option value="c391">Virgin Islands, U.s.</option>
+                                <option value="c392">Wallis and Futuna</option>
+                                <option value="c393">Western Sahara</option>
+                                <option value="c394">Yemen</option>
+                                <option value="c396">Zambia</option>
+                                <option value="c397">Zimbabwe</option>
+                            </select>
+
+
+                        </div>
+
+
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Province</div>
+                        <div class="col-7">
+                            <select id="c492_province" name="province" class="form-control" data-live-search="true"
+                                    data-placeholder="Choose" tabindex="-1">
+                                <option></option>
+                                <option value="c529">Alabama</option>
+                                <option value="c530">Alaska</option>
+                                <option value="c531">Arizona</option>
+                                <option value="c532">Arkansas</option>
+                                <option value="c533">California</option>
+                                <option value="c534">Colorado</option>
+                                <option value="c535">Connecticut</option>
+                                <option value="c536">Delaware</option>
+                                <option value="c537">District of Columbia</option>
+                                <option value="c538">Florida</option>
+                                <option value="c539">Georgia</option>
+                                <option value="c540">Hawaii</option>
+                                <option value="c541">Idaho</option>
+                                <option value="c542">Illinois</option>
+                                <option value="c543">Indiana</option>
+                                <option value="c544">Iowa</option>
+                                <option value="c545">Kansas</option>
+                                <option value="c546">Kentucky</option>
+                                <option value="c547">Louisiana</option>
+                                <option value="c548">Maine</option>
+                                <option value="c549">Maryland</option>
+                                <option value="c550">Massachusetts</option>
+                                <option value="c551">Michigan</option>
+                                <option value="c552">Minnesota</option>
+                                <option value="c553">Mississippi</option>
+                                <option value="c554">Missouri</option>
+                                <option value="c555">Montana</option>
+                                <option value="c556">Nebraska</option>
+                                <option value="c557">Nevada</option>
+                                <option value="c558">New Hampshire</option>
+                                <option value="c559">New Jersey</option>
+                                <option value="c560">New Mexico</option>
+                                <option value="c561">New York</option>
+                                <option value="c562">North Carolina</option>
+                                <option value="c563">North Dakota</option>
+                                <option value="c564">Ohio</option>
+                                <option value="c565">Oklahoma</option>
+                                <option value="c566">Oregon</option>
+                                <option value="c567">Pennsylvania</option>
+                                <option value="c568">Rhode Island</option>
+                                <option value="c569">South Carolina</option>
+                                <option value="c570">South Dakota</option>
+                                <option value="c571">Tennessee</option>
+                                <option value="c572">Texas</option>
+                                <option value="c573">Utah</option>
+                                <option value="c574">Vermont</option>
+                                <option value="c575">Virginia</option>
+                                <option value="c576">Washington</option>
+                                <option value="c577">West Virginia</option>
+                                <option value="c578">Wisconsin</option>
+                                <option value="c579">Wyoming</option>
+                            </select>
+                        </div>
+
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Postal/Zip code</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Phone</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Fax</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Mobile</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Toll Free</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Website</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="popupbfoot">
+                <a href="#" class="btn btn-4 margin-right-10">Add customer</a> <a href="#"
+                                                                                              class="btn btn-2 mfp-close">Cancel</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="addTax" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Add Tax</h1>
+            </div>
+            <div class="popupbody">
+
+                <div class="row">
+                    <div class="col-7">Tax name *</div>
+                    <div class="col-5">
+                        <input class="form-control" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Abbreviation *</div>
+                    <div class="col-5">
+                        <input class="form-control" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Tax rate (%) *</div>
+                    <div class="col-5">
+                        <input class="form-control" type="text" placeholder="">
+                        <p style="font-size: 12px; line-height: 15px;">Tax rate should be a number only, without a
+                            percent sign.</p>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Description</div>
+                    <div class="col-5">
+                        <input class="form-control" type="text" placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Your tax number</div>
+                    <div class="col-5">
+
+                        <input class="form-control" type="text" placeholder="">
+
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col-7">Show tax number on invoices</div>
+                    <div class="col-5">
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="" checked="">
+                            <label for=""><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+                    <div class="w-100 margin-bottom-15"></div>
+
+                    <div class="col-7">Is this tax recoverable?</div>
+                    <div class="col-5">
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="" checked="">
+                            <label for=""><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+                    <div class="w-100 margin-bottom-15"></div>
+
+                    <div class="col-7">Is this a compound tax?</div>
+                    <div class="col-5">
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="" checked="">
+                            <label for=""><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="popupbfoot">
+                <a href="#" class="btn btn-4 margin-right-10">Add customer</a> <a href="#"
+                                                                                              class="btn btn-2 mfp-close">Cancel</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="addProduct" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Add Product</h1>
+            </div>
+            <div class="popupbody">
+
+                <div class="row">
+                    <div class="col-5">Name *</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-5">Income account *</div>
+                    <div class="col-7">
+                        <select class="form-control selectPadding select2">
+                            <option>Consulting Income</option>
+                            <option>Sales</option>
+                        </select>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-5">Price *</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-5">Description</div>
+                    <div class="col-7">
+                        <textarea class="form-control"></textarea>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+
+                </div>
+                <!--//-->
+            </div>
+            <!--//-->
+            <div class="popupbfoot">
+                <a href="#" class="btn btn-4 margin-right-10">Add customer</a>
+                <a href="#" class="btn btn-2 mfp-close">Cancel</a>
+            </div>
+            <!--//-->
+        </div>
+
+    </div>
+
+    <!-- products , vendor , tax popup / End -->
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

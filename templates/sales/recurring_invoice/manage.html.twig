@@ -1,0 +1,144 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+<!-- Dashboard Headline -->
+
+
+    <div class="dashboard-headline">
+
+
+
+        <h3 class="float-left">Recurring Invoices</h3>
+
+        <a href="{{ path('sales.invoice.new') }}" class="form-control pull-right">Create a recurring invoice</a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Invoices-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+
+
+                <div class="createInvoice">
+
+
+
+                    <div class="invoiceFilters padding-bottom-30 margin-top-50">
+                        <div class="row no-gutters">
+                            <div class="col-sm-4 margin-right-10">
+                                <select class="selectpicker with-border" data-live-search="true">
+                                    <option>All Customers</option>
+                                    <option>Hammad</option>
+                                    <option>John</option>
+                                </select>
+                            </div>
+                            <!--col-->
+
+
+                            <!--col-->
+
+                        </div>
+                    </div>
+                    <!--invoiceFilters-->
+
+                    <div class="invoiceTabs">
+                        <!-- Tabs Container -->
+                        <div class="tabs">
+                            <div class="tabs-header">
+                                <ul>
+                                    <li class="active"><a href="#tab-1" data-tab-id="1">Unpaid (0)</a></li>
+                                    <li><a href="#tab-2" data-tab-id="2">Draft (0)</a></li>
+                                    <li><a href="#tab-3" data-tab-id="3">All Invoices</a></li>
+                                </ul>
+                                <div class="tab-hover"></div>
+
+                            </div>
+                            <!-- Tab Content -->
+                            <div class="tabs-content">
+                                <div class="tab active" data-tab-id="1">
+                                    <div class="padding-bottom-20">
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <th class="width100">Status</th>
+                                                <th class="width150">Customer</th>
+                                                <th>Schedule</th>
+                                                <th class="width200">Previous Invoice</th>
+
+                                                <th class="width150">Next Invoice</th>
+                                                <th class="width200">Invoice Amount</th>
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="saved wv-badge">Saved</span></td>
+                                                <td>Jason King</td>
+                                                <td>2018-10-21</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Rs:500.00</td>
+                                                <!--<td>
+
+                                                    <a href="#">
+                                                        <b>Send</b>
+                                                    </a>
+                                                    <div class="tableDropdown">
+                                                        <ul>
+
+                                                            <li class="liDropDown"><a href="#"><span class="icon-feather-arrow-down-circle"> </span></a>
+                                                                <ul class="dropDownInner">
+                                                                    <li><a href="#">View</a></li>
+                                                                    <li><a href="#">Edit</a></li>
+                                                                    <li><a href="#">Print</a></li>
+                                                                    <li class="wv-dropdown__menu__divider"></li>
+                                                                    <li><a href="#">Convert to invoice</a></li>
+                                                                    <li class="wv-dropdown__menu__divider"></li>
+                                                                    <li><a href="#">Send</a></li>
+                                                                    <li><a href="#">Export as PDF</a></li>
+                                                                    <li class="wv-dropdown__menu__divider"></li>
+                                                                    <li><a href="#">Delete</a></li>
+                                                                </ul>
+
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
+
+                                                </td>-->
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <div class="tab" data-tab-id="2">
+                                    <div class="text-center emptytabContent">
+                                        <h1>You haven't created any invoices yet.</h1>
+                                        <p>Create your first invoice and get paid for your excellent work.</p>
+                                        <a href="{{ path('sales.invoice.new') }}">Create Your First Invoice</a>
+                                    </div>
+                                </div>
+                                <div class="tab" data-tab-id="3">
+                                    <div class="text-center emptytabContent">
+                                        <h1>You haven't created any invoices yet.</h1>
+                                        <p>Create your first invoice and get paid for your excellent work.</p>
+                                        <a href="{{ path('sales.invoice.new') }}">Create Your First Invoice</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tabs Container / End -->
+                    </div>
+
+                </div>
+                <!--createInvoice-->
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

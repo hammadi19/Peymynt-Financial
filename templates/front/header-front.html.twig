@@ -1,0 +1,268 @@
+<!-- Header Container
+================================================== -->
+
+
+
+<!-- Header -->
+<div class="hide">
+
+    {#     <!-- Left Side Content -->
+         <div class="left-side">
+
+             <!-- Logo -->
+             <div id="logo"> <a href="{{ path('peymynt.welcome') }}"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a> </div>
+
+             <!-- Main Navigation -->
+             <nav id="navigation">
+                 <ul id="responsive">
+                     <li><a href="{{ path('peymynt.welcome') }}">Home</a> </li>
+                     <li><a href="#">Products</a>
+                         <ul class="dropdown-nav">
+                             <li><a href="{{ path('peymynt.content_pages', {"slug":"accounting"}) }}">Accounting</a> </li>
+                             <li><a href="{{ path('peymynt.content_pages', {"slug":"invoices"}) }}">Invoicing</a></li>
+                             <li><a href="{{ path('peymynt.content_pages', {"slug":"receipts"}) }}">Receipts</a></li>
+                         </ul>
+                     </li>
+                     <li><a href="#">Services</a>
+                         <ul class="dropdown-nav">
+                             <li><a href="{{ path('peymynt.content_pages', {"slug":"support"}) }}">Support</a></li>
+                         </ul>
+                     </li>
+                     <li><a href="{{ path('peymynt.content_pages', {"slug":"contact"}) }}">Pricing</a></li>
+                     <li><a href="{{ path('peymynt.content_pages', {"slug":"blog"}) }}">Blog</a></li>
+                     <li><a href="#">More</a>
+                         <ul class="dropdown-nav">
+                             <li><a href="{{ path('peymynt.content_pages', {"slug":"success_stories"}) }}">Success stories</a></li>
+                             <li><a href="{{ path('peymynt.content_pages', {"slug":"about"}) }}">About us</a></li>
+                             <li><a href="{{ path('peymynt.content_pages', {"slug":"careers"}) }}">Careers</a></li>
+                             <li><a href="{{ path('peymynt.content_pages', {"slug":"partners"}) }}">Partners</a></li>
+                             <li><a href="{{ path('peymynt.content_pages', {"slug":"contact"}) }}">Contact us</a></li>
+                         </ul>
+                     </li>
+                 </ul>
+             </nav>
+             <div class="clearfix"></div>
+             <!-- Main Navigation / End -->
+
+         </div>
+         <!-- Left Side Content / End -->
+#}
+    <!-- Right Side Content / End -->
+    <div class="right-side">
+        {% if app.user %}
+
+
+            <!--  User Notifications / End -->
+
+            <!-- User Menu -->
+            <div class="header-widget">
+
+                <!-- Messages -->
+                <div class="header-notifications user-menu">
+                    <div class="header-notifications-trigger"> <a href="#">
+                            <div class="user-avatar"><img src="{{ asset('assets/images/user-avatar-small-01.jpg') }}" alt=""></div>
+                        </a>
+                    </div>
+
+                    <!-- Dropdown -->
+                    <div class="header-notifications-dropdown">
+
+                        <!-- User Status -->
+                        <div class="user-status">
+
+                            <!-- User Name / Avatar -->
+                            <div class="user-details">
+                                <div class="user-avatar status-online"><img src="{{ asset('assets/images/user-avatar-small-01.jpg') }}" alt=""></div>
+                                <div class="user-name">  Peymynt Financial <span><a href="{{ path('app_user_dashboard') }}">Your account </a></span></div>
+                            </div>
+                            <ul class="wv-business-switcher__business-menu">
+                                {% set userBusinessInfo = user_business_info() %}
+                                {% if userBusinessInfo|length > 0 %}
+
+                                    {% for business in userBusinessInfo %}
+                                        <li class="wv-business-switcher__business-menu__item {% if business.id ==
+                                            user_personal_info().business_id %}is-current{% endif %} }}">
+                                            <a class="wv-business-switcher__business-menu__item__link"
+                                               href="{{ path('update_user_primary_business', {'id': business.id})
+                                               }}"
+                                            >
+                                                <span class="wv-business-switcher__business-menu__item__label fs-exclude">{{ business.name }}</span>
+                                                {#<i class="icon-material-outline-check pull-right margin-top-4"></i>#}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+
+                                {% endif %}
+
+
+
+                                {#<li class="wv-business-switcher__business-menu__item is-current">#}
+                                {#<a class="wv-business-switcher__business-menu__item__link" href="#">#}
+                                {#<span class="wv-business-switcher__business-menu__item__label fs-exclude">Meet Logic</span>#}
+                                {#<i class="icon-material-outline-check pull-right margin-top-4"></i>#}
+                                {#</a>#}
+                                {#</li>#}
+                                {#<li class="wv-business-switcher__business-menu__item">#}
+                                {#<a class="wv-business-switcher__business-menu__item__link" href="#">#}
+                                {#<span class="wv-business-switcher__business-menu__item__label fs-exclude">#}
+                                {#Personal#}
+                                {#</span>#}
+                                {#</a>#}
+                                {#</li>#}
+                            </ul>
+                        </div>
+
+                        <ul class="user-menu-small-nav">
+                            <li><small>You're signed in as <strong>{{ user_personal_info().email }}</strong></small></li>
+                            <li><a href="{{ path('app_user_settings') }}"><i class="icon-material-outline-account-circle"></i> Manage your profile </a></li>
+
+                            <li><a href="{{ path('app_user_logout') }}"><i class="icon-material-outline-power-settings-new"></i> Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- User Menu / End -->
+
+        {% else %}
+            <div class="header-widget">
+                <a href="#sign-in-dialog" class="popup-with-zoom-anim log-in-button"><i class="icon-feather-log-in"></i> <span>Log In / Register</span></a>
+            </div>
+        {% endif %}
+
+
+    </div>
+    <!-- Right Side Content / End -->
+
+</div>
+<!-- Header / End -->
+
+
+
+
+<nav class="navbar navbar-expand-md main-nav navigation fixed-top sidebar-left">
+    <div class="container">
+        <button class="navbar-toggler" type="button">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="{{ path('peymynt.welcome') }}" class="navbar-brand">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="Peymynt" class="logo logo-sticky d-block d-md-none">
+            <img src="{{ asset('assets/img/logo-light.png') }}" alt="Peymynt" class="logo d-none d-md-block">
+        </a>
+        <div class="collapse navbar-collapse ml-auto" id="main-navbar">
+            <div class="sidebar-brand">
+                <a href="{{ path('peymynt.welcome') }}">
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Peymynt Financials" class="logo">
+                </a>
+            </div>
+            <ul class="nav navbar-nav mr-auto">
+
+                <li class="nav-item d-md-none d-lg-block">
+                    <a class="nav-link" href="{{ path('peymynt.content_pages', {"slug":"about"}) }}">About</a>
+                </li>
+                <li class="nav-item dropdown mega">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#pricing">Product</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-4 b-md-r">
+
+                                        <a class="dropdown-item text-wrap" href="javascript:void(0)">
+                                        <p class="bold my-0"><a href="{{ path('peymynt.content_pages', {"slug":"accounting"}) }}">Accounting</a></p>
+                                        <p class="my-0 small">Track your income and expenses.</p>
+                                    </a>
+                                    <a class="dropdown-item text-wrap" href="#">
+                                        <p class="bold my-0"><a href="{{ path('peymynt.content_pages', {"slug":"invoices"}) }}">Invoicing</a></p>
+                                        <p class="my-0 small">Create and send professional invoices.</p>
+                                    </a>
+                                    <a class="dropdown-item text-wrap" href="#">
+                                        <p class="bold my-0"><a href="{{ path('peymynt.content_pages', {"slug":"receipts"}) }}">Receipts</a></p>
+                                        <p class="my-0 small">Scan receipts anytime, anywhere. Right from your phone.</p>
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+
+
+                                    <h3 class="color-5 mb-0 light mt-4 mt-md-0">One powerful
+                                        <span class="bold d-block">experience</span>
+                                    </h3>
+                                    <p class="color-2">Peymynt’s suite of products work seamlessly together, so you can effortlessly manage your business finances.</p>
+                                    <a href="{{ path('peymynt.content_pages', {"slug":"pricing"}) }}" class="btn btn-rounded btn-info mt-3">Start Now​</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('peymynt.content_pages', {"slug":"pricing"}) }}">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('peymynt.content_pages', {"slug":"contact"}) }}">Contact</a>
+                </li>
+               {# <li class="nav-item">
+                    <a class="nav-link" href="{{ path('peymynt.content_pages', {"slug":"blog"}) }}">Blog</a>
+
+                </li>#}
+            </ul>
+            <nav class="nav navbar-nav ml-md-auto justify-content-center mt-4 mt-md-0 flex-row">
+
+
+
+
+                {% if app.user %}
+
+
+
+
+
+
+                    <a class="btn btn-rounded btn-solid px-3" href="{{ path('app_user_dashboard') }}">
+                        <i class="fas fa-user d-none d-md-inline mr-md-0 mr-lg-2"></i>
+                        <span class="d-md-none d-lg-inline">Your account</span>
+                    </a>
+
+
+
+
+                {% else %}
+
+
+
+                    <a class="btn btn-rounded btn-outline mr-3 px-3" href="{{ path('app_user_login') }}">
+                        <i class="fas fa-sign-in-alt d-none d-md-inline mr-md-0 mr-lg-2"></i>
+                        <span class="d-md-none d-lg-inline">Login</span>
+                    </a>
+                    <a class="btn btn-rounded btn-solid px-3" href="{{ path('register') }}">
+                        <i class="fas fa-user-plus d-none d-md-inline mr-md-0 mr-lg-2"></i>
+                        <span class="d-md-none d-lg-inline">Signup</span>
+                    </a>
+
+
+
+                {% endif %}
+
+
+
+
+
+
+            </nav>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Header Container / End -->

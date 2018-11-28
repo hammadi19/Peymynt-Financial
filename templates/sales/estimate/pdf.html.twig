@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Estimates</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,700,900" rel="stylesheet">
+    {% block stylesheets %}
+    <style>
+
+        @media print {
+            .modern-template__header{
+                background-color: #0093d6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .table-header{
+                background: #cccccc33;
+            }
+        }
+
+        @media print {
+            .estimate-top-right {
+                background-color: #2076ab !important;
+            }
+            .table-header{
+                background-color: #cccccc33;
+            }
+        }
+
+    </style>
+    {% endblock %}
+</head>
+
+<body style="font-family:Poppins, sans-serif;">
+{% if data.text is defined %}
+    {{ text }}
+{% endif %}
+<div id="NextModernTemplate" style="font-family: inherit;background: white;font-size: 14px;position: relative;box-sizing: border-box;width: 215mm;padding-bottom: 220px; margin: auto;box-shadow: 0 2px 3px rgba(0,0,0,0.1);min-height: 1024px;">
+    <section class="modern-template__header" style="color: #FFFFFF;    height: 140px;line-height: normal;background: #0093d6; overflow: hidden;">
+        <div style="background-color: #0093d6;padding-left: 30px;width: 60%;float: left; background-color: #0093d6;padding-top: 40px; padding-bottom: 40px;"> <span>
+      <div style="font-size: 30px;font-family: inherit;">{{ data.estimate_data.title }}</div>
+      <div>{{ data.estimate_data.sub_heading }}</div>
+      </span> </div>
+        <div class="estimate-top-right" style="background-color: #2076ab;text-align: center;width: 30%;background-color: #2076ab;padding-top: 40px; padding-bottom: 32px; float:right;height:70px;">
+    <span>
+      <div> Grand Total
+        ({{ currency }}) </div>
+      <div style="font-size: 30px;
+    font-family: inherit;"> {{ data.estimate_data.total_amount|number_format(2, '.', ',') }} </div>
+      </span> </div>
+    </section>
+    <section style="display:block;margin: 30px 30px 20px 30px;">
+        <div style="-webkit-flex-grow: 1;flex-grow: 1;;display:inline-block;line-height: 16px;width:55%; float:left">
+            <div>
+                <div style="margin-bottom: 5px;color: #8C959A;">BILL TO</div>
+                <strong class="wv-text--strong">{{data.customer_data.name}}</strong>
+                {#<div> {{data.customer_data.name}} </div>#}
+            </div>
+        </div>
+        <div style="width:45%; float:left">
+            <table style=" width: 100%;margin: 0 0 30px;padding: 1px 0;border-spacing: 0;border-bottom: 1px solid #ddd;">
+                <tbody>
+                <tr>
+                    <td style="padding: 6px 6px;text-align: left;font-weight: bold;line-height: 19px;"><strong class="wv-text--strong">Estimate Number:</strong></td>
+                    <td style="text-align: right;"><span>{{ data.estimate_data.estimate_no }}</span></td>
+                </tr>
+                <tr>
+                    <td style="padding: 6px 6px;text-align: left;font-weight: bold;line-height: 19px;"><strong class="wv-text--strong">P.O./S.O. Number:</strong></td>
+                    <td style="text-align: right;"><span>{{ data.estimate_data.po_so }}</span></td>
+                </tr>
+                <tr>
+                    <td style="padding: 6px 6px;text-align: left;font-weight: bold;line-height: 19px;"><strong class="wv-text--strong">Estimate Date:</strong></td>
+                    <td style="text-align: right;"><span>{{ data.estimate_data.estimate_date|date('F d, Y') }}</span></td>
+                </tr>
+                <tr>
+                    <td style="padding: 6px 6px;text-align: left;font-weight: bold;line-height: 19px;"><strong class="wv-text--strong">Expires On:</strong></td>
+                    <td style="text-align: right;"><span>{{ data.estimate_data.expire_date|date('F d, Y') }}</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section>
+        <table style=" border-bottom: 3px solid #dee1e2;text-align: left;width: 100%;">
+            <thead>
+            <tr class="table-header" style="border-width: 3px;background: rgba(204, 204, 204, 0.2);">
+                <th style="padding-left: 30px;text-align:left; font-size: 14px;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 15px; width: 296px;display: inline-block;">Items</th>
+                <th style="font-size: 14px;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 15px;width: 100px;display: inline-block; text-align:center" colspan="1">Quantity</th>
+                <th style="font-size: 14px;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 15px;width: 150px;display: inline-block;text-align:center" colspan="1">Price</th>
+                <th style="font-size: 14px;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 15px;width: 140px;display: inline-block;text-align:center" colspan="1">Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set subTotal = 0 %}
+            {% for product in data.estimate_product_data %}
+            <tr>
+                <td style="padding-left: 30px;font-size: 14px;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 15px;width: 296px;display: inline-block;">
+          <span> <strong>{{ product.name }}</strong>
+            <p> {{ product.description }} </p>
+            </span></td>
+                <td style="padding-left: 30px;font-size: 14px;padding-top: 7px; padding-bottom: 7px; padding-left: 15px;padding-right: 15px;  width: 100px;text-align:center; display: inline-block;">
+                    <span>{{ product.quantity }}</span>
+                </td>
+                <td style="padding-left: 30px;font-size: 14px;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 15px;width: 150px;display: inline-block;text-align:center">
+                    <span>{{ currency }}{{ product.price|number_format(2, '.', ',') }}</span></td>
+                <td style="padding-left: 30px;font-size: 14px;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 15px;width: 140px;display: inline-block;text-align:center">
+                    <span>{{ currency}}{{ (product.price *product.quantity)|number_format(2, '.', ',') }}</span></td>
+                {% set subTotal = subTotal + product.price * product.quantity %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <section style="margin: 25px 0;line-height: 16px;">
+            <div style="width: 57%;
+    display: inline-block;"></div>
+            <div style="display:inline-block;-webkit-flex-direction: column;flex-direction: column;text-align: right;margin-right: 30px;    width: 38%; float:right">
+                <div style="display:block;-webkit-justify-content: flex-end;justify-content: flex-end;align-items: center;    margin-bottom: 15px;">
+                    <div style="max-width: none;
+    width: 70%;
+    text-align: left;
+    float: left;"> <strong>Subtotal:</strong> </div>
+                    <div style="    min-width: 30%;"> <span>{{ currency }}{{ subTotal|number_format(2, '.', ',') }}</span> </div>
+                </div>
+
+                {% for tax in taxes %}
+                <div style=";
+    display:    block;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    align-items: center;    margin-bottom: 15px;">
+                    <div style="max-width: none;
+    width: 70%;
+    text-align: left;
+    float: left;"> <span>{{ tax.name }} {{ tax.rate }}%</span>: </div>
+                    <div style=" margin-left: 30px;
+    min-width: 125px;"> <span>{{tax.value|number_format(2, '.', ',')}}</span> </div>
+                </div>
+                {% endfor %}
+
+                <hr style="display: block;height: 1px;border: 0;border-top: 1px solid #edf4f8;margin: 1em 0;padding: 0;">
+                <div style="display:block;-webkit-justify-content: flex-end;justify-content: flex-end; align-items: center;    margin-bottom: 10px;    margin-top: 10px;">
+                    <div style="max-width: none;
+    width: 50%;
+    text-align: left;
+    float: left;"> <strong class="wv-text--strong">Total:</strong> </div>
+                    <div style=" margin-left: 30px;
+    min-width: 125px;"> <span>{{ currency }}{{ data.estimate_data.total_amount|number_format(2, '.', ',') }}</span> </div>
+                </div>
+                <hr style="display: block;height: 1px;border: 0;border-top: 1px solid #edf4f8;margin: 1em 0;padding: 0;">
+                <div>
+                    <div style=";display:block;-webkit-justify-content: flex-end; justify-content: flex-end; align-items: center;">
+                        <div style="max-width: none;
+    width: 60%;
+    text-align: left;
+    float: left;"> <strong class="wv-text--strong"> Grand Total
+
+                                ({{ currency }})
+                                : </strong> </div>
+                        <div style=" margin-left: 30px;min-width: 125px;"> <strong class="wv-text--strong">{{ currency }}{{ data.estimate_data.total_amount|number_format(2, '.', ',') }}</strong> </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display:block; clear:both"></div>
+        </section>
+    </section>
+    {% if data.estimate_data.memo %}
+    <section style="    margin: 0 30px 35px 30px;white-space: pre-line;word-wrap: break-word;">
+        <span><strong class="wv-text--strong">Notes</strong></span> <span>{{ data.estimate_data.memo }}</span> </section>
+    {% endif %}
+    <span style="position: absolute;left: 0;right: 0;bottom: 0; padding-bottom: 35px;">
+  <section><span> </span></section>
+  <hr style="display: block;height: 1px;border: 0;border-top: 1px solid #edf4f8;margin: 1em 0;padding: 0;">
+  <section style=";display:block;align-items: top;padding: 24px 24px 24px 24px;">
+    <div style="width:48%; float:left"> <img src="http://www.peymynt.com/assets/img/logo.png" title="Company Logo"> </div>
+    <div style="width:48%; float:left"> <strong>{{data.business_data.business_name}}</strong>
+    <div style="clear:both"></div>
+      <div> {{data.business_data.business_state}} <br>
+          {{data.business_data.business_country}}<br>
+      </div>
+    </div>
+    <div>
+      <div> </div>
+    </div>
+  </section>
+  </span> </div>
+</body>
+</html>

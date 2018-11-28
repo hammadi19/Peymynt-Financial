@@ -1,0 +1,259 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+    <!-- Dashboard Headline -->
+
+
+
+    <div class="dashboard-headline">
+        <div class="row">
+
+            <div class="col">
+
+                <h3>Estimates</h3>
+                <a href="#" class="button gray ripple-effect-dark margin-top-30">Filter</a>
+
+            </div>
+            <div class="col">
+
+                <a href="{{ path('sales.estimate.new') }}" class="btn btn-4 pull-right">Create an estimate</a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div id="mail-sent-message" class="notification success closeable" style="display: none">
+            <p>The estimate has been sent successfully</p>
+            <a class="close"></a>
+        </div>
+
+        <div id="mail-not-sent-message" class="notification error closeable" style="display: none">
+            <p>The estimate is not sent</p>
+            <a class="close"></a>
+        </div>
+
+        {% if app.session.flashBag.has('success') %}
+            <div class="notification success closeable">
+                {% for msg in app.session.flashBag.get('success') %}
+                    <p>{{ msg }}</p>
+                {% endfor %}
+                <a class="close"></a>
+            </div>
+        {% endif %}
+
+        {% if app.session.flashBag.has('error') %}
+            <div class="notification error closeable">
+                <ul style="margin-bottom:0px;">
+                    {% for error in app.session.flashBag.get('error') %}
+                        <li style="color: darkred">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                <a class="close"></a>
+            </div>
+        {% endif %}
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-9 col-lg-9 content-left-offset offset-1">
+
+
+                <table class="margin-top-20">
+                    <tbody><tr>
+                        <th class="width100">Status</th>
+                        <th class="width200">Date</th>
+                        <th class="width100">Number</th>
+                        <th>Customer</th>
+                        <th class="width100">Amount</th>
+                        <th class="width100"></th>
+                    </tr>
+
+                    {% for row in data %}
+                    <tr>
+                        <td><span class="saved wv-badge">{{ row.status }}</span></td>
+                        <td><b>{{ row.estimate_date|date("Y-m-d") }}</b></td>
+                        <td><b>{{ row.estimate_no }}</b></td>
+                        <td><b>{{ row.name }}</b></td>
+                        <td><b>{{ row.total_amount }}</b></td>
+                        <td>
+
+
+
+
+
+                                <button id="est-view-drop" type="button" class="btn btn-circle btn-6 btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-arrow-down"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="est-view-drop">
+                                    <a class="dropdown-item" href="{{ path('sales.estimate.view', {'estimate_id': row.id}) }}">View</a>
+                                    <a class="dropdown-item" href="{{ path('sales.estimate.edit', {'estimate_id':row.id}) }}">Edit</a>
+                                    <a class="dropdown-item print-chrome-link-js" href="{{ path('sales.estimate.view',
+                                        {'estimate_id': row
+                                        .id,'customer':'customer'}) }}">Print</a>
+                                    {#<div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Convert to invoice</a>#}
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item popup-with-zoom-anim send-email-js" href="#send_email"
+                                       data-special="{{ row.id}}">Send</a>
+                                    <a class="dropdown-item print-pdf-link-js" href="{{ path('sales.estimate.view',{'estimate_id': row
+                                        .id, 'customer':'pdf'}) }}">Export as PDF</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" id="deleteEstimateJs" href="{{ path('sales.estimate.delete', {'estimate_id':row.id}) }}">Delete</a>
+                                </div>
+
+
+
+
+
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="notification notice closeable">
+                    <p>You don't have any estimates. Why not <a href="#"><b>create an estimate?</b></a></p>
+                    <a class="close"></a>
+                </div>
+
+                <!-- Pagination -->
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Pagination
+                        <div class="pagination-container margin-top-40 margin-bottom-40">
+                            <nav class="pagination">
+                                <ul>
+                                    <li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#" class="current-page">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>-->
+                    </div>
+                </div>
+                <!-- Pagination / End -->
+
+            </div>
+        </div>
+    </div>
+
+    <div id="send_email" class="container zoom-anim-dialog mfp-hide modelBox">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <p class="alert alert-icon alert-primary mb-5">
+                    <small>Please check the email address carefully.</small></p>
+                <form action="" method="post" class="form-signup" id="send-email-form"
+                name="form-signup"
+                      data-response-message-animation="slide-in-up">
+                    <div class="form-group">
+                        <label for="to" class="bold mb-0">To</label>
+                        <select name="to" id="to" class="form-control" multiple="multiple">
+                        </select>
+
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="bold mb-0">Message</label>
+                        <small id="message_help" class="form-text color-2 mt-0 mb-2 italic">
+                            <i class="fas fa-info-circle icon"></i> Please include the message.</small>
+                        <textarea name="message" rows="6" id="message" class="form-control"  required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="bold mb-0 mt-1 mr-2 pull-left">Send a copy to
+                            {{ app.user.email }}</label>
+
+
+                        <div class="checkbox">
+
+                            <input type="checkbox" id="send_own_email"  name="send_own_email" class="checkbox">
+                            <label for="send_own_email"><span class="checkbox-icon"></span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button id="email_send" data-loading-text="Send estimate" name="submit" type="submit"
+                                class="btn btn-rounded btn-primary mt-4">Send estimate</button>
+                    </div>
+                </form>
+                <div class="response-message">
+                    <i class="fas fa-envelope font-lg"></i>
+                    <p class="font-md m-0">The estimate has been sent successfully </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $("#deleteEstimateJs").on("click", function(e){
+            const message = "Are you sure you want to delete this estimate?";
+            if(!confirm(message)){
+                e.preventDefault();
+            }
+        });
+
+        $('a.print-pdf-link-js').click(function () {
+            var w = window.open($(this).attr('href'));
+
+            w.onload = function () {
+                w.close();
+            };
+
+            return false;
+        });
+
+        $('a.print-chrome-link-js').click(function () {
+            var w = window.open($(this).attr('href'));
+
+            w.onload = function () {
+                w.print();
+            };
+
+            return false;
+        });
+
+        $('#to').select2({tags:true});
+        $('a.send-email-js').on('click', function (e) {
+            var id = $(this).data('special');
+            var url = '/sales/estimate/send-email/' + id;
+            $("#send-email-form").attr("action", url);
+        });
+
+        $("#send-email-form").submit(function(e){
+            e.preventDefault();
+            var url = $("#send-email-form").attr("action");
+            var _data = { 'text': $('#message').val(), 'own' : $('#send_own_email').val(), 'emails' : $("#to").select2("val")};
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: "json",
+                data: _data,
+                success: function (response) {
+                    var magnificPopup = $.magnificPopup.instance;
+                    magnificPopup.close();
+                    $('#mail-sent-message').toggle('display');
+                },
+                error: function () {
+                    var magnificPopup = $.magnificPopup.instance;
+                    magnificPopup.close();
+                    $('#mail-not-sent-message').toggle('display');
+                },
+            });
+        });
+    </script>
+
+
+{% endblock %}

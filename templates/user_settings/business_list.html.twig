@@ -1,0 +1,149 @@
+{% extends 'page-secure.html.twig' %}
+
+
+
+{% block body %}
+
+    {% if app.session.flashBag.has('success') %}
+        <div class="notification success closeable">
+            {% for msg in app.session.flashBag.get('success') %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+            <a class="close"></a>
+        </div>
+    {% endif %}
+
+    {% if app.session.flashBag.has('error') %}
+        <div class="notification error closeable">
+            <ul style="margin-bottom:0px;">
+                {% for error in app.session.flashBag.get('error') %}
+                    <li style="color: darkred">{{ error }}</li>
+                {% endfor %}
+            </ul>
+            <a class="close"></a>
+        </div>
+    {% endif %}
+
+
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+        <h3>Profile</h3>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div>
+                {{ include('user_settings/settings-menu.html.twig') }}
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="dashboard-box margin-top-0">
+
+                <!-- Headline -->
+                <div class="headline">
+                    <h3><i class="fa fa-2x fa-briefcase"></i> Businesses
+
+
+                        <a href="{{ path('app_user_settings.business_create') }}" class="btn btn-4 pull-right">Create a
+                            Business</a></h3>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="content with-padding">
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="row">
+
+
+                                <div class="col-xl-12 col-lg-12">
+
+                                    <!--Estimates-->
+
+
+                                    <div class="listings-container">
+
+
+                                        {% if data|length > 0 %}
+
+                                            {% for business in data %}
+
+
+                                                <!-- Job Listing -->
+                                                <a href="{{ path('app_user_settings.business_view', {'id': business.id}) }}"
+                                                   class="job-listing">
+
+                                                    <!-- Job Listing Details -->
+                                                    <div class="job-listing-details">
+
+                                                        <!-- Logo -->
+                                                        <div class="job-listing-company-logo"><img
+                                                                    src="{{ asset('assets/images/company-logo-05.png') }}"
+                                                                    alt=""></div>
+
+                                                        <!-- Details -->
+                                                        <div class="job-listing-description">
+                                                            <h3 class="job-listing-title">{{ business.name }}</h3>
+
+                                                            <!-- Job Listing Footer -->
+                                                            <div class="job-listing-footer">
+                                                                <ul>
+                                                                    <li>
+                                                                        <i class="icon-material-outline-business"></i> {{ business.business_type }}
+                                                                        <div class="verified-badge"
+                                                                             data-tippy-placement="top" data-tippy=""
+                                                                             data-original-title="Verified Employer"></div>
+                                                                        <button href="{{ path('app_user_settings.business_view', {'id': business.id}) }}" class="btn btn-sm btn-2">Edit</button>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Bookmark -->
+                                                    </div>
+                                                </a>
+
+                                            {% endfor %}
+
+                                        {% endif %}
+
+
+                                    </div>
+
+                                    {#<!-- Pagination -->#}
+                                    {#<div class="clearfix"></div>#}
+                                    {#<div class="row">#}
+                                    {#<div class="col-md-12">#}
+                                    {#<!-- Pagination -->#}
+                                    {#<div class="pagination-container margin-top-60 margin-bottom-60">#}
+                                    {#<nav class="pagination">#}
+                                    {#<ul>#}
+                                    {#<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>#}
+                                    {#<li><a href="#">1</a></li>#}
+                                    {#<li><a href="#" class="current-page">2</a></li>#}
+
+                                    {#<li class="pagination-arrow"><a href="#"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>#}
+                                    {#</ul>#}
+                                    {#</nav>#}
+                                    {#</div>#}
+                                    {#</div>#}
+                                    {#</div>#}
+                                    {#<!-- Pagination / End -->#}
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

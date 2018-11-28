@@ -1,0 +1,125 @@
+{% extends 'front/page-front.html.twig' %}
+
+
+{% block body %}
+
+
+    <div class="photo-section" data-background-image="{{ asset('assets/images/section-background.jpg') }}" style="background-image: url({{ asset('assets/images/section-background.jpg') }})">
+
+        <!-- Infobox -->
+
+        <div class="text-content white-font">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-12">
+                        <h2 class="margin-bottom-0">Your Security and Privacy</h2>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Infobox / End -->
+
+    </div>
+
+    <!-- Page Content
+  ================================================== -->
+    <main role="main">
+
+        <div class="container d-none d-md-block">
+            <div class="page-subnavigation py-4 border-bottom padding-top-30 padding-bottom-20">
+                <a class="button gray" href="{{ path('peymynt.content_pages', {"slug":"terms"}) }}"> Terms of Use  </a>
+                <a class="button gray" href="{{ path('peymynt.content_pages', {"slug":"privacy"}) }}"> Privacy Policy  </a>
+                <a class="button gray" href="{{ path('peymynt.content_pages', {"slug":"additional"}) }}"> Additional Terms  </a>
+                <a class="button gray" href="{{ path('peymynt.content_pages', {"slug":"security"}) }}"> Security  </a>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="container">
+
+            <div class="wv-content__primary">
+
+
+                <h2 class="wv-heading--section-title">Data Security</h2>
+
+                <p class="wv-text" id="pci-dss-compliant">
+                    <strong class="wv-text--strong">PCI-DSS Compliant:</strong> Wave is <a class="wv-text--link" href="https://www.visa.com/splisting/viewSPDetail.do?spId=2298&amp;coName=Wave%20Financial%2C%20Inc&amp;HeadCountryList=U.S.A.&amp;reset=yes&amp;pageInfo=1%3B30%3BASC%3BcoName" target="_blank">Level 1 PCI-DSS compliant</a>. This means that every year we have a third-party audit to validate our practices and make sure we’re doing the right things for you and your customers.
+                </p>
+                <p class="wv-text" id="secure-data-transmission">
+                    <strong class="wv-text--strong">Secure data transmission:</strong> When you load a page in your browser, or upload something to Wave, all that information is encrypted while it’s moving over the internet. We lock up your data with up to 256-bit TLS encryption, the strength of protection you get with online banking and shopping. We also support a wide variety of cyphers — another kind of code — for our communications, to ensure the highest level of encryption possible, based on your browser.
+                </p>
+                <p class="wv-text" id="tokenization">
+                    <strong class="wv-text--strong">Tokenization:</strong> Wave doesn’t store credit card numbers, ever. Credit card information is sent directly from the app or browser to our payments processor, and Wave receives a secure token back. This token is a code that authorizes Wave to complete the activity securely and efficiently, without storing or exposing your credit card information.
+                </p>
+                <p class="wv-text" id="secure-data-storage">
+                    <strong class="wv-text--strong">Secure data storage:</strong> Your accounting data is stored on servers that have strict physical access protocols, meaning there are rules in place limiting access to only the people who need it to do their jobs. The facilities are controlled with 24/7 monitoring, and the technology is digitally protected.
+                </p>
+                <p class="wv-text" id="security-testing">
+                    <strong class="wv-text--strong">Security Testing:</strong> Wave uses many layers of security testing. We test our systems internally, but that’s not enough in our opinion. We also regularly bring in third-party security firms to perform vulnerability assessments and penetration tests against our systems. Sounds great? Still not enough for us. Wave has a private bug bounty program through <a class="wv-text--link" href="https://www.hackerone.com/">HackerOne</a>. This means that we’ve got security researchers from all over the globe testing our app on an ongoing basis. It takes a lot of effort to keep things secure, and we’re happy to go the distance.
+                </p>
+                <p class="wv-text" id="transparency">
+                    <strong class="wv-text--strong">Transparency:</strong> We’re not asking you to just take our word for it that we keep your data secure. We want you to understand exactly how it’s done. That’s why we’ve written, a very clear and understandable <a href="/privacy/" class="wv-text--link">privacy policy</a>. If you’re invoicing your customers and they’re paying through Wave, we want them to be comfortable too, so we’ve written a special <a class="wv-text--link" href="/privacy/customer">privacy policy just for them</a>.
+                </p>
+
+                <h2 class="wv-heading--section-title">Mobile Security</h2>
+
+                <p class="wv-text" id="mobile-passwords">
+                    Passwords are encrypted when they’re collected, when they’re sent to our servers, and we never store them without encrypting them first. In fact, all communications between our apps and our servers are encrypted using Transport Layer Security (TLS) — the replacement for Secure Sockets Layer (SSL) — the highest level of security protocols available. Beyond that, we don't store any sensitive information, such as credit card numbers, on the device ever.
+                </p>
+
+                <h2 class="wv-heading--section-title">Fraud Prevention</h2>
+
+                <p class="wv-text" id="fraud-risk">
+                    We’ve built an internal risk system that uses a wide variety of tools and insights to protect you and your customers from fraud. We’ve integrated several third-party security and anti-fraud service providers to create a layered approach to risk detection, for the highest level of protection. And our team of risk analysts monitor high risk and out-of-pattern behaviour to keep our platform safe.
+                </p>
+                <p class="wv-text" id="fraud-chargeback">
+                    We’ve got your back when it comes to chargebacks. Our team is trained to coach you in best business practises to make sure you’re collecting the right information up front to protect your business from chargebacks. In the event that you do receive a chargeback (it happens!) our experts have the experience necessary to build your best case.
+                </p>
+
+                <h2 class="wv-heading--section-title">Bank Access Security</h2>
+
+                <p class="wv-text" id="read-only-security">
+                    <strong class="wv-text--strong">Read-only security:</strong> The connection Wave makes with your financial institutions to import transactions is read-only.
+                </p>
+                <p class="wv-text" id="password-protection">
+                    <strong class="wv-text--strong">Password protection:</strong> For increased security, Wave employs industry-leading online banking services to manage bank account and password data. These third parties are trusted by some of the world’s biggest banks, including Bank of America, Citibank, and Wells Fargo.
+                </p>
+
+                <hr class="wv-divider">
+
+                <p class="wv-text">
+                    Do you have additional questions about the security of Wave? Please <a class="wv-text--link" href="mailto:security@waveapps.com">contact us</a>. We’d be happy to tell you more about the many steps we take to ensure the security of your sensitive information. If you require secure communication, please use Wave’s PGP key <a class="wv-text--link" href="https://pgp.mit.edu/pks/lookup?op=get&amp;search=0x8824AC9F2A4FBD0B">2A4FBD0B</a>.
+                </p>
+
+
+            </div>
+
+        </div>
+
+
+
+
+        <div class="module-type-onepeymynt  " id="onepeymynt-399">
+            <div class="module">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col-lg-10 offset-lg-1 text-center module__header">
+                            <h2>Powerful accounting, and more!</h2>
+                            <p>Accounting is great, but it’s even greater when used with the rest of peymynt.</p>
+                        </div>
+                    </div>
+                    <img class="" src="https://dwdqz3611m4qq.cloudfront.net/products/One_peymynt_medium.png" width="961" alt="Screenshot of the peymynt Suite" title="Screenshot of the peymynt Suite">
+                    <p class="pt-7"> <a class="btn btn-primary" href="https://www.peymynt.com/onepeymynt">Learn more about peymynt’s products</a> </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
+
+

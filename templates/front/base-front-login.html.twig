@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>{% block title %}  Peymynt Financials {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
+
+    <!-- CSS
+    ================================================== -->
+
+
+
+
+
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/apple-touch-icon.png') }}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,700,900" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/client/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/cookieconsent.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/helper.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/odometer-theme-minimal.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/pe-icon-7-stroke.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/prettify.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/simplebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/smart_wizard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/smart_wizard_theme_arrows.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/smart_wizard_theme_circles.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/smart_wizard_theme_dots.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client/swiper.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/customstyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+
+    {% block stylesheets %}{% endblock %}
+
+</head>
+<body>
+
+
+
+
+
+    {% block body %}{% endblock %}
+
+
+
+
+
+<!-- Sign In Popup
+================================================== -->
+<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+    <!--Tabs -->
+    <div class="sign-in-form">
+        <ul class="popup-tabs-nav">
+            <li><a href="#login">Log In</a></li>
+            <li><a href="#register">Register</a></li>
+        </ul>
+        <div class="popup-tabs-container">
+
+            <!-- Login -->
+            <div class="popup-tab-content" id="login" >
+
+                <!-- Welcome Text -->
+                <div class="welcome-text">
+                    <h3>We're glad to see you again!</h3>
+                    <span>Don't have an account? <a href="#" class="register-tab">Sign Up!</a></span> </div>
+
+
+                <div id="signInError"></div>
+                <div id="signInSuccess"></div>
+
+                <!-- Form -->
+                <form method="post" id="signInForm" onsubmit="return do_signin()">
+                    <div class="input-with-icon-left"> <i class="icon-material-baseline-mail-outline"></i>
+                        <input type="email" class="input-text with-border" name="email" id="signinEmail" placeholder="Email Address" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <div class="input-with-icon-left"> <i class="icon-material-outline-lock"></i>
+                        <input type="password" class="input-text with-border" name="password" id="signinPassword" placeholder="Password" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <!-- Button -->
+                    <button class="button full-width button-sliding-icon ripple-effect" id="signinFormButton" form="login-form">Log In <i class="icon-material-outline-arrow-right-alt"></i></button>
+
+                </form>
+
+
+                <!-- Social Login -->
+                <div class="social-login-separator"><span>or</span></div>
+                <div class="social-login-buttons">
+                    <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Log In via Facebook</button>
+                    <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Log In via Google+</button>
+                </div>
+            </div>
+
+            <!-- Register -->
+            <div class="popup-tab-content" id="register">
+
+                <!-- Welcome Text -->
+                <div class="welcome-text">
+                    <h3>Let's create your account!</h3>
+                </div>
+
+                <div id="signupError"></div>
+                <div id="signupSuccess"></div>
+
+                <!-- Account Type -->
+                {#<div class="account-type">#}
+                {#<div>#}
+                {#<input type="radio" name="account-type-radio" id="freelancer-radio" class="account-type-radio" checked/>#}
+                {#<label for="freelancer-radio" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i> Personal</label>#}
+                {#</div>#}
+                {#<div>#}
+                {#<input type="radio" name="account-type-radio" id="employer-radio" class="account-type-radio"/>#}
+                {#<label for="employer-radio" class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i> Company</label>#}
+                {#</div>#}
+                {#</div>#}
+
+                <!-- Form -->
+                <form method="post" id="signupForm" onsubmit="return do_signup()">
+                    <div class="input-with-icon-left"> <i class="icon-material-baseline-mail-outline"></i>
+                        <input type="text" class="input-text with-border" name="email" id="signupEmail" placeholder="Email Address" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom"> <i class="icon-material-outline-lock"></i>
+                        <input type="password" class="input-text with-border" name="password" id="signupPassword" placeholder="Password" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <div class="input-with-icon-left"> <i class="icon-material-outline-lock"></i>
+                        <input type="password" class="input-text with-border" name="rptPassword" id="rptsignupPassword" placeholder="Repeat Password" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <!-- Button -->
+                    <button class="margin-top-10 button full-width button-sliding-icon ripple-effect" id="signupFormButton" form="register-account-form">Register <i class="icon-material-outline-arrow-right-alt"></i></button>
+
+                </form>
+
+
+                <!-- Social Login -->
+                <div class="social-login-separator"><span>or</span></div>
+                <div class="social-login-buttons">
+                    <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Register via Facebook</button>
+                    <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Register via Google+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sign In Popup / End -->
+
+<!-- Scripts
+================================================== -->
+
+
+<script src="{{ asset('assets/js/client/jquery.js') }}"></script>
+<script src="{{ asset('assets/js/client/jquery.animatebar.js') }}"></script>
+<script src="{{ asset('assets/js/client/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('assets/js/client/jquery.smartWizard.js') }}"></script>
+<script src="{{ asset('assets/js/client/odometer.min.js') }}"></script>
+<script src="{{ asset('assets/js/client/simplebar.js') }}"></script>
+<script src="{{ asset('assets/js/client/swiper.js') }}"></script>
+<script src="{{ asset('assets/js/client/popper.js') }}"></script>
+<script src="{{ asset('assets/js/client/jquery.validate.js') }}"></script>
+<script src="{{ asset('assets/js/client/bootstrap.js') }}"></script>
+<script src="{{ asset('assets/js/client/jquery.waypoints.js') }}"></script>
+<script src="{{ asset('assets/js/client/jquery.counterup.js') }}"></script>
+<script src="{{ asset('assets/js/client/modernizr-2.8.3.min.js') }}"></script>
+<script src="{{ asset('assets/js/client/aos.js') }}"></script>
+<script src="{{ asset('assets/js/client/particles.js') }}"></script>
+<script src="{{ asset('assets/js/client/typed.js') }}"></script>
+<script src="{{ asset('assets/js/client/prettify.js') }}"></script>
+<script src="{{ asset('assets/js/client/jquery.magnific-popup.js') }}"></script>
+<script src="{{ asset('assets/js/client/cookieconsent.min.js') }}"></script>
+<script src="{{ asset('assets/js/client/common-script.js') }}"></script>
+<script src="{{ asset('assets/js/client/forms.js') }}"></script>
+<script src="{{ asset('assets/js/client/site.js') }}"></script>
+
+
+
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>

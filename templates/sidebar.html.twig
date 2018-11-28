@@ -1,0 +1,200 @@
+<!-- Dashboard Sidebar
+================================================== -->
+
+<nav class="side-nav side-nav overlay gradient gradient-53 alpha-9 image-background cover center-bottom" style="background-image:url(https://picsum.photos/350/200/?random&gravity=west)">
+    <div class="side-wrapper content">
+        <div class="nav-wrapper">
+            <ul class="nav flex-column">
+
+                <li class="nav-item user-sidebar">
+                    <a href="javascript:void(0)" class="nav-link">
+                        <div class="media align-items-center justify-content-center" style="width: 100%;">
+
+                            <div class="position-relative">
+                                {#<img src="{{ asset('assets/images/user-avatar-small-01.jpg') }}" class="user-avatar rounded-circle mr-2" alt="">
+                                <span class="status status-right online"></span>#}
+                            </div>
+                            <div class="text-center">
+
+                                <span class="media-heading bold user-name text-truncate text-capitalize">You're signed in as</span>
+                                <div class="small user-info text-truncate capitalize-first text-muted"><strong>{{ user_personal_info().email }}</strong></div>
+                            </div>
+                        </div>
+                    </a>
+
+                </li>
+
+
+
+                    <li class="nav-header pt-4"></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_user_dashboard') }}">
+
+                            <i class="icon pe pe-7s-display1"></i>
+                            <span class="title">Dashboard</span>
+                            </a></li>
+
+                    <li class="nav-item nav-dropdown {% if app.request.attributes.get('_route') in ['sales.estimate.manage','sales.estimate.new','sales.invoice.manage','sales.invoice.new','sales.recurring_invoice.manage','sales.recurring_invoice.new','sales.customer_statement.manage','sales.customer_statement.new','sales.customer.manage','sales.customer.new','sales.product_services.manage','sales.product_services.new','sales.product_services.update'] %}open{% endif %}" >
+
+                        <a href="javascript:void(0)" class="nav-link">
+                            <i class="icon pe pe-7s-shopbag"></i>
+                            <span class="title">Sales</span>
+                        </a>
+
+                        <ul class="nav-dropdown-items">
+                            <li class="{% if app.request.attributes.get('_route') in ['sales.estimate.manage','sales.estimate.new'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{ path('sales.estimate.manage') }}" >
+
+                                    <b class="icon extra-bold">E</b>
+                                    <span class="title">Estimates</span>
+                                    </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') in ['sales.invoice.manage','sales.invoice.new'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{ path('sales.invoice.manage') }}" >
+                                    <b class="icon extra-bold">I</b>
+                                    <span class="title">Invoices</span>
+
+                                     </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') in ['sales.recurring_invoice.manage','sales.recurring_invoice.new'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{ path('sales.recurring_invoice.manage') }}" >
+
+                                    <b class="icon extra-bold">R</b>
+                                    <span class="title">Recurring Invoices</span>
+
+                                     </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') in ['sales.customer_statement.manage','sales.customer_statement.new'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{ path('sales.customer_statement.manage') }}" >
+
+                                    <b class="icon extra-bold">S</b>
+                                    <span class="title">Customer Statements</span>
+
+                                     </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') in ['sales.customer.manage','sales.customer.new'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{ path('sales.customer.manage') }}">
+
+                                    <b class="icon extra-bold">C</b>
+                                    <span class="title">Customers</span>
+
+                                     </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') in ['sales.product_services.manage','sales.product_services.new'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{ path('sales.product_services.manage') }}">
+
+                                    <b class="icon extra-bold">P</b>
+                                    <span class="title">Products &amp; Services</span>
+
+                                     </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li  class="nav-item nav-dropdown {% if app.request.attributes.get('_route') in ['purchases.bills.manage','purchases.bills.add','purchases.receipts.manage','purchases.receipts.add','purchases.vendors.manage','purchases.vendors.add','purchases.products.manage','purchases.products.add'] %}open{% endif %}">
+
+                        <a href="javascript:void(0)" class="nav-link">
+                            <i class="icon pe pe-7s-cart"></i>
+                            <span class="title">Purchases</span>
+                        </a>
+
+
+                        <ul class="nav-dropdown-items">
+                            <li class="{% if app.request.attributes.get('_route') in ['purchases.bills.manage','purchases.bills.add'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{path('purchases.bills.manage')}}">
+                                    <b class="icon extra-bold">B</b>
+                                    <span class="title">Bills</span>
+                                </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') in ['purchases.receipts.manage','purchases.receipts.add'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{path('purchases.receipts.manage')}}">
+                                    <b class="icon extra-bold">R</b>
+                                    <span class="title">Receipts</span>
+                                </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') in ['purchases.vendors.manage','purchases.vendors.add'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{path('purchases.vendors.manage')}}">
+                                    <b class="icon extra-bold">V</b>
+                                    <span class="title">Vendors</span>
+                                </a>
+                            </li>
+                            <li class="{% if app.request.attributes.get('_route') in ['purchases.products.manage','purchases.products.add'] %}active-page{% endif %}">
+                                <a class="nav-link" href="{{path('purchases.products.manage')}}">
+                                    <b class="icon extra-bold">P</b>
+                                    <span class="title">Products & Services</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a href="javascript:void(0)" class="nav-link">
+                            <i class="icon pe pe-7s-cash"></i>
+                            <span class="title">Accounting</span>
+                        </a>
+
+                        <ul class="nav-dropdown-items">
+                            <li><a class="nav-link" href="#">
+                                    <b class="icon extra-bold">T</b>
+                                    <span class="title">Transactions</span></a></li>
+                            <li><a class="nav-link" href="#">
+                                    <b class="icon extra-bold">R</b>
+                                    <span class="title">Reconciliation
+                                    </span></a></li>
+                            <li><a class="nav-link" href="#">
+                                    <b class="icon extra-bold">C</b>
+                                    <span class="title">Chart of Accounts</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a href="javascript:void(0)" class="nav-link">
+                            <i class="icon pe pe-7s-bookmarks"></i>
+                            <span class="title">Banking</span>
+                        </a>
+
+                        <ul class="nav-dropdown-items">
+                            <li><a class="nav-link" href="#">
+                                    <b class="icon extra-bold">B</b>
+                                    <span class="title">
+                                    Bank Connections
+                                    </span>
+                                </a>
+
+
+                            </li>
+                        </ul>
+                    </li>
+                    {#<li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="icon pe pe-7s-cash"></i>
+                            <span class="title"> Payroll</span>
+
+                        </a>
+                    </li>#}
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="icon pe pe-7s-graph2"></i>
+                            <span class="title">Reports </span> </a> </li>
+
+
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="icon pe pe-7s-plugin"></i>
+                            <span class="title"> Integration</span> </a></li>
+
+
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_user_settings') }}"><i class="icon pe pe-7s-config"></i>
+                            <span class="title"> Settings</span> </a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_user_logout') }}"><i class="icon pe pe-7s-power"></i>
+                            <span class="title"> Logout</span> </a></li>
+
+
+
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+

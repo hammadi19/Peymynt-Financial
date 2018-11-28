@@ -1,0 +1,94 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+
+    <div class="dashboard-headline">
+        <div class="row">
+            <div class="col-6">
+                <h3>Receipts</h3>
+            </div>
+            <div class="col-6 text-right">
+
+                <button class="btn btn-4" >Upload a receipt <i class="icon-feather-arrow-right"></i></button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+
+                <div class="notification notice closeable">
+                    <p><strong>Did you know? </strong>You can also submit receipts by emailing them to receipts@peymynt.com, or with our iOS or Android app.
+                    </p>
+                    <a class="close"></a>
+                </div>
+
+
+                <div class="">
+
+
+                    <table class="margin-top-20">
+                        <tbody><tr>
+                            <th class="width100">Status</th>
+                            <th>Date</th>
+                            <th>Vendor</th>
+                            <th class="width300">Merchant</th>
+                            <th class="width300">Category</th>
+                            <th class="width100">Account</th>
+                            <th>Source</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            <td><b class="saved wv-badge">Saved</b></td>
+                            <td><b>2018-10-21</b></td>
+                            <td><b>name</b></td>
+                            <td><b>text</b></td>
+                            <td><b>text</b></td>
+                            <td><b>text</b></td>
+                            <td><b>text</b></td>
+                            <td><b>0.00</b></td>
+                            <td>
+                                <button id="receipts-view-drop" type="button" class="btn btn-circle btn-6 btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-arrow-down"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="receipts-view-drop">
+                                    <a class="dropdown-item" href="#">View</a>
+                                    <a class="dropdown-item" href="#">Edit</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Delete</a>
+                                </div>
+
+
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="
+              height: 200px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;">
+                        <h4 style="font-weight:800;">There are no receipts to display.</h4>
+                        <p>Upload a receipt using the button above.</p>
+                    </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

@@ -1,0 +1,192 @@
+{% extends 'page-secure.html.twig' %}
+
+
+{% block body %}
+
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+        <h3>Profile</h3>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div>
+                {{ include('user_settings/settings-menu.html.twig') }}
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="dashboard-box margin-top-0">
+
+                <!-- Headline -->
+                <div class="headline">
+                    <h3><i class="fa fa-2x fa-briefcase"></i> Edit</h3>
+                    <small> Please fill the fields below to create the business.</small> </div>
+                <div class="content with-padding padding-bottom-0">
+
+                    <form method="post" action="{{ path('app_user_settings.business_update', {'id': business.id}) }}" id="createBusinessForm" name="updateBusinessForm" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar-wrapper" data-tippy-placement="bottom" data-tippy="" data-original-title="Change Avatar"> <img class="profile-pic" src="images/logo-avatar-placeholder.png" alt="">
+                                    <div class="upload-button"></div>
+                                    <input class="file-upload" name="createBusinessForm[business_image]" type="file" accept="image/*">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Company Name</h5>
+                                            <input type="text" name="createBusinessForm[name]" class="form-control" value="{{ business.name }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <!-- Account Type -->
+                                        <div class="submit-field">
+                                            <h5>Type of Business</h5>
+                                            <select class="form-control" id="business_type" name="createBusinessForm[business_type]">
+                                                {% for value, type in business_types %}
+                                                    {% if value == business.business_type %}
+                                                        <option value="{{ value }}" selected>{{ type }}</option>
+                                                    {% else %}
+                                                        <option value="{{ value }}" disabled>{{ type }}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            </select>
+                                            <small>This helps Wave display the right accounts, saving you time. Choose the option that best represents your business.</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Country</h5>
+                                            <select class="form-control" id="country" name="createBusinessForm[country]">
+                                                {% for value,country in countries %}
+                                                    {% if value == business.country %}
+                                                        <option value="{{ value }}" selected>{{ country }}</option>
+                                                    {% else %}
+                                                        <option value="{{ value }}" >{{ country }}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                            <small>If you do business in one country but are based in another, choose the country where you file your taxes, or where your business is incorporated.</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Business Currency</h5>
+                                            <input readonly class="form-control" name="createBusinessForm[currency]" value="{% if business.currency %}{{ business.currency }}{% else %}USD{% endif %}">
+                                        </div>
+                                        </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Type of Organization</h5>
+                                            <select class="form-control" id="organization_type" name="createBusinessForm[organization_type]">
+                                                {% for value, organization in organization_types %}
+                                                    {% if value == business.organization_type %}
+                                                        <option value="{{ value }}" selected>{{ organization }}</option>
+                                                    {% else %}
+                                                        <option value="{{ value }}" disabled>{{ organization }}</option>
+                                                    {% endif %}s
+                                                {% endfor %}
+                                            </select>
+                                            <small>Choose Sole Proprietor if you have not incorporated (and do not plan to), and are not in partnership with anyone else.</small>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Address 1</h5>
+                                            <input class="form-control" name="createBusinessForm[address_line1]" value="{{ business.address_line1 }}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Address 2</h5>
+                                            <input class="form-control" name="createBusinessForm[address_line2]" value="{{ business.address_line2 }}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>City</h5>
+                                            <input class="form-control" name="createBusinessForm[city]" value="{{ business.city }}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Province/State</h5>
+                                            <input class="form-control"  name="createBusinessForm[province]" value="{{ business.province }}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Zip Code</h5>
+                                            <input class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Phone</h5>
+                                            <input class="form-control" name="createBusinessForm[phone]" value="{{ business.phone }}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Mobile</h5>
+                                            <input class="form-control" name="createBusinessForm[mobile]" value="{{ business.mobile }}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Toll Free</h5>
+                                            <input class="form-control" name="createBusinessForm[toll_free]" value="{{ business.toll_free }}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-9">
+                                        <div class="submit-field">
+                                            <h5>Website</h5>
+                                            <input class="form-control" name="createBusinessForm[website]" value="{{ business.website }}"/>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="col-xl-12 padding-bottom-30"> <input type="submit" class="btn btn-4 margin-top-30" value="Update" > </div>
+
+
+
+                                    <div class="col-xl-12">
+                                        <hr>
+                                        <div class="submit-field">
+                                            <h5>Archive This Business</h5>
+
+
+                                            <p>This will hide (Business) from every menu and you will no longer be able to access it.</p>
+
+                                            <button class="btn btn-outline-2">Archive Business</button>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+
+
+
+    <div class="dashboard-headline">
+        <div class="row">
+            <div class="col-6">
+                <h3>Bills</h3>
+            </div>
+            <div class="col-6 text-right">
+
+                <a href="{{ path('purchases.bills.add') }}" class="btn btn-4" >Create bill <i class="icon-feather-arrow-right"></i></a>
+
+            </div>
+        </div>
+    </div>
+
+
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+
+                <!--Estimates-->
+
+                <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+
+
+
+            <div class="row">
+
+                <div class="col-2">
+                    <select class="select2 form-control" >
+
+                        <option>All vendors</option>
+
+                    </select>
+
+                </div>
+                <div class="col-2">
+
+                    <div class="input-with-icon-left">
+                        <input class="form-control calendar padding-left-15" name="estimate_date" id="" placeholder="From">
+                        <i class="icon-feather-calendar iconRight borderRIcon2"></i>
+                    </div>
+
+                </div>
+                <div style="margin: 10px -5px;"><p>to</p></div>
+                <div class="col-2">
+                    <div class="input-with-icon-left">
+                        <input class="form-control calendar padding-left-15" name="estimate_date" id="" placeholder="To">
+                        <i class="icon-feather-calendar iconRight borderRIcon2"></i>
+                    </div>
+
+                </div>
+                <div class="col-2">
+                    <a title="Reset dates"  data-tippy-placement="top" data-tippy="" data-original-title="Tooltip"  href="#" style="font-size: 30px; margin-left: -15px; color: black;margin-top: 9px;display: inline-block;">&times;</a>
+                </div>
+            </div>
+
+
+                    <div class="row">
+
+
+                        <table class="margin-top-20">
+                            <tbody><tr>
+                                <th>Date</th>
+                                <th>Number</th>
+                                <th>Vendor</th>
+                                <th>Amount due</th>
+                                <th>Payment status</th>
+                                <th>Actions</th>
+                            </tr>
+
+                            <tr>
+                                <td><span>2018-10-21</span></td>
+                                <td><b>1</b></td>
+                                <td><b>Jason</b></td>
+                                <td><b>0.00</b></td>
+                                <td><b class="wv-badge paid">Paid</b></td>
+                                <td>
+                                    <button id="bill-view-drop" type="button" class="btn btn-circle btn-6 btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-arrow-down"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="bill-view-drop">
+                                        <a class="dropdown-item" href="#">View</a>
+                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" href="#">Print</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Convert to invoice</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Send</a>
+                                        <a class="dropdown-item" href="#">Export as PDF</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Delete</a>
+                                    </div>
+
+
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

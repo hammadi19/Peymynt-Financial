@@ -1,0 +1,258 @@
+{% extends 'front/page-front.html.twig' %}
+
+
+{% block body %}
+
+
+    <div class="photo-section" data-background-image="{{ asset('assets/images/section-search-background.jpg') }}" style="background-image: url({{ asset('assets/images/section-background.jpg') }})">
+
+        <!-- Infobox -->
+
+        <div class="text-content white-font">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-12">
+
+                        <h2>How can we help?</h2>
+                        <p>Whether you're new to managing your books, or an ace at small business accounting, the Help Center has the answers you need to succeed using Wave</p>
+
+                        <div class="intro-banner-search-form margin-top-30">
+
+                            <!-- Search Field -->
+                            <div class="intro-search-field with-autocomplete with-label">
+
+                                <div class="input-with-icon">
+                                    <input id="Name-input" type="text" placeholder="Search">
+                                    <i class="icon-material-outline-search"></i> </div>
+                            </div>
+
+
+
+                            <!-- Button -->
+                            <div class="intro-search-button">
+                                <button class="button ripple-effect" onclick="window.location.href='jobs-list-layout-full-page-map.html'">Search</button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Infobox / End -->
+
+    </div>
+
+    <!-- Page Content
+  ================================================== -->
+
+    <main role="main">
+
+
+        <div class="container">
+            <!-- Main Container -->
+
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center text-black font-weight-bold margin-top-50" >Browse by topic</h1>
+                </div>
+            </div>
+
+
+
+            <div class="category-list row clearfix" id="category-list">
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js" style="display: none;">
+                    <a href="/hc/en-us/categories/360000964911-Hidden-category" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Hidden category</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/Accounting.png" alt="" >
+                    <a href="/hc/en-us/categories/360000885491-Accounting" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Accounting</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-data.png" alt="" >
+                    <a href="/hc/en-us/categories/360000901012-Bank-Connections-Transaction-Imports" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Bank Connections &amp; Transaction Imports</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-invoices.png" alt="" >
+                    <a href="/hc/en-us/categories/360000894052-Invoices-Estimates" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Invoices &amp; Estimates</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-settings.png" alt="" >
+                    <a href="/hc/en-us/categories/360000913271-Manage-Your-Account" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Manage Your Account</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-apps.png" alt="" >
+                    <a href="/hc/en-us/categories/360000887632-Mobile-Apps" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Mobile Apps</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-payments.png" alt="" >
+                    <a href="/hc/en-us/categories/360000049866-Payments-by-Wave" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Payments by Wave</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-payroll.png" alt="" >
+                    <a href="/hc/en-us/categories/360000029986-Payroll-by-Wave" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Payroll by Wave</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-receipts.png" alt="" >
+                    <a href="/hc/en-us/categories/360000887572-Receipts-Bills" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Receipts &amp; Bills</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-updates.png" alt="" >
+                    <a href="/hc/en-us/categories/360000899631-Updates-FAQs" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Updates &amp; FAQs</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js" style="display: none;"><img class="section-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/Accounting.png" alt="" >
+                    <a href="/hc/en-us/categories/115001090006-What-s-New-in-Accounting" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">What's New in Accounting</h4>
+                    </a>
+                </div>
+
+                <div class="col-sm-12 col-md-4 col-lg-4 category-div-js" style="display: none;">
+                    <a href="/hc/en-us/categories/115001116506-Guides" class="category-list__link" style="display:block;">
+                        <h4 class="section-name" style="margin-top: 22px;">Guides</h4>
+                    </a>
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center text-black font-weight-bold margin-top-50 margin-bottom-50">Resources</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-sm-12 col-md-10 text-center margin-bottom-15">
+                    <p class="home-paragraph">Looking to get the most out of Wave for your business? Check out our resources below. Watch a webinar, download our guide to Fearless Accounting with Wave, or sign up for the Wave Community.</p>
+                </div>
+            </div>
+
+            <div class="row home-section align-items-top">
+                <div class="col-sm-0 col-md-1"></div>
+                <div class="col-sm-0 col-md-3">
+                    <img class="resource-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-fearless.png" alt="">
+                </div>
+                <div class="col-sm-12 col-md-7 margin-top-20">
+                    <a href="#" class="category-list__link">
+                        <h2 class="h4 text-left">Fearless Accounting with Wave</h2>
+                    </a>
+                    <p class="home-paragraph text-left">Learn key accounting concepts and bookkeeping processes that will empower you take charge of your accounting and use financial information to steer your business to success
+                    </p>
+                </div>
+            </div>
+
+
+
+
+            <div class="row home-section align-items-top">
+                <div class="col-sm-0 col-md-1"></div>
+                <div class="col-sm-0 col-md-3">
+                    <img class="resource-image" src="https://s3.amazonaws.com/wave-prod-customer-success/Help+Center+images%2Bicons/home-guides.png" alt="">
+                </div>
+                <div class="col-sm-12 col-md-7 margin-top-20">
+                    <a href="#" class="category-list__link">
+                        <h2 class="h4 text-left">Wave Guides</h2>
+                    </a>
+                    <p class="home-paragraph text-left">Wave is for everyone managing their business finances without training in technical things like accounting and payroll. Sound familiar? All the tools in your Wave account are jargon-free and easy to use. No MBA required! Check out these guides to get you started
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- add new resource with image here -->
+
+            <div class="row home-section two-resources margin-top-80">
+                <div class="col-sm-12 col-md-6">
+                    <a href="#" class="category-list__link">
+                        <h2 class="h4 text-left margin-bottom-15">Join the Wave Community</h2>
+                    </a>
+                    <p class="home-paragraph text-left">
+                        Get inspired and discuss ideas, news, and challenges with other business owners, and share insights and problem solve with Wavers and accounting pros
+                    </p>
+                </div>
+
+                <div class="col-sm-12 col-md-6 phone-margin">
+                    <a href="https://support.waveapps.com/hc/en-us/articles/360015862452" class="category-list__link">
+                        <h2 class="h4 text-left learn margin-bottom-15">Learn to use Wave for your business</h2>
+                    </a>
+                    <p class="home-paragraph text-left">
+                        Whether you want to pay employees, grow your business, or understand your accounting on a deeper level, Wave can do a lot! Learn how Wave’s features work together for you
+                    </p>
+                </div>
+
+            </div>
+
+            <!--   Add two new resources here -->
+
+
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center text-black font-weight-bold margin-top-80 margin-bottom-40" >Featured Articles</h1>
+                </div>
+            </div>
+
+
+
+
+            <div class="row justify-content-center margin-bottom-100" style="justify-content: center;">
+
+                <div class="col-sm-10 col-md-10 col-lg-4">
+                    <h2 class="promoted-articles-item__title text-left"><a href="/hc/en-us/articles/208621656-How-to-create-an-invoice">How to create an invoice</a></h2>
+                    <p class="promoted-articles-item__excerpt text-left">Creating an invoice is one of the first (and most common) things you'll do in Wave, and Wave makes creating and sending invoices easy.
+
+                        Click on Sales&nbsp;in the menu at the left of your screen&nbsp;and sel...</p>
+                </div>
+
+                <div class="col-sm-10 col-md-10 col-lg-4">
+                    <h2 class="promoted-articles-item__title text-left"><a href="/hc/en-us/articles/115002487743-Guide-to-recurring-invoices">Guide to recurring invoices</a></h2>
+                    <p class="promoted-articles-item__excerpt text-left">Recurring invoices allow you to save time, plan ahead, and ensure you always get paid on schedule. They are often the most convenient solution for your regular or subscription customers. Here you'l...</p>
+                </div>
+
+                <div class="col-sm-10 col-md-10 col-lg-4">
+                    <h2 class="promoted-articles-item__title text-left"><a href="/hc/en-us/articles/360001042906-Avoid-chargebacks-with-these-good-business-practices">Avoid chargebacks with these good business practices</a></h2>
+                    <p class="promoted-articles-item__excerpt text-left">Like anything in life, accepting credit cards comes with some risk – but with good business practices, you can substantially reduce the chance of receiving a chargeback or be prepared should one oc...</p>
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- End of Main Container -->
+
+
+
+
+
+
+    </main>
+
+
+{% endblock %}
+
+

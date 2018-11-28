@@ -1,0 +1,188 @@
+<!-- Header Container
+================================================== -->
+
+
+
+
+
+
+<header class="main-header">
+    <nav class="navbar navbar-expand-md bg-3">
+        <div class="navbar-logo p-3 py-md-0">
+            <a class="navbar-brand mr-0" href="{{ path('peymynt.welcome') }}">
+
+            <img src="{{ asset('assets/img/logo-light.png') }}" class="logo" alt="peymynt">
+
+
+            </a>
+            {#<button type="button" class="navbar-toggler">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>#}
+        </div>
+        <div class="navbar-options px-3 px-md-4">
+            <form class="form search-form mr-auto" action="../search-result.html" method="GET" id="header-search">
+                <div class="form-group mb-0 d-flex position-relative">
+                    <input type="text" class="form-control pl-5" placeholder="Search for..." name="q">
+                    <button type="submit" class="btn btn-link pl-0 pt-2">
+                        <i class="pe pe-7s-search pe-2x"></i>
+                    </button>
+                </div>
+            </form>
+            <ul class="nav">
+
+
+                <li class="nav-item account dropdown">
+                    <a href="#" class="nav-link dropdown-toggle pl-4" data-toggle="dropdown">
+                        <button type="button" class="btn btn-outline-accent">
+                            {% set userBusinessInfo = user_business_info() %}
+                            {% if userBusinessInfo|length > 0 %}
+                            {% if not user_personal_info().business_id %}Select business{% endif %}
+                            {% for business in userBusinessInfo %}
+                            {% if business.id == user_personal_info().business_id %}{{ business.name }}{% endif %}
+                {% endfor %}
+
+                {% endif %}
+                            <i class="fas fa-angle-down"></i></button>
+
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+
+
+
+                            {% if app.user %}
+
+
+
+
+                        <div class="dropdown-heading rounded-top bg-3 arrow top color-1">
+                            <div class="content py-1">
+                                <div class="media align-items-center">
+
+                                    <div class="media-body">
+                                        <span class="bold color-1 user-name text-overflow text-capitalize">
+
+                                             <div class="user-name">
+                                             <a class="btn btn-outline-light" href="{{ path('app_user_settings') }}">Manage your profile </a>
+                                             </div>
+
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="dropdown-body list list-group list-group-flush">
+
+
+
+                                {% set userBusinessInfo = user_business_info() %}
+                                {% if userBusinessInfo|length > 0 %}
+
+                                    {% for business in userBusinessInfo %}
+                                        <li class="list-group-item list-group-item-action {% if business.id ==
+                                            user_personal_info().business_id %}is-current{% endif %} }}">
+                                            <a class="wv-business-switcher__business-menu__item__link"
+                                               href="{{ path('update_user_primary_business', {'id': business.id})
+                                               }}"
+                                            >
+                                                <span class="wv-business-switcher__business-menu__item__label fs-exclude">{{ business.name }}</span>
+                                                {#<i class="icon-material-outline-check pull-right margin-top-4"></i>#}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+
+                                {% endif %}
+
+
+
+                                {#<li class="wv-business-switcher__business-menu__item is-current">#}
+                                {#<a class="wv-business-switcher__business-menu__item__link" href="#">#}
+                                {#<span class="wv-business-switcher__business-menu__item__label fs-exclude">Meet Logic</span>#}
+                                {#<i class="icon-material-outline-check pull-right margin-top-4"></i>#}
+                                {#</a>#}
+                                {#</li>#}
+                                {#<li class="wv-business-switcher__business-menu__item">#}
+                                {#<a class="wv-business-switcher__business-menu__item__link" href="#">#}
+                                {#<span class="wv-business-switcher__business-menu__item__label fs-exclude">#}
+                                {#Personal#}
+                                {#</span>#}
+                                {#</a>#}
+                                {#</li>#}
+
+
+                        </ul>
+                        <div class="dropdown-footer bg-1 d-flex justify-content-between align-items-center">
+
+
+
+
+
+
+                            <a href="{{ path('app_user_settings.business_create') }}" class="btn btn-rounded btn-4">
+                                <i class="mr-3 fas fa-briefcase"></i>Create a New Business ​</a>
+
+                        </div>
+
+
+
+                        {% else %}
+
+                                <a href="#sign-in-dialog" class="popup-with-zoom-anim log-in-button"><i class="icon-feather-log-in"></i> <span>Log In / Register</span></a>
+
+                        {% endif %}
+
+
+
+
+
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+            <!-- Left Side Content -->
+      {#      <div class="left-side">#}
+
+                <!-- Logo -->
+
+                <!-- Main Navigation -->
+              {#  <nav id="navigation">
+                    <ul id="responsive">
+                        <li><a href="{{ path('peymynt.welcome') }}">Home</a> </li>
+                        <li><a href="#">Products</a>
+                            <ul class="dropdown-nav">
+                                <li><a href="{{ path('peymynt.content_pages', {"slug":"accounting"}) }}">Accounting</a> </li>
+                                <li><a href="{{ path('peymynt.content_pages', {"slug":"invoices"}) }}">Invoicing</a></li>
+                                <li><a href="{{ path('peymynt.content_pages', {"slug":"receipts"}) }}">Receipts</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Services</a>
+                            <ul class="dropdown-nav">
+                                <li><a href="{{ path('peymynt.content_pages', {"slug":"support"}) }}">Support</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ path('peymynt.content_pages', {"slug":"pricing"}) }}">Pricing</a></li>
+                        <li><a href="{{ path('peymynt.content_pages', {"slug":"blog"}) }}">Blog</a></li>
+                        <li><a href="#">More</a>
+                            <ul class="dropdown-nav">
+                                <li><a href="{{ path('peymynt.content_pages', {"slug":"success_stories"}) }}">Success stories</a></li>
+                                <li><a href="{{ path('peymynt.content_pages', {"slug":"about"}) }}">About us</a></li>
+                                <li><a href="{{ path('peymynt.content_pages', {"slug":"careers"}) }}">Careers</a></li>
+                                <li><a href="{{ path('peymynt.content_pages', {"slug":"partners"}) }}">Partners</a></li>
+                                <li><a href="{{ path('peymynt.content_pages', {"slug":"contact"}) }}">Contact us</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>#}
+
+
+<!-- Header Container / End -->

@@ -1,0 +1,84 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+
+
+    <div class="dashboard-headline">
+        <div class="row">
+            <div class="col-6">
+                <h3>Vendors</h3>
+            </div>
+            <div class="col-6 text-right">
+
+                <a href="{{ path('purchases.vendors.add') }}" class="btn btn-4" >Add a vendor <i class="icon-feather-arrow-right"></i></a>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+
+                <div class="wv-content__primary text-center">
+                    <img src="https://d3pgswpng8id0l.cloudfront.net/sitestatic/clients/images/spot_empty-tray.svg">
+
+                    <p class="wv-heading--section-title">
+                        <strong class="wv-text--strong">
+                            You haven't added any vendors yet.
+                        </strong>
+                    </p>
+
+
+                </div>
+
+
+
+
+                <table class="margin-top-20">
+                    <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <span>asdf</span><br>
+                            <span class="text-muted">zxc</span>
+                        </td>
+                        <td>asdf@gmail.com</td>
+                        <td>000-9999-1111</td>
+                        <td>
+                            <span class="create-bill">  <a href="#">Create bill</a></span>
+                            <button id="vendor-view-drop" type="button" class="btn btn-circle btn-6 btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-arrow-down"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="vendor-view-drop">
+                                <a class="dropdown-item" href="#">View</a>
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Delete</a>
+                            </div>
+
+
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+

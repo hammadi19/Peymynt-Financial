@@ -1,0 +1,186 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+
+
+    <div class="dashboard-headline">
+
+        <h3>Add a Product or Service</h3>
+        <p>Products and services that you buy from vendors are used as items on Bills to record those purchases, and the ones that you sell to customers are used as items on Invoices to record those sales.</p>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+                <form method="post" id="createProductFormp" name="createProductFormp" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Name
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="createProductForm[name]" value="" class="form-control" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Description
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <textarea name="createProductForm[description]"></textarea>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Price
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="createProductForm[price]" value="" class="form-control" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right">
+                                Sell this
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="checkbox">
+                                <input name="createProductForm[is_sell]" type="checkbox" id="chekcbox1">
+                                <label for="chekcbox1"><span class="checkbox-icon"></span> Allow this product or service to be added to Invoices.</label>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right">
+                                Income account *
+
+
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <select class="select2 form-control" id="id_income_account" name="income_account" tabindex="5">
+                                <option value="" selected="selected">--------------------</option>
+                                <optgroup label="Income">
+                                    <option value="327950049">Direct Public Support – Business Contributions</option>
+                                    <option value="327950046">Direct Public Support – Corporate Contributions</option>
+                                    <option value="327950048">Direct Public Support – Gifts in Kind</option>
+                                    <option value="327950051">Direct Public Support – Individual Contributions</option>
+                                    <option value="327950053">Indirect Public Support</option>
+                                    <option value="327950045">Investments – Interest</option>
+                                    <option value="327950061">Miscellaneous Revenue</option>
+                                    <option value="327950055">Program Income – Membership Dues</option>
+                                    <option value="327950057">Program Income – Program Service Fees</option>
+                                    <option value="327950065">Sales</option>
+                                    <option value="327950063">Security Sales</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+
+
+
+
+
+                        <div class="col-4">
+                            <div class="text-right">
+                                Buy this
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="checkbox">
+                                <input name="createProductForm[is_buy]" type="checkbox" id="chekcbox2">
+                                <label for="chekcbox2"><span class="checkbox-icon"></span> Allow this product or service to be added to Invoices.</label>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+
+                        <!--//-->
+                        <div class="col-4">
+                            <div class="text-right">
+                                Expense  account *
+
+
+                            </div>
+                        </div>
+                        <div class="col-4">
+
+                            <select class="select2 form-control" id="id_expense_accountup" name="expense_accountp" tabindex="7">
+                                <option value="" selected="selected">--------------------</option>
+                                <optgroup label="Expense">
+                                    <option value="327950101">Accounting Fees</option>
+                                    <option value="327950103">Contract Services</option>
+                                    <option value="327950072">Equipment Lease or Rental</option>
+                                    <option value="327950084">Insurance – Property</option>
+                                    <option value="327950105">Legal Fees</option>
+                                    <option value="327950085">Office Supplies</option>
+                                    <option value="327950095">Payroll – Employee Benefits</option>
+                                    <option value="327950097">Payroll – Employer's Share of Benefits</option>
+                                    <option value="327950099">Payroll – Salary &amp; Wages</option>
+                                    <option value="327950087">Postage &amp; Delivery</option>
+                                    <option value="327950089">Printing and Reproduction</option>
+                                    <option value="327950074">Rent Expense</option>
+                                    <option value="327950076">Repairs &amp; Maintenance</option>
+                                    <option value="327950078">Telephone – Land Line</option>
+                                    <option value="327950080">Telephone – Wireless</option>
+                                    <option value="327950093">Travel Expense</option>
+                                    <option value="327950091">Utilities</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Sales Tax
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <select name="sales_tax" id="Sales_tax" class="form-control select2" multiple="multiple">
+
+                                <option>1</option>
+                                <option>2</option>
+                                <option>13</option>
+
+                            </select>
+                        </div>
+                        <div class="w-100"></div>
+
+                        <div class="col-4">  </div>
+                        <div class="col-4">
+                            <input type="submit" class="btn btn-4 margin-top-30" value="Save">
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

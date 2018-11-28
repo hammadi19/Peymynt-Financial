@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>{% block title %} .: Peymynt :. {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/colors/blue.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/customstyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+
+    {% block stylesheets %}{% endblock %}
+
+</head>
+<body>
+
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    {{ include('header.html.twig') }}
+
+
+    {% block body %}{% endblock %}
+
+
+    {{ include('footer.html.twig') }}
+
+</div>
+<!-- Wrapper / End -->
+
+<!-- Sign In Popup
+================================================== -->
+<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+    <!--Tabs -->
+    <div class="sign-in-form">
+        <ul class="popup-tabs-nav">
+            <li><a href="#login">Log In</a></li>
+            <li><a href="#register">Register</a></li>
+        </ul>
+        <div class="popup-tabs-container">
+
+            <!-- Login -->
+            <div class="popup-tab-content" id="login" >
+
+                <!-- Welcome Text -->
+                <div class="welcome-text">
+                    <h3>We're glad to see you again!</h3>
+                    <span>Don't have an account? <a href="#" class="register-tab">Sign Up!</a></span> </div>
+
+
+                <div id="signInError"></div>
+                <div id="signInSuccess"></div>
+
+                <!-- Form -->
+                <form method="post" id="signInForm" onsubmit="return do_signin()">
+                    <div class="input-with-icon-left"> <i class="icon-material-baseline-mail-outline"></i>
+                        <input type="email" class="input-text with-border" name="email" id="signinEmail" placeholder="Email Address" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <div class="input-with-icon-left"> <i class="icon-material-outline-lock"></i>
+                        <input type="password" class="input-text with-border" name="password" id="signinPassword" placeholder="Password" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <!-- Button -->
+                    <button class="button full-width button-sliding-icon ripple-effect" id="signinFormButton" form="login-form">Log In <i class="icon-material-outline-arrow-right-alt"></i></button>
+
+                </form>
+
+
+                <!-- Social Login -->
+                <div class="social-login-separator"><span>or</span></div>
+                <div class="social-login-buttons">
+                    <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Log In via Facebook</button>
+                    <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Log In via Google+</button>
+                </div>
+            </div>
+
+            <!-- Register -->
+            <div class="popup-tab-content" id="register">
+
+                <!-- Welcome Text -->
+                <div class="welcome-text">
+                    <h3>Let's create your account!</h3>
+                </div>
+
+                <div id="signupError"></div>
+                <div id="signupSuccess"></div>
+
+                <!-- Account Type -->
+                {#<div class="account-type">#}
+                {#<div>#}
+                {#<input type="radio" name="account-type-radio" id="freelancer-radio" class="account-type-radio" checked/>#}
+                {#<label for="freelancer-radio" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i> Personal</label>#}
+                {#</div>#}
+                {#<div>#}
+                {#<input type="radio" name="account-type-radio" id="employer-radio" class="account-type-radio"/>#}
+                {#<label for="employer-radio" class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i> Company</label>#}
+                {#</div>#}
+                {#</div>#}
+
+                <!-- Form -->
+                <form method="post" id="signupForm" onsubmit="return do_signup()">
+                    <div class="input-with-icon-left"> <i class="icon-material-baseline-mail-outline"></i>
+                        <input type="text" class="input-text with-border" name="email" id="signupEmail" placeholder="Email Address" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom"> <i class="icon-material-outline-lock"></i>
+                        <input type="password" class="input-text with-border" name="password" id="signupPassword" placeholder="Password" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <div class="input-with-icon-left"> <i class="icon-material-outline-lock"></i>
+                        <input type="password" class="input-text with-border" name="rptPassword" id="rptsignupPassword" placeholder="Repeat Password" required/>
+                        <span class="error-show"></span>
+                    </div>
+                    <!-- Button -->
+                    <button class="margin-top-10 button full-width button-sliding-icon ripple-effect" id="signupFormButton" form="register-account-form">Register <i class="icon-material-outline-arrow-right-alt"></i></button>
+
+                </form>
+
+
+                <!-- Social Login -->
+                <div class="social-login-separator"><span>or</span></div>
+                <div class="social-login-buttons">
+                    <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Register via Facebook</button>
+                    <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Register via Google+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sign In Popup / End -->
+
+<!-- Scripts
+================================================== -->
+<script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-migrate-3.0.0.min.js') }}"></script>
+<script src="{{ asset('assets/js/mmenu.min.js') }}"></script>
+<script src="{{ asset('assets/js/tippy.all.min.js') }}"></script>
+<script src="{{ asset('assets/js/simplebar.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-slider.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+<script src="{{ asset('assets/js/snackbar.js') }}"></script>
+<script src="{{ asset('assets/js/clipboard.min.js') }}"></script>
+<script src="{{ asset('assets/js/counterup.min.js') }}"></script>
+<script src="{{ asset('assets/js/magnific-popup.min.js') }}"></script>
+<script src="{{ asset('assets/js/slick.min.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
+
+<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+<script>
+    // Snackbar for user status switcher
+    $('#snackbar-user-status label').click(function() {
+        Snackbar.show({
+            text: 'Your status has been changed!',
+            pos: 'bottom-center',
+            showAction: false,
+            actionText: "Dismiss",
+            duration: 3000,
+            textColor: '#fff',
+            backgroundColor: '#383838'
+        });
+    });
+</script>
+
+<!-- Google Autocomplete -->
+<script>
+    function initAutocomplete() {
+        var options = {
+            types: ['(cities)'],
+            // componentRestrictions: {country: "us"}
+        };
+
+        var input = document.getElementById('autocomplete-input');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+    }
+
+    // Autocomplete adjustment for homepage
+    if ($('.intro-banner-search-form')[0]) {
+        setTimeout(function(){
+            $(".pac-container").prependTo(".intro-search-field.with-autocomplete");
+        }, 300);
+    }
+
+</script>
+
+
+{% block javascripts %}{% endblock %}
+
+<!-- Google API & Maps -->
+<!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+{% extends 'page-secure.html.twig' %}
+
+
+
+{% block body %}
+
+
+                    <!-- Dashboard Headline -->
+                    <div class="dashboard-headline">
+                        <h3>Profile</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div>
+                                {{ include('user_settings/settings-menu.html.twig') }}
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+
+
+
+                            <div id="test1" class="dashboard-box margin-top-0">
+
+                                <!-- Headline -->
+                                <div class="headline">
+                                    <h3><i class="fa fa-2x fa-envelope"></i> Email Notifications</h3>
+                                    <small>Peymynt will never share or sell your personally identifiable information or details. These emails will be sent to your primary Peymynt email address: <strong>{{ user_personal_info().email }}.</strong></small>
+                                </div>
+
+                                <div class="content with-padding">
+                                    <form method="post" action="{{ path('app_user_settings.email_notifications') }}" id="updateEmailNotifiSettingForm" name="updateEmailNotifiSettingForm">
+                                    <div class="row">
+
+                                        <div class="col-xl-12">
+
+                                            {% if app.session.flashBag.has('success') %}
+                                                <div class="notification success closeable">
+                                                    {% for msg in app.session.flashBag.get('success') %}
+                                                        <p>{{ msg }}</p>
+                                                    {% endfor %}
+                                                    <a class="close"></a>
+                                                </div>
+                                            {% endif %}
+                                            {% if errors %}
+                                                <div class="notification error closeable">
+                                                    <ul style="margin-bottom:0px;">
+                                                        {% for error in errors %}
+                                                            <li style="color: darkred">{{ error }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    <a class="close"></a>
+                                                </div>
+                                            {% endif %}
+
+                                            <h3>News, education and updates</h3>
+                                            <p>We will send you emails to help set up your account, teach you about Wave, announce new product features, and show you offers from our Wave partners. <strong>You can control these email preferences directly from those emails.</strong></p>
+
+                                            <h3>Account notifications</h3>
+                                            <p>We will send you notifications to inform you of any updates and/or changes as events occur for you or your business in Wave. Select which notifications you want to receive below:</p>
+
+                                            <div class="notification notice closeable">
+                                                <p>Some mandatory communications may be sent to you regardless of your custom notification preferences. We are required to inform you of financial service disputes, system notifications, changes to our Terms of Use, etc.</p>
+                                                <a class="close"></a>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-xl-12">
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="Accounting" name="updateEmailNotifiSettingForm[accounting]" {% if data.accounting.is_active == 1 %}CHECKED{% endif %}>
+                                                <label for="Accounting"><span class="checkbox-icon"></span> {{ data.accounting.label }} <br><small>{{ data.accounting.description }}</small></label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="Sales" name="updateEmailNotifiSettingForm[sales]" {% if data.sales.is_active == 1 %}CHECKED{% endif %}>
+
+                                                <label for="Sales"><span class="checkbox-icon"></span> {{ data.sales.label }} <br><small>{{ data.sales.description }}</small></label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="Payroll" name="updateEmailNotifiSettingForm[payroll]" {% if data.payroll.is_active == 1 %}CHECKED{% endif %}>
+                                                <label for="Payroll"><span class="checkbox-icon"></span> {{ data.payroll.label }} <br><small>{{ data.payroll.description }}</small></label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="Payments" name="updateEmailNotifiSettingForm[payments]" {% if data.payments.is_active == 1 %}CHECKED{% endif %}>
+                                                <label for="Payments"><span class="checkbox-icon"></span> {{ data.payments.label }} <br><small>{{ data.payments.description }}</small></label>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="purchases" name="updateEmailNotifiSettingForm[purchases]" {% if data.purchases.is_active == 1 %}CHECKED{% endif %}>
+                                                <label for="purchases"><span class="checkbox-icon"></span> {{ data.purchases.label }} <br><small>{{ data.purchases.description }}</small></label>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xl-12">
+
+                                            <div class="checkbox">
+                                                <input type="checkbox" id="Banking" name="updateEmailNotifiSettingForm[banking]" {% if data.banking.is_active == 1 %}CHECKED{% endif %}>
+                                                <label for="Banking"><span class="checkbox-icon"></span> {{ data.banking.label }} <br><small>{{ data.banking.description }}</small></label>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-xl-12">
+                                            <input type="submit" name="updateEmailNotifiSettingForm[submit]" class="btn btn-4 margin-top-30" value="Update">
+                                        </div>
+
+                                    </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

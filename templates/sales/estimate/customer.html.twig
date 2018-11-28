@@ -1,0 +1,223 @@
+{% extends 'page-secure.html.twig' %}
+
+
+
+
+{% block stylesheets %}
+
+    <style>
+        .main-header {
+
+            display: none !important;
+        }
+        body .main-body .side-nav {
+            margin-left: 0;
+            display: none !important;
+        }
+        body .main-footer {
+
+            display: none !important;
+        }
+        @media print {
+            .modern-template__header{
+                background-color: #0093d6 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .wv-table__row{
+                background: #cccccc33;
+            }
+        }
+
+        @media print {
+            .modern-template__header__amount-due{
+                background-color: #2076ab !important;
+            }
+            .wv-table__row{
+                background: #cccccc33;
+            }
+        }
+    </style>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline hide">
+        <h3>{{ data.estimate_data.title }} #{{ data.estimate_data.estimate_no }}</h3>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+
+
+
+
+                <div class="row padding-bottom-25">
+                    <div class="btn-container">
+
+
+                        <input type="button" value="Print" class="btn btn-rounded btn-outline-4"/>
+                        <a href="#" class="btn btn-rounded btn-outline-2">Export PDF</a>
+
+                    </div>
+
+
+                </div>
+                <div id="NextModernTemplate" class="export-template">
+
+
+
+
+                    <section class="modern-template__header" style="color: #FFFFFF;">
+                        <div class="modern-template__header__label fs-exclude" style="background-color: #0093d6;"> <span class="modern-template__header__label__valign_wrapper">
+                    <div class="modern-template__header__label__title">{{ data.estimate_data.title }}</div>
+                    <div class="modern-template__header__label__subtitle">{{ data.estimate_data.sub_heading }}</div>
+                    </span> </div>
+                        <div class="modern-template__header__amount-due fs-exclude" style="background-color: #2076ab;"> <span class="modern-template__header__amount-due__valign_wrapper">
+                    <div> Grand Total
+                      ({{ currency }}) </div>
+                    <div class="modern-template__header__amount-due__value"> {{ data.estimate_data.total_amount|number_format(2, '.', ',') }} </div>
+                    </span> </div>
+                    </section>
+                    <section class="modern-template__metadata">
+                        <div class="modern-template__metadata__customer">
+                            <div class="modern-template__metadata__customer--billing fs-exclude">
+                                <div class="modern-template__metadata__address-subheader">BILL TO</div>
+                                <strong class="wv-text--strong">John</strong>
+                                <div class="modern-template__metadata__customer__address"> {{data.customer_data.name}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="invoice-template-details">
+                            <table class="wv-table">
+                                <tbody>
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell"><strong class="wv-text--strong">Estimate Number:</strong></td>
+                                    <td class="wv-table__cell"><span>{{ data.estimate_data.estimate_no }}</span></td>
+                                </tr>
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell"><strong class="wv-text--strong">P.O./S.O. Number:</strong></td>
+                                    <td class="wv-table__cell"><span>{{ data.estimate_data.po_so }}</span></td>
+                                </tr>
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell"><strong class="wv-text--strong">Estimate Date:</strong></td>
+                                    <td class="wv-table__cell"><span>{{ data.estimate_data.estimate_date|date('F d, Y') }}</span></td>
+                                </tr>
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell"><strong class="wv-text--strong">Expires On:</strong></td>
+                                    <td class="wv-table__cell"><span>{{ data.estimate_data.expire_date|date('F d, Y') }}</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <section class="modern-template__items">
+                        <table class="wv-table">
+                            <thead class="wv-table__header">
+                            <tr class="wv-table__row">
+                                <th class="wv-table__cell" colspan="4">Items</th>
+                                <th class="wv-table__cell--amount" colspan="1">Quantity</th>
+                                <th class="wv-table__cell--amount" colspan="1">Price</th>
+                                <th class="wv-table__cell--amount" colspan="1">Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody class="wv-table__body">
+                            {% set subTotal = 0 %}
+                            {% for product in data.estimate_product_data %}
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell" colspan="4"><span class="fs-exclude">
+                                            <span class="wv-text--strong invoice-product-name">{{ product.name }}</span>
+                          <p class="wv-table__cell--nested invoice-product-description"> {{ product.description }} </p>
+                          </span></td>
+                                    <td class="wv-table__cell modern-template__items__column--center" colspan="1"><span>{{ product.quantity }}</span></td>
+                                    <td class="wv-table__cell--amount" colspan="1"><span>{{ currency }}{{ product.price|number_format(2, '.', ',') }}</span></td>
+                                    <td class="wv-table__cell--amount" colspan="1"><span>{{ currency}}{{ (product.price *product.quantity)|number_format(2, '.', ',') }}</span></td>
+                                    {% set subTotal = subTotal + product.price * product.quantity %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                    <section>
+                        <section class="modern-template__totals">
+                            <div class="modern-template__totals__blank"></div>
+                            <div class="modern-template__totals__amounts">
+                                <div class="modern-template__totals__amounts__line">
+                                    <div class="modern-template__totals__amounts__line__label"> <strong class="wv-text--strong">Subtotal:</strong> </div>
+                                    <div class="modern-template__totals__amounts__line__amount"> <span>{{ currency }}{{ subTotal|number_format(2, '.', ',') }}</span>
+                                    </div>
+                                </div>
+                                {% for tax in taxes %}
+                                    <div class="modern-template__totals__amounts__line">
+                                        <div class="modern-template__totals__amounts__line__label fs-exclude">
+                                            <span>{{ tax.name }} {{ tax.rate }}%</span>: </div>
+                                        <div class="modern-template__totals__amounts__line__amount"> <span> {{tax.value|number_format(2, '.', ',')}}</span> </div>
+                                    </div>
+                                {% endfor %}
+                                <hr class="modern-template__divider">
+                                <div class="modern-template__totals__amounts__line">
+                                    <div class="modern-template__totals__amounts__line__label"> <strong class="wv-text--strong">Total:</strong> </div>
+                                    <div class="modern-template__totals__amounts__line__amount"> <span>{{ currency }}{{ data.estimate_data.total_amount|number_format(2, '.', ',') }} </span> </div>
+                                </div>
+                                <hr class="modern-template__divider modern-template__divider--bold">
+                                <div>
+                                    <div class="modern-template__totals__amounts__line">
+                                        <div class="modern-template__totals__amounts__line__label"> <strong class="wv-text--strong"> Grand Total
+
+                                                ({{ currency }})
+                                                : </strong> </div>
+                                        <div class="modern-template__totals__amounts__line__amount"> <strong
+                                                    class="wv-text--strong">{{ currency }}{{ data.estimate_data.total_amount|number_format(2, '.', ',') }}
+                                            </strong> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="modern-template__memo fs-exclude"> <span><strong class="wv-text--strong">Notes</strong></span> <span class="wv-text wv-text--small">{{ data.estimate_data.memo }}</span> </section>
+                    <span class="modern-template__sticky-bottom">
+                <section class="modern-template__footer fs-exclude"><span class="wv-text wv-text--fine-print">
+
+                    </span></section>
+                <hr>
+                <section class="modern-template__business-info">
+                  <div class="modern-template__business-info__logo fs-exclude">
+                      <img class="classic-template__business-logo fs-exclude" src="{{ asset('assets/img/logo.png') }}" title="Company Logo">
+                  </div>
+                    <div class="modern-template__business-info__address fs-exclude"> <strong class="wv-text--strong">Business Info</strong>
+                    <div> State <br>
+                      Country<br>
+                    </div>
+                  </div>
+                  <div class="modern-template__business-info__contact fs-exclude">
+                    <div> </div>
+                  </div>
+                </section>
+                </span> </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

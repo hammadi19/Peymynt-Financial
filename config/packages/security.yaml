@@ -1,0 +1,49 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    encoders:
+        App\Security\ApiUser:
+            algorithm: bcrypt
+
+    providers:
+        api_key_user_provider:
+            id: app_token_user_provider
+
+    role_hierarchy:
+        ROLE_USER: ROLE_USER
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            #pattern: ^/secure/*
+            anonymous: true
+            provider: api_key_user_provider
+            simple_form:
+                #require_previous_session: false
+                authenticator: app_token_authenticator
+                check_path: app_secure_login_check
+                login_path: /login
+                use_referer: true
+                default_target_path: app_user_dashboard
+                success_handler: app_authentication_handler
+                failure_handler: app_authentication_handler
+                #failure_path: login
+            #logout: true
+            logout:
+                path: /secure/logout
+                target: peymynt.welcome
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                domain:   ~
+
+
+    access_control:
+        - { path: ^/login$ , roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/secure, roles: ROLE_USER}

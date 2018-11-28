@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>Peymynt - Customer Statements</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/colors/blue.css">
+</head>
+<body class="gray">
+
+<!-- Wrapper -->
+<div id="wrapper"> 
+  
+  <!-- Header Container
+================================================== -->
+  <header id="header-container" class="fullwidth dashboard-header not-sticky"> 
+    
+    <!-- Header -->
+    <div id="header">
+      <div class="container"> 
+        
+        <!-- Left Side Content -->
+        <div class="left-side"> 
+          
+          <!-- Logo -->
+          <div id="logo"> <a href="index.html"><img src="images/logo.png" alt=""></a> </div>
+          
+          <!-- Main Navigation -->
+          <nav id="navigation">
+            <ul id="responsive">
+              <li><a href="#">Home</a>
+                <ul class="dropdown-nav">
+                  <li><a href="index.html">Home 1</a></li>
+                  <li><a href="index-2.html">Home 2</a></li>
+                  <li><a href="index-3.html">Home 3</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <div class="clearfix"></div>
+          <!-- Main Navigation / End --> 
+          
+        </div>
+        <!-- Left Side Content / End --> 
+        
+        <!-- Right Side Content / End -->
+        <div class="right-side"> 
+          
+          <!--  User Notifications -->
+          <div class="header-widget hide-on-mobile"> 
+            
+            <!-- Notifications -->
+            <div class="header-notifications"> 
+              
+              <!-- Trigger -->
+              <div class="header-notifications-trigger"> <a href="#"><i class="icon-feather-bell"></i><span>4</span></a> </div>
+              
+              <!-- Dropdown -->
+              <div class="header-notifications-dropdown">
+                <div class="header-notifications-headline">
+                  <h4>Notifications</h4>
+                  <button class="mark-as-read ripple-effect-dark" title="Mark all as read" data-tippy-placement="left"> <i class="icon-feather-check-square"></i> </button>
+                </div>
+                <div class="header-notifications-content">
+                  <div class="header-notifications-scroll" data-simplebar>
+                    <ul>
+                      <!-- Notification -->
+                      <li class="notifications-not-read"> <a href="dashboard-manage-candidates.html"> <span class="notification-icon"><i class="icon-material-outline-group"></i></span> <span class="notification-text"> <strong>Michael Shannah</strong> applied for a job <span class="color">Full Stack Software Engineer</span> </span> </a> </li>
+                      
+                      <!-- Notification -->
+                      <li> <a href="dashboard-manage-bidders.html"> <span class="notification-icon"><i class=" icon-material-outline-gavel"></i></span> <span class="notification-text"> <strong>Gilbert Allanis</strong> placed a bid on your <span class="color">iOS App Development</span> project </span> </a> </li>
+                      
+                      <!-- Notification -->
+                      <li> <a href="dashboard-manage-jobs.html"> <span class="notification-icon"><i class="icon-material-outline-autorenew"></i></span> <span class="notification-text"> Your job listing <span class="color">Full Stack PHP Developer</span> is expiring. </span> </a> </li>
+                      
+                      <!-- Notification -->
+                      <li> <a href="dashboard-manage-candidates.html"> <span class="notification-icon"><i class="icon-material-outline-group"></i></span> <span class="notification-text"> <strong>Sindy Forrest</strong> applied for a job <span class="color">Full Stack Software Engineer</span> </span> </a> </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  User Notifications / End --> 
+          
+          <!-- User Menu -->
+          <div class="header-widget"> 
+            
+            <!-- Messages -->
+            <div class="header-notifications user-menu">
+              <div class="header-notifications-trigger"> <a href="#">
+                <div class="user-avatar status-online"><img src="images/user-avatar-small-01.jpg" alt=""></div>
+                </a> </div>
+              
+              <!-- Dropdown -->
+              <div class="header-notifications-dropdown"> 
+                
+                <!-- User Status -->
+                <div class="user-status"> 
+                  
+                  <!-- User Name / Avatar -->
+                  <div class="user-details">
+                    <div class="user-avatar status-online"><img src="images/user-avatar-small-01.jpg" alt=""></div>
+                    <div class="user-name"> Tom Smith <span>Freelancer</span> </div>
+                  </div>
+                  
+                  <!-- User Status Switcher -->
+                  <div class="status-switch" id="snackbar-user-status">
+                    <label class="user-online current-status">Online</label>
+                    <label class="user-invisible">Invisible</label>
+                    <!-- Status Indicator --> 
+                    <span class="status-indicator" aria-hidden="true"></span> </div>
+                </div>
+                <ul class="user-menu-small-nav">
+                  <li><a href="dashboard.html"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+                  <li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li>
+                  <li><a href="index-logged-out.html"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- User Menu / End --> 
+          
+          <!-- Mobile Navigation Button --> 
+          <span class="mmenu-trigger">
+          <button class="hamburger hamburger--collapse" type="button"> <span class="hamburger-box"> <span class="hamburger-inner"></span> </span> </button>
+          </span> </div>
+        <!-- Right Side Content / End --> 
+        
+      </div>
+    </div>
+    <!-- Header / End --> 
+    
+  </header>
+  <div class="clearfix"></div>
+  <!-- Header Container / End --> 
+  
+  <!-- Dashboard Container -->
+  <div class="dashboard-container"> 
+    
+    <!-- Dashboard Sidebar
+	================================================== -->
+    <div class="dashboard-sidebar">
+      <div class="dashboard-sidebar-inner" data-simplebar>
+        <div class="dashboard-nav-container"> 
+          
+          <!-- Responsive Navigation Trigger --> 
+          <a href="#" class="dashboard-responsive-nav-trigger"> <span class="hamburger hamburger--collapse" > <span class="hamburger-box"> <span class="hamburger-inner"></span> </span> </span> <span class="trigger-title">Dashboard Navigation</span> </a> 
+          
+          <!-- Navigation -->
+          <div class="dashboard-nav">
+            <div class="dashboard-nav-inner">
+              <ul>
+                <li><a href="#"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+                <li><a href="#"><i class="icon-material-outline-credit-card"></i> Sales</a>
+                  <ul>
+                    <li> <a href="#" > Estimates </a> </li>
+                    <li> <a href="#" > Invoices </a> </li>
+                    <li> <a href="#" > Recurring Invoices </a> </li>
+                    <li> <a href="#" > Customer Statements </a> </li>
+                    <li> <a href="#"> Customers </a> </li>
+                    <li> <a href="#"> Products &amp; Services </a> </li>
+                    <div class="clearfix"></div>
+                  </ul>
+                </li>
+                <li><a href="#"><i class="icon-material-outline-shopping-cart"></i> Puchases</a>
+                  <ul>
+                    <li><a href="dashboard-manage-tasks.html"> Bills <span class="nav-tag">2</span></a></li>
+                    <li><a href="dashboard-manage-bidders.html"> Receipts </a></li>
+                    <li><a href="dashboard-manage-bidders.html"> Vendors </a></li>
+                    <li><a href="dashboard-manage-bidders.html"> Products & Services </a></li>
+                  </ul>
+                </li>
+                <li><a href="#"><i class="icon-material-outline-account-circle"></i> Accounting</a>
+                  <ul>
+                    <li><a href="#">Transactions <span class="nav-tag">2</span></a></li>
+                    <li><a href="#">Reconciliation</a></li>
+                    <li><a href="#">Chart of Accounts</a></li>
+                  </ul>
+                </li>
+                <li><a href="#"><i class="icon-material-outline-book"></i> Banking</a>
+                  <ul>
+                    <li><a href="#">Bank Connections</a></li>
+                  </ul>
+                </li>
+                <li><a href="#"><i class="icon-material-outline-access-time"></i> Payroll</a> </li>
+                <li><a href="#"><i class="icon-material-outline-assignment"></i> Reports</a> </li>
+              </ul>
+              <ul data-submenu-title="Account">
+                <li><a href="#"><i class="icon-material-outline-input"></i> Integration</a></li>
+                <li><a href="dashboard-settings.html"><i class="icon-material-outline-settings"></i> Settings</a></li>
+                <li><a href="index-logged-out.html"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- Navigation / End --> 
+          
+        </div>
+      </div>
+    </div>
+    <!-- Dashboard Sidebar / End --> 
+    
+    <!-- Dashboard Content
+	================================================== -->
+    <div class="dashboard-content-container" data-simplebar>
+      <div class="dashboard-content-inner" > 
+        
+        <!-- Dashboard Headline -->
+        <div class="dashboard-headline">
+          <h3>Customer Statements</h3>
+          
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12"> 
+            
+            <!--Estimates-->
+            
+            <div class="col-xl-8 col-lg-8 content-left-offset offset-2">
+            <div class="notification notice closeable">
+				<p><strong>Statements: A clear overview of your customer's invoices and payments</strong></p>
+                <p>Customer statements allows you to summarize all the invoices and payments for a customer between two dates in a single view. Generate and send a statement to any customer that owes more than one outstanding invoice, or any customer that is requesting all their activity between two dates. </p>
+				<a class="close"></a>
+			</div>
+              
+              
+             <div class="text-center">
+        <!-- spot_empty-tray.svg -->
+        <center>
+        <svg viewBox="0 0 380 320" width="380" height="320" xmlns="http://www.w3.org/2000/svg"><defs><lineargradient x1="50%" y1="-1.072%" x2="50%" y2="84.04%" id="a"><stop stop-color="#2575DB" offset="0%"></stop><stop stop-color="#582994" offset="100%"></stop></lineargradient><linearGradient x1="34.516%" y1="10.908%" x2="83.734%" y2="117.698%" id="b"><stop stop-color="#2575DB" offset="0%"></stop><stop stop-color="#582994" offset="77%"></stop></linearGradient><linearGradient x1="-.025%" y1="49.986%" x2="100.019%" y2="49.986%" id="c"><stop stop-color="#8DDEF7" offset="3%"></stop><stop stop-color="#CAE3F0" offset="100%"></stop></linearGradient><linearGradient x1=".006%" y1="50.005%" x2="99.994%" y2="50.005%" id="d"><stop stop-color="#419AE0" offset="20%"></stop><stop stop-color="#2674DB" offset="100%"></stop></linearGradient></defs><g fill="none" fill-rule="evenodd"><path d="M279 140c.036 64.111-43.781 119.93-106.067 135.12C110.648 290.31 46.053 260.93 16.57 204c-.39-.76-.77-1.52-1.15-2.28-21.22-42.91-18.897-93.715 6.15-134.51a136.35 136.35 0 0 1 8.73-12.59A139.93 139.93 0 0 1 46.61 37C86.318.98 143.2-8.992 192.794 11.37c49.593 20.362 83.056 67.43 85.996 120.96.14 2.56.21 5.117.21 7.67z" fill="url(#a)" transform="translate(50 20)"></path><path d="M258.07 66.63L211 190l-140 2L21.57 67.21a136.35 136.35 0 0 1 8.73-12.59A139.93 139.93 0 0 1 46.61 37a139 139 0 0 1 211.46 29.63z" fill="url(#b)" fill-rule="nonzero" transform="translate(50 20)"></path><path d="M192.5 86.67c.64-3.72.18-7.76.1-11.53-.08-4.1-.17-20.72-.57-24.81a1.35 1.35 0 0 0-2.69 0c-.37 3.88-.37 20.29-.4 24.18-.03 3.89-.53 7.89-.07 11.67.23 1.82 3.25 2.75 3.63.49zM215.65 98.86c3.35-1.59 6.35-4.86 9.21-7.17 3.12-2.58 12.24-11.17 15.17-14a1.35 1.35 0 0 0-1.67-2.11c-3.39 2.21-12.58 10.73-15.78 13.21-3 2.28-6.67 4.44-9.15 7.23-1.24 1.43.57 3.6 2.22 2.84zM155.63 92c3 2.21 6.09 5.2 9.46 6.83 1.69.82 3.27-1.56 2.09-2.9-2.44-2.78-6.38-4.81-9.4-6.9-3.34-2.3-6.69-4.6-10.18-6.64a1.35 1.35 0 0 0-1.6 2.16c3.08 2.66 6.37 5.03 9.63 7.45z" fill="#FCB32C" fill-rule="nonzero"></path><path d="M205.79 204.34H73.87a13 13 0 0 1-13-13v-20.15l12-61.5c1.67-7.5 5-13 13-13H193.8c7.2 0 10.7 3.37 12 11.21l13.34 64-.34 19.44a13 13 0 0 1-13.01 13z" fill="url(#c)" fill-rule="nonzero" transform="translate(50 20)"></path><path d="M207.75 178.77s-35.75.57-40.92.57c0 7.5-2 10.24-8.87 10.24h-35.53c-4.26 0-9.26-2.74-9.26-10.81h-41.4a9 9 0 0 1-9-9l12.45-62.49c1-5 4-9 9-9l111.08-.15c5 0 8.15 4 9 9l12.44 62.64a9 9 0 0 1-8.99 9z" fill="url(#d)" fill-rule="nonzero" transform="translate(50 20)"></path><path d="M122.15 192.66l7.47-40.66c.29-1.59.55-3.2.88-4.78.69-3.38 2.33-5.81 5.91-6.2a74.71 74.71 0 0 1 7.92-.07h66.5c6 0 12.11.08 18.15-.25 4.2-.22 8.43-.34 12.64-.26 4.56.09 6.86 3 7.71 7.34 2.78 14 5.08 28.14 7.62 42.2l.24 1.31c.11.64 1.07.37 1-.26l-7.49-41.49c-.47-2.61-.89-5.2-2.59-7.37-2.88-3.69-8.3-2.75-12.41-2.7-6.87.09-13.72.48-20.59.48h-73.68c-2.25 0-4.7-.24-6.89.41-3.33 1-4.53 4-5.12 7.2-2.72 14.46-5.32 28.94-8 43.41l-.26 1.38c-.11.63.85.9 1 .27l-.01.04z" fill="#1F65A6" fill-rule="nonzero"></path></g></svg>
+        <p class="wv-text--body ng-binding">
+          You have yet to invoice this customer, would you
+          <br>
+          like to
+          <a class="wv-text--link" href="https://accounting.waveapps.com/invoices/7232399/add" title="Create an invoice for John">create an invoice</a>
+          for John?
+        </p>
+        </center>
+    </div>
+              
+              
+            </div>
+          </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="dashboard-footer-spacer"></div>
+        <div class="small-footer margin-top-15">
+          <div class="small-footer-copyrights"> © 2018 <strong>Peymynt</strong>. All Rights Reserved. </div>
+          <ul class="footer-social-links">
+            <li> <a href="#" title="Facebook" data-tippy-placement="top"> <i class="icon-brand-facebook-f"></i> </a> </li>
+            <li> <a href="#" title="Twitter" data-tippy-placement="top"> <i class="icon-brand-twitter"></i> </a> </li>
+            <li> <a href="#" title="Google Plus" data-tippy-placement="top"> <i class="icon-brand-google-plus-g"></i> </a> </li>
+            <li> <a href="#" title="LinkedIn" data-tippy-placement="top"> <i class="icon-brand-linkedin-in"></i> </a> </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <!-- Footer / End --> 
+        
+      </div>
+    </div>
+    <!-- Dashboard Content / End --> 
+    
+  </div>
+  <!-- Dashboard Container / End --> 
+  
+</div>
+<!-- Wrapper / End --> 
+
+<!-- Apply for a job popup
+================================================== -->
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs"> 
+  
+  <!--Tabs -->
+  <div class="sign-in-form">
+    <ul class="popup-tabs-nav">
+      <li><a href="#tab">Add Note</a></li>
+    </ul>
+    <div class="popup-tabs-container"> 
+      
+      <!-- Tab -->
+      <div class="popup-tab-content" id="tab"> 
+        
+        <!-- Welcome Text -->
+        <div class="welcome-text">
+          <h3>Do Not Forget 😎</h3>
+        </div>
+        
+        <!-- Form -->
+        <form method="post" id="add-note">
+          <select class="selectpicker with-border default margin-bottom-20" data-size="7" title="Priority">
+            <option>Low Priority</option>
+            <option>Medium Priority</option>
+            <option>High Priority</option>
+          </select>
+          <textarea name="textarea" cols="10" placeholder="Note" class="with-border"></textarea>
+        </form>
+        
+        <!-- Button -->
+        <button class="button full-width button-sliding-icon ripple-effect" type="submit" form="add-note">Add Note <i class="icon-material-outline-arrow-right-alt"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Apply for a job popup / End --> 
+
+<!-- Scripts
+================================================== --> 
+<script src="js/jquery-3.3.1.min.js"></script> 
+<script src="js/jquery-migrate-3.0.0.min.js"></script> 
+<script src="js/mmenu.min.js"></script> 
+<script src="js/tippy.all.min.js"></script> 
+<script src="js/simplebar.min.js"></script> 
+<script src="js/bootstrap-slider.min.js"></script> 
+<script src="js/bootstrap-select.min.js"></script> 
+<script src="js/snackbar.js"></script> 
+<script src="js/clipboard.min.js"></script> 
+<script src="js/counterup.min.js"></script> 
+<script src="js/magnific-popup.min.js"></script> 
+<script src="js/slick.min.js"></script> 
+<script src="js/custom.js"></script> 
+
+<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ --> 
+<script>
+// Snackbar for user status switcher
+$('#snackbar-user-status label').click(function() { 
+	Snackbar.show({
+		text: 'Your status has been changed!',
+		pos: 'bottom-center',
+		showAction: false,
+		actionText: "Dismiss",
+		duration: 3000,
+		textColor: '#fff',
+		backgroundColor: '#383838'
+	}); 
+}); 
+</script> 
+
+<!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ --> 
+<script src="js/chart.min.js"></script> 
+<script>
+	Chart.defaults.global.defaultFontFamily = "Nunito";
+	Chart.defaults.global.defaultFontColor = '#888';
+	Chart.defaults.global.defaultFontSize = '14';
+
+	var ctx = document.getElementById('chart').getContext('2d');
+
+	var chart = new Chart(ctx, {
+		type: 'line',
+
+		// The data for our dataset
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June"],
+			// Information about the dataset
+	   		datasets: [{
+				label: "Views",
+				backgroundColor: 'rgba(42,65,232,0.08)',
+				borderColor: '#2a41e8',
+				borderWidth: "3",
+				data: [196,132,215,362,210,252],
+				pointRadius: 5,
+				pointHoverRadius:5,
+				pointHitRadius: 10,
+				pointBackgroundColor: "#fff",
+				pointHoverBackgroundColor: "#fff",
+				pointBorderWidth: "2",
+			}]
+		},
+
+		// Configuration options
+		options: {
+
+		    layout: {
+		      padding: 10,
+		  	},
+
+			legend: { display: false },
+			title:  { display: false },
+
+			scales: {
+				yAxes: [{
+					scaleLabel: {
+						display: false
+					},
+					gridLines: {
+						 borderDash: [6, 10],
+						 color: "#d8d8d8",
+						 lineWidth: 1,
+	            	},
+				}],
+				xAxes: [{
+					scaleLabel: { display: false },  
+					gridLines:  { display: false },
+				}],
+			},
+
+		    tooltips: {
+		      backgroundColor: '#333',
+		      titleFontSize: 13,
+		      titleFontColor: '#fff',
+		      bodyFontColor: '#fff',
+		      bodyFontSize: 13,
+		      displayColors: false,
+		      xPadding: 10,
+		      yPadding: 10,
+		      intersect: false
+		    }
+		},
+
+
+});
+
+</script>
+</body>
+</html>

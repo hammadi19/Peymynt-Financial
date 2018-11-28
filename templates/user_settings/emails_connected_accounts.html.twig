@@ -1,0 +1,224 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block stylesheets %}
+
+    <style>
+
+    .field_error{
+        font-size: 11px;
+        color:red;
+    }
+
+    #createEmailConnectedForm #email{
+        margin-bottom: 0;
+    }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+
+
+
+
+
+
+                    <!-- Dashboard Headline -->
+                    <div class="dashboard-headline">
+                        <h3>Profile</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div>
+                                {{ include('user_settings/settings-menu.html.twig') }}
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="dashboard-box margin-top-0">
+
+                                <!-- Headline -->
+                                <div class="headline">
+                                    <h3><i class="icon-material-outline-account-circle"></i> Emails & Connected Accounts</h3>
+                                    <small> You will be able to sign in to Peymynt using any of the email addresses below with your Peymynt password. You can also use any of these emails on the invoices you send to your customers.</small> </div>
+                                <div class="content with-padding padding-bottom-0">
+
+                                    {% if app.session.flashBag.has('success') %}
+                                        <div class="notification success closeable">
+                                            {% for msg in app.session.flashBag.get('success') %}
+                                                <p>{{ msg }}</p>
+                                            {% endfor %}
+                                            <a class="close"></a>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if app.session.flashBag.has('error') %}
+                                        <div class="notification error closeable">
+                                            {% for msg in app.session.flashBag.get('error') %}
+                                                <p>{{ msg }}</p>
+                                            {% endfor %}
+                                            <a class="close"></a>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="row">
+
+                                        <div class="col">
+                                            <div class="row">
+
+
+
+
+
+                                                <table class="basic-table">
+
+                                                    <tbody><tr>
+                                                        <th>Email</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+
+
+
+
+
+
+    {% if data|length > 0 %}
+
+        {% for account in data %}
+            <tr>
+                <td data-label="Column 1">{{ account.email }}</td>
+                <td data-label="Column 2">{% if account.is_primary %}<span class="wv-badge--success status-badge">Primary</span>{% endif %}{% if account.is_confirmed %}<span class="wv-badge--warning status-badge">Unverified</span>{% endif %}</td>
+                <td data-label="Column 3"><a href="#">Resend Verification</a></td>
+            </tr>
+        {% endfor %}
+
+    {% endif %}
+
+
+                                                    <tr style="background-color: transparent;">
+                                                        <td data-label="Column 1" style="text-align: left;"><a href="#small-dialog-2"  class="popup-with-zoom-anim ripple-effect"><strong><i class="icon-material-outline-library-add"></i> Add Another Email</a></strong></td>
+
+                                                    </tr>
+                                                    </tbody></table>
+
+
+
+
+
+
+
+
+
+
+                                                <div class="notification notice closeable">
+                                                    <p>"If you want to grant someone else access to your Peymynt account (such as a business partner, accountant or bookkeeper), you can do that by adding them as a user."</p>
+                                                    <a class="close"></a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-box margin-top-0">
+                                <div class="headline">
+                                    <h3><i class="icon-material-outline-delete"></i> Connected Accounts</h3>
+                                    <small> Add an account to incorporate your contacts or login with that account.</small> </div>
+                                <div class="content with-padding padding-bottom-30">
+                                    <div id="CloseAccountContainer">
+
+                                        <a class="wv-button--google" href="/login/google-oauth2/?social_next=/3ac698da-a466-48e1-8175-a173bf936bd7/emails-and-accounts/">
+                                            Google
+                                        </a>
+
+                                        <a class="wv-button--yahoo" href="/login/yahoo/?social_next=/3ac698da-a466-48e1-8175-a173bf936bd7/emails-and-accounts/">
+                                            Yahoo!
+                                        </a> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+    <!-- Add Email Popup
+    ================================================== -->
+    <div id="small-dialog-2" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+        <!--Tabs -->
+        <div class="sign-in-form">
+
+            <ul class="popup-tabs-nav">
+                <li><a href="#tab2">Add Another Email Address</a></li>
+            </ul>
+
+            <div class="popup-tabs-container">
+
+                <!-- Tab -->
+                <div class="popup-tab-content" id="tab2">
+
+                    <!-- Welcome Text -->
+                    <div class="welcome-text">
+                        <h3>New Email Address</h3>
+                    </div>
+
+                    <!-- Form -->
+                    <form onsubmit="return submitEmail()" method="post" name="createEmailConnectedForm" id="createEmailConnectedForm" action="{{ path('app_user_settings.emails_connected_accounts_create') }}">
+                        <input name="createEmailConnectedForm[email]" class="form-control margin-bottom-10" id="email" placeholder="Enter Email Address" type="text">
+                        <span class="field_error"></span>
+                    </form>
+
+                    <!-- Button -->
+                    <button class="btn btn-outline-4 btn-block" id="createEmailConnectedFormBtn" type="submit" form="send-pm">Add Email Address</button>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Add Email Popup Popup / End -->
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        $("#createEmailConnectedFormBtn").on("click", function(){
+            $("#createEmailConnectedForm").submit();
+        });
+
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function submitEmail(){
+            var errFLAG = false;
+            var email_ref = $("#createEmailConnectedForm #email");
+
+            if(!validateEmail(email_ref.val())){
+                email_ref.siblings("span").text("*Please provide valid info in above field.");
+                errFLAG = true;
+            }else{
+                email_ref.siblings("span").text("");
+            }
+
+
+            if(errFLAG){
+                return false;
+            }else{
+                return true;
+            }
+
+            return true;
+
+        }
+    </script>
+
+
+{% endblock %}
+
+

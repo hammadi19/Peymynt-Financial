@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>{% block title %} Peymynt - {{ user_business_name() }}  {% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
+
+    <!-- CSS
+    ================================================== -->
+
+
+
+
+
+
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/bootstrap-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/helper.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/pe-icon-7-stroke.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/scroller.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/simplebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/smart_wizard_theme_arrows.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/smart_wizard_theme_circles.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/smart_wizard_theme_dots.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/smart_wizard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/swiper.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/jquery-jvectormap-2.0.3.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard/admin.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/customstyle.css') }}">
+
+    {% block stylesheets %}{% endblock %}
+
+
+</head>
+<body>
+
+
+
+
+    {{ include('header.html.twig') }}
+
+
+    <div class="main-body">
+
+        {{ include('sidebar.html.twig') }}
+
+        <main class="overflow-hidden bg-6">
+
+            <div class="content">
+            {% block body %}{% endblock %}
+            </div>
+
+        </main>
+
+
+
+
+    </div>
+
+    {{ include('footer-small.html.twig') }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Scripts
+    ================================================== -->
+
+
+        <script src="{{ asset('assets/js/dashboard/swiper.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/popper.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/jquery.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/jquery.easing.min.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/jquery.validate.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/bootstrap.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/jquery.waypoints.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/jquery.counterup.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/jquery.smartWizard.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/simplebar.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/modernizr-2.8.3.min.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/jquery-ui.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/handlebars.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/Chart.bundle.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/moment.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/fullcalendar.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/bootstrap-select.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/jquery-jvectormap-2.0.3.min.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/jquery-jvectormap-world-mill.js') }}"></script>
+
+        <script src="{{ asset('assets/js/dashboard/common-script.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/00.configuration.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/01.1.templates.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/01.2.data.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/02.navigation.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/03.charts.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/04.script.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/dashboard/_world-map.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/dashboard/_social.js') }}"></script>
+
+        <script src="{{ asset('assets/js/tippy.all.min.js') }}"></script>
+        <script src="{{ asset('assets/js/simplebar.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap-slider.min.js') }}"></script>
+
+        <script src="{{ asset('assets/js/snackbar.js') }}"></script>
+        <script src="{{ asset('assets/js/clipboard.min.js') }}"></script>
+        <script src="{{ asset('assets/js/counterup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+        <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+        <script src="{{ asset('assets/js/jquery-validator.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+        <script>
+
+            $( function() {
+                $( ".calendar" ).datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'mm-dd-yy',
+                    showButtonPanel: false,
+                    yearRange: '1960:2020'
+                });
+            } );
+
+        </script>
+        <script type="text/javascript">
+
+            jQuery(document).ready(function (e) {
+                function t(t) {
+                    e(t).bind("click", function (t) {
+                        t.preventDefault();
+                        e(this).parent().fadeOut()
+                    })
+                }
+                e(".dropdown-toggle").click(function () {
+                    var t = e(this).parents(".button-dropdown").children(".dropdown-menu2").is(":hidden");
+                    e(".button-dropdown .dropdown-menu2").hide();
+                    e(".button-dropdown .dropdown-toggle").removeClass("active");
+                    if (t) {
+                        e(this).parents(".button-dropdown").children(".dropdown-menu2").toggle().parents(".button-dropdown").children(".dropdown-toggle").addClass("active")
+                    }
+                });
+                e(document).bind("click", function (t) {
+                    var n = e(t.target);
+                    if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-menu2").hide();
+                });
+                e(document).bind("click", function (t) {
+                    var n = e(t.target);
+                    if (!n.parents().hasClass("button-dropdown")) e(".button-dropdown .dropdown-toggle").removeClass("active");
+                })
+            });
+        </script>
+
+
+
+
+
+
+
+
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>

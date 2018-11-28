@@ -1,0 +1,222 @@
+{% extends 'front/base-front-login.html.twig' %}
+
+{% block title %} Peymynt - Signup {% endblock %}
+
+{% block body %}
+    {#here insert body#}
+
+
+
+
+
+    <main>
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-7 fullscreen-md d-flex justify-content-center align-items-center overlay gradient gradient-53 alpha-7 image-background cover" style="background-image:url(https://picsum.photos/1920/1200/?random&gravity=south)">
+                    <div class="content">
+                        <h2 class="display-4 display-md-3 color-1 mt-4 mt-md-0 text-center">Get started with
+                            <span class="bold d-block">
+                                <a href="{{ path('peymynt.welcome') }}">
+
+                                    Peymynt
+
+
+                            </a></span>
+                        </h2>
+                        <p class="lead color-1 alpha-5"></p>
+                        <hr class="mt-md-6 w-25">
+                        <div class="d-flex flex-column">
+                            <p class="small bold color-1">Or sign up with</p>
+                            <nav class="nav mb-4">
+                                <a class="btn btn-rounded btn-outline-2 brand-facebook mr-2" href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a class="btn btn-rounded btn-outline-2 brand-twitter mr-2" href="#">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a class="btn btn-rounded btn-outline-2 brand-linkedin" href="#">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4 mx-auto">
+                    <div class="login-form mt-5 mt-md-0">
+                        {#<img src="{{ asset('assets/img/logo.png') }}" class="logo img-responsive mb-4 mb-md-6" alt="">#}
+                        <h1 class="color-5 bold">Register</h1>
+                        <p class="color-2 mb-4 mb-md-6">Already have an account?
+                            <a href="{{ path('app_user_login') }}" class="accent bold">Login here</a>
+
+
+                        <div id="registerError" class=" btn-status text-danger failed text-center mb-3"></div>
+                        <div id="registerSuccess" class=" btn-status text-success success text-center mb-3"></div>
+
+                        <form class="cozy" method="post" id="register-account-form" onsubmit="return do_signup()" data-validate-on="submit" novalidate>
+
+
+                            <div class="form-group has-icon">
+
+                                <div class="error-show error"></div>
+
+                                <input type="text" name="emailaddress-register" id="emailaddress-register" required="" class="form-control form-control-rounded" placeholder="Valid email">
+                                <i class="icon fas fa-envelope"></i>
+
+                            </div>
+                            <div class="form-group has-icon">
+                                <div class="error-show error"></div>
+                                <input type="password" class="form-control form-control-rounded" name="password-register" id="password-register" placeholder="Password" required="">
+
+
+                                <i class="icon fas fa-lock"></i>
+
+                            </div>
+                            <div class="form-group has-icon">
+
+                                <div class="error-show error"></div>
+                                <input type="password" class="form-control form-control-rounded" name="password-repeat-register" id="password-repeat-register" placeholder="Repeat Password" required="">
+
+
+                                <i class="icon fas fa-lock"></i>
+
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-between">
+
+
+
+
+
+
+
+                                <button class="btn btn-accent btn-rounded ml-auto"
+                                        type="submit" form="register-account-form">Register <i class="fas fa-long-arrow-alt-right ml-2"></i></button>
+
+
+
+                            </div>
+                        </form>
+                        <div class="mt-5">
+                            <p class="small color-2">By signing up, I agree to the
+                                <a href="#">Terms of Service</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function clearNotifications(){
+            $("#registerError").text("");
+            $("#registerSuccess").text("");
+        }
+
+        function clearSignupFields(){
+            $("#register-account-form input").each(function(index, elem){
+                $(elem).val("");
+            });
+        }
+
+
+        function do_signup() {
+            var errFLAG = false;
+            var email_ref = $("#register-account-form #emailaddress-register");
+            var password_ref = $("#register-account-form #password-register");
+            var rpt_password_ref = $("#register-account-form #password-repeat-register");
+            if (!validateEmail(email_ref.val())) {
+                //email_ref.addClass("error-class");
+                email_ref.siblings("span").text("*Please provide valid info in above field.");
+                errFLAG = true;
+            } else {
+                //email_ref.removeClass("error-class");
+                email_ref.siblings("span").text("");
+            }
+
+            if (password_ref.val() == "") {
+                //password_ref.addClass("error-class");
+                password_ref.siblings("span").text("*Please provide valid info in above field.");
+                errFLAG = true;
+            } else {
+                //password_ref.removeClass("error-class");
+                password_ref.siblings("span").text("");
+            }
+
+            if (rpt_password_ref.val() == "") {
+                //rpt_password_ref.addClass("error-class");
+                rpt_password_ref.siblings("span").text("*Please provide valid info in above field.");
+                errFLAG = true;
+            } else {
+                //rpt_password_ref.removeClass("error-class");
+                rpt_password_ref.siblings("span").text("");
+            }
+
+            if (errFLAG) {
+                clearNotifications();
+                //$("#signupError").text("Invalid info in highlighted fields.");
+                return false;
+            } else {
+                clearNotifications();
+                var url = '{{ path('app_user_signup') }}';
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        "formSignup": "true",
+                        "email": email_ref.val(),
+                        "password": password_ref.val(),
+                        "rptPassword": rpt_password_ref.val()
+                    },
+                    success: function (data) {
+                        var objData = jQuery.parseJSON(data);
+                        if (objData.code == 200) {
+                            clearSignupFields();
+                            $("#registerSuccess").html("Thank You for registering with us.");
+                        } else {
+                            $("#registerError").text(objData.message);
+                        }
+                    }
+                });
+            }
+
+            return false;
+        }
+
+    </script>
+
+{% endblock %}

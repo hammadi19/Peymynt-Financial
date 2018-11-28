@@ -1,0 +1,633 @@
+{% extends 'page-secure.html.twig' %}
+
+
+
+{% block body %}
+
+
+    <!-- Dashboard Headline -->
+    <main class="overflow-hidden has-sidebar inbox">
+        <nav class="nav sidebar pt-4">
+            <h6 class="d-flex align-items-center justify-content-between px-3 mb-4">
+                <span class="bold h4">Settings</span>
+            </h6>
+            <ul class="nav flex-column px-3">
+                <li class="nav-item">
+                    <span class="bold">User Management</span>
+                    <a href="#" class="nav-link pl-0">User</a>
+                </li>
+                <li class="nav-item active">
+                    <span class="bold">Sales</span>
+                    <a href="#" class="nav-link pl-0">Invoice Customization</a>
+                </li>
+                <li class="nav-item">
+                    <span class="bold">Purchases</span>
+                    <a href="#" class="nav-link pl-0">Receipts</a>
+                </li>
+                <li class="nav-item">
+                    <span class="bold">Accounting</span>
+                    <a href="#" class="nav-link pl-0">Dates &amp; Currency</a>
+                    <a href="#" class="nav-link pl-0">Sales Taxes</a>
+                </li>
+                <li class="nav-item">
+                    <span class="bold">Other</span>
+                    <a href="#" class="nav-link pl-0">Data Export</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="inner-content emails-ws">
+            <div class="wv-frame__content__body__main">
+                <div class="wv-frame__content__body__main__wrapper wv-frame__content__body__main__wrapper--fixed">
+
+                    <div id="BuoyantAppContainer">
+
+                        <div id="AppContent">
+
+                            <!-- <div class="js-page-error hide">
+<div class="wv-notify--danger" role="alert">
+<div class="wv-notify__icon-holder"><i class="wv-icon"></i></div>
+<div class="wv-notify__content-wrapper">
+  <div class="wv-notify__content">
+    <div class="wv-notify__message">
+      <div class="wv-text">
+        Sorry, there was an error on the server. Please try again.
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div> -->
+
+
+                            <!-- Google Tag Manager -->
+                            <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-BLR8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+                            <!-- End Google Tag Manager -->
+
+
+
+
+                            <div class="container">
+
+                                <div class="col-xl-12">
+                                    <div>
+                                        <h2 class=" pb-2 pt-4">Invoice Customization</h2>
+                                        <p class="wv-text--body gutter-bottom"><strong>Tip:</strong> To add or edit your contact information
+                                            (address, website, etc.) that appears on an invoice, visit <a href="/go/business/832b6bca-8d9f-47a6-8453-536118ffb6cd/" class="wv-text--link">your profile</a>.</p>
+                                    </div>
+                                </div>
+
+                                <form class="col-xl-12">
+
+                                    <input type="hidden" name="csrfmiddlewaretoken">
+                                    <h3 class="h5">General settings</h3>
+
+                                    <div class="d-flex justify-content-center">
+                                        <div>Template</div>
+                                        <div>
+                                            <div>
+                                                <ul class="list-group flex-row" style="height: 220px;">
+                                                    <li class="list-group-item px-2 mx-2 bg-light"><a href="#" class="invoice-preview">
+                                                            <div>
+                                                                <img style="height: 180px;" src="https://d3pgswpng8id0l.cloudfront.net/sitestatic/images/invoice-preview-nextcontemporary--thumb--06-14-16.png">
+                                                            </div>
+                                                        </a>
+                                                        <label for="id_invoice_template_0"><input type="radio" value="nextcontemporary" tabindex="1"> Contemporary</label></li>
+                                                    <li class="list-group-item px-2 mx-2 bg-light d-none">
+                                                        <a href="#">
+                                                            <div>
+                                                                <img style="height: 180px;" src="https://d3pgswpng8id0l.cloudfront.net/sitestatic/images/invoice-preview-classic--thumb--06-14-16.png">
+                                                            </div>
+                                                        </a>
+                                                        <label for="id_invoice_template_1"><input type="radio" value="classic" tabindex="2"> Classic</label></li>
+                                                    <li class="list-group-item px-2 mx-2 bg-light d-none"><a href="#" class="invoice-preview">
+                                                            <div>
+                                                                <img style="height: 180px;" src="https://d3pgswpng8id0l.cloudfront.net/sitestatic/images/invoice-preview-nextmodern--thumb--06-14-16.png">
+                                                            </div>
+                                                        </a>
+                                                        <label for="id_invoice_template_2"><input checked="checked" type="radio" value="nextmodern" tabindex="3"> Modern</label></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-column align-items-center pt-3">
+                                        <div class="d-flex flex-md-column flex-xl-row ml-md-4">
+                                            <div class="">Company logo</div>
+                                            <div>
+                                                <div class="d-flex">
+													<span class="px-4">
+                             <img style="height:90px;" src="https://d3pgswpng8id0l.cloudfront.net/sitestatic/invoices/images/no_logo.gif?f198b1c4bd34" alt="logo">
+													</span>
+
+                                                    <div class="pt-4">
+                                                        <span><input name="logo" type="file" tabindex="4"></span>
+                                                    </div>
+                                                </div>
+                                                <span>Upload an image that is less than 10MB in size.</span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label class="wv-form-field__label--blank"></label>
+                                            <div>
+                                                <label for="id_invoice_show_logo">
+                                                    <input disabled="True" name="invoice_show_logo" type="checkbox" tabindex="5">
+                                                    <span class="wv-radiocheck--faux"></span>
+
+                                                    <span>Display logo</span>
+
+                                                </label>
+                                                <div>You must have an uploaded logo to display it</div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- <div class="invoice-color-picker">
+                                            <div>
+                                                <label for="id_invoice_accent_color" class="">
+                                                    Accent color
+                                                </label>
+                                                <div class="wv-form-field__element">
+                                                    <input class="wv-input--small  wv-input textinput textInput miniColors" id="id_invoice_accent_color"
+                                                     maxlength="7" name="invoice_accent_color" type="text" value="#444444" autocomplete="off" tabindex="6"><a
+                                                     class="miniColors-trigger" style="background-color: #444444" href="#"></a>
+
+                                                    <div id="hint_id_invoice_accent_color" class="wv-form-field__hint">
+                                                        Choose an accent colour to use in the invoice.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- <div class="hide">
+
+                                                <div id="id_item_title_container" class="control-group required">
+                                                    <label class="control-label" for="id_item_title">
+                                                        Item title
+                                                    </label>
+
+                                                    <div class="controls">
+                                                        <select id="id_item_title" name="item_title" tabindex="7">
+                                                            <option value="Product" selected="selected">Product</option>
+                                                            <option value="Service">Service</option>
+                                                            <option value="Product/Service">Product/Service</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                    </div>
+
+                                    <hr>
+
+                                    <!-- Section-Invoice-Settings -->
+
+                                    <h3 class="h5">Invoice settings</h3>
+
+                                    <input id="id_disable_bank_payments" name="disable_bank_payments" type="hidden" value="False">
+                                    <input id="id_disable_credit_card_payments" name="disable_credit_card_payments" type="hidden" value="False">
+
+
+
+                                    <div class="d-flex justify-content-center mx-auto pt-2 w-75">
+
+                                        <div style="margin-left:-5.3rem;">
+                                            <label for="id_payment_terms">
+                                                Default payment terms
+                                            </label>
+                                            <span>*</span>
+                                        </div>
+
+                                        <div class="w-50 ml-3">
+
+                                            <div>
+                                                <select class="form-control" name="payment_terms" tabindex="8">
+                                                    <option value="0" selected="selected">Due upon receipt</option>
+                                                    <option value="15">Due within 15 days</option>
+                                                    <option value="30">Due within 30 days</option>
+                                                    <option value="45">Due within 45 days</option>
+                                                    <option value="60">Due within 60 days</option>
+                                                    <option value="90">Due within 90 days</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-auto pt-3 w-75">
+
+                                        <div>
+                                            <label for="id_invoice_title">Default title</label>
+                                            <span>*</span>
+                                        </div>
+
+                                        <div class="w-50 ml-3">
+                                            <input class="form-control" maxlength="30" name="invoice_title" type="text" value="Invoice" tabindex="9">
+
+                                            <div>
+                                                The default title for all invoices. You can change this on each invoice.
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-auto pt-2 w-75">
+
+                                        <div style="margin-left:-3.3rem;">
+                                            <label for="id_invoice_subhead">Default subheading</label>
+                                        </div>
+
+                                        <div class="w-50 ml-3">
+                                            <input class="form-control" maxlength="255" name="invoice_subhead" type="text" tabindex="10">
+
+                                            <div>
+                                                This will be displayed below the title of each invoice. Useful for things like ABN numbers.
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-auto pt-2 w-75">
+
+                                        <div>
+                                            <label for="id_invoice_footer">
+                                                Default footer
+                                            </label>
+                                        </div>
+
+                                        <div class="w-50 ml-2">
+                                            <input class="form-control" maxlength="255" name="invoice_footer" type="text" tabindex="11">
+
+                                            <div>
+                                                This will be displayed at the bottom of each invoice.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-auto pt-2 w-75">
+
+                                        <div style="margin-left:-1.6rem;">
+
+                                            <label for="id_invoice_notes">Standard memo</label>
+
+                                        </div>
+
+                                        <div class="w-50 ml-2">
+                                            <textarea cols="40" name="invoice_notes" rows="10" tabindex="12"></textarea>
+
+                                            <div>
+                                                Appears on each invoice. You can choose to override it when you create an invoice.
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <!-- Section-Estimate-Settings -->
+
+                                    <h3 class="h5">Estimate settings</h3>
+
+                                    <div class="d-flex justify-content-center mx-auto pt-2 w-75">
+
+                                        <div>
+                                            <label for="id_estimate_title">Default title</label>
+                                            <span>*</span>
+                                        </div>
+
+                                        <div class="w-50 ml-3">
+                                            <input class="form-control" maxlength="30" name="estimate_title" type="text" value="Estimate" tabindex="13">
+
+                                            <div>
+                                                The default title for all estimates. You can change this on each estimate.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-auto pt-2 w-75">
+
+                                        <div style="margin-left:-3.3rem;">
+                                            <label for="id_estimate_subhead">Default subheading</label>
+                                        </div>
+
+                                        <div class="w-50 ml-3">
+                                            <input class="form-control" type="text" tabindex="14">
+
+                                            <div>
+                                                This will be displayed below the title of each estimate. Useful for things like ABN numbers.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-auto pt-2 w-75">
+
+                                        <div>
+                                            <label for="id_estimate_footer">
+                                                Default footer
+                                            </label>
+                                        </div>
+
+                                        <div class="w-50 ml-2">
+                                            <input class="form-control" type="text" tabindex="14">
+                                            <!-- <input class="" maxlength="255" name="estimate_footer" type="text" tabindex="15"> -->
+                                            <div>
+                                                This will be displayed at the bottom of each estimate.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center ml-3 pt-2 w-75">
+
+                                        <div>
+                                            <label for="id_estimate_notes">
+                                                Standard memo for new estimates
+                                            </label>
+                                        </div>
+
+                                        <div class="w-50 ml-2">
+                                            <textarea cols="40" name="estimate_notes" rows="10" tabindex="16"></textarea>
+
+                                            <div>
+                                                Appears on each estimate. You can choose to override it when you create an estimate.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <!-- Section-Invoice-Column-Settings -->
+
+                                    <h3 class="h5">Invoice column settings</h3>
+
+                                    <p>Edit the titles of the columns on your invoices:</p>
+
+                                    <div>
+                                        <div class="d-flex justify-content-center mx-auto pt-1 w-75">
+                                            <div>Items</div>
+                                            <div class="w-50 ml-2">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <label for="id_invoice_items-item_title_0">
+                                                            <input name="invoice_items-item_title" type="radio" value="Items" checked="" tabindex="17">
+                                                            <span></span>
+                                                            <span>Items <span class="font-italic">Default</span></span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label for="id_invoice_items-item_title_1">
+                                                            <input name="invoice_items-item_title" type="radio" value="Products" tabindex="18">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Products</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label for="id_invoice_items-item_title_2">
+                                                            <input name="invoice_items-item_title" type="radio" value="Services" tabindex="19">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Services</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+
+                                                        <label for="id_invoice_items-item_title_3">
+                                                            <input name="invoice_items-item_title" type="radio" value="Other" tabindex="20">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Other:</span>
+                                                        </label>
+                                                        <input class="form-control ml-2 d-inline-block w-50" name="invoice_items-item_title_input" type="text" maxlength="20" tabindex="21">
+
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-none">
+
+                                        <div class="d-flex justify-content-center mx-auto w-75">
+
+                                            <div>
+                                                <label for="id_invoice_items-description_title">
+                                                    Description title
+                                                </label>
+                                            </div>
+
+                                            <div class="w-50 ml-2">
+                                                <input maxlength="255" name="invoice_items-description_title" type="text" value="Description" tabindex="22">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="">
+
+                                        <div class="d-flex justify-content-center mx-auto w-75">
+                                            <div>Units</div>
+                                            <div class="w-50 ml-2">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <label for="id_invoice_items-quantity_title_0">
+                                                            <input name="invoice_items-quantity_title" type="radio" value="Quantity" checked="" tabindex="23">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Quantity <span class="font-italic">Default</span></span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label for="id_invoice_items-quantity_title_1">
+                                                            <input name="invoice_items-quantity_title" type="radio" value="Hours" tabindex="24">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Hours</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+
+                                                        <label for="id_invoice_items-quantity_title_2">
+                                                            <input name="id_invoice_items-quantity_title_2" id="id_invoice_items-quantity_title_2" type="radio" value="Other" tabindex="25">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Other:</span>
+                                                        </label>
+                                                        <input class="form-control ml-2 d-inline-block w-50" type="text" maxlength="20" tabindex="26">
+
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="">
+                                        <div class="d-flex justify-content-center mx-auto w-75">
+                                            <div>Price</div>
+                                            <div class="w-50 ml-2">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <label for="id_invoice_items-price_title_0">
+                                                            <input name="invoice_items-price_title" type="radio" value="Price" checked="" tabindex="27">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Price <span class="font-italic">Default</span></span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label for="id_invoice_items-price_title_1">
+                                                            <input name="invoice_items-price_title" type="radio" value="Rate" tabindex="28">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Rate</span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+
+                                                        <label for="id_invoice_items-price_title_2">
+                                                            <input name="invoice_items-price_title" type="radio" value="Other" tabindex="29">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Other:</span>
+                                                        </label>
+                                                        <input class="form-control ml-2 d-inline-block w-50" name="invoice_items-price_title_input" type="text" maxlength="20" tabindex="30">
+
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="">
+                                        <div class="d-flex justify-content-center mx-auto pr-5 w-75">
+                                            <div>Amount</div>
+                                            <div class="w-50 ml-2">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <label for="id_invoice_items-amount_title_0">
+                                                            <input name="invoice_items-amount_title" type="radio" value="Amount" checked="" tabindex="31">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Amount <span class="font-italic">Default</span></span>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+
+                                                        <label for="id_invoice_items-amount_title_1">
+                                                            <input name="invoice_items-amount_title" type="radio" value="Other" tabindex="32">
+                                                            <span class="wv-radiocheck--faux"></span>
+                                                            <span>Other :</span>
+                                                        </label>
+                                                        <input class="form-control ml-2 d-inline-block w-50" name="invoice_items-amount_title_input" type="text" maxlength="20" tabindex="33">
+
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p>Choose which columns on your invoices to hide:</p>
+
+                                    <div>
+                                        <div class="row justify-content-center pt-1">
+                                            <div class="col col-1">
+                                                <label class="wv-form-field__label--blank"></label>
+                                            </div>
+                                            <div class="col col-5">
+                                                <label for="id_invoice_items-hide_item">
+                                                    <input name="invoice_items-hide_item" type="checkbox" tabindex="34">
+                                                    <span class="wv-radiocheck--faux"></span>
+                                                    <span>Hide item</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center pt-1">
+                                            <div class="col col-1">
+                                                <label class="wv-form-field__label--blank"></label>
+                                            </div>
+                                            <div class="col col-5">
+                                                <label for="id_invoice_items-hide_description">
+                                                    <input name="invoice_items-hide_description" type="checkbox" tabindex="35">
+                                                    <span class="wv-radiocheck--faux"></span>
+                                                    <span>Hide description</span>
+
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center py-1">
+                                            <div>
+                                                <div>Your invoice must show at least one of the above.</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center p1">
+                                            <div class="col col-1 form-group">
+                                                <label class="wv-form-field__label--blank"></label>
+                                            </div>
+
+                                            <div class="col col-5">
+
+                                                <label for="id_invoice_items-hide_quantity">
+                                                    <input name="invoice_items-hide_quantity" type="checkbox" tabindex="36">
+                                                    <span class="wv-radiocheck--faux"></span>
+
+                                                    <span> Hide quantity </span>
+
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center pt-1">
+
+                                            <div class="col col-1">
+                                                <label class="wv-form-field__label--blank"></label>
+                                            </div>
+
+                                            <div class="col col-5">
+                                                <label for="id_invoice_items-hide_price">
+                                                    <input name="invoice_items-hide_price" type="checkbox" tabindex="37">
+                                                    <span class="wv-radiocheck--faux"></span>
+                                                    <span>Hide price</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center pt-1">
+                                            <div class="col col-1">
+                                                <label class="wv-form-field__label--blank"></label>
+                                            </div>
+                                            <div class="col col-5">
+                                                <label for="id_invoice_items-hide_amount">
+                                                    <input name="invoice_items-hide_amount" type="checkbox" tabindex="38">
+                                                    <span class="wv-radiocheck--faux"></span>
+                                                    <span>Hide amount</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div>
+                                        <div class="row justify-content-center pb-3">
+                                            <button class="btn btn-rounded btn-5" type="submit" tabindex="39">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                                <div id="dialog"></div>
+                            </div>
+
+                            <!--Line-End-->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}
+
+
+
+

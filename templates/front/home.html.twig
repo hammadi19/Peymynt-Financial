@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontpage/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontpage/css/icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontpage/css/side-menu.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <!----------------CUSTOM CSS--------------->
+    <style>
+
+    </style>
+    <!----------------CUSTOM CSS--------------->
+
+</head>
+
+
+<body>
+
+<div id="page-content-wrapper">
+    <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+        <span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+        <p>MENU</p>
+    </button>
+</div>
+<!------Side-Menu------>
+<div id="wrapper">
+    <div class="overlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+
+        <ul class="nav sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="{{ path('taskbee.home') }}">
+                    <img src="{{ asset('assets/frontpage/img/logo.png') }}">
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('taskbee.home') }}">HOME</a>
+            </li>
+            <li>
+                <a href="{{ path('app_user_dashboard') }}">DASHBOARD</a>
+            </li>
+            <li>
+                <a href="{{ path('taskbee.front.contact') }}">CONTACT</a>
+            </li>
+            <li>
+                <a href="{{ path('app_user_logout') }}">LOGOUT</a>
+            </li>
+            <div class="side-menu-profile-pic">
+                <img class="img-responsive" src="{{ asset('assets/frontpage/img/profilepic.jpg') }}">
+            </div>
+        </ul>
+    </nav>
+    <!-- /#sidebar-Menu -->
+
+    <!-- Right-Side-Collapse-Button- --->
+    <div class="sticky-popup sticky-popup-right open_sticky_popup_right popup-content-bounce-in-right right-button" style="right: -317px; visibility: visible;">
+        <div class="popup-wrap ieundefined">
+            <div class="popup-header"><span class="popup-title">COLLAPSE BUTTON<div class="popup-image"></div></span></div>
+            <div class="popup-content">
+                <div class="popup-content-pad">
+                    <div class="right-side-message">
+                        <p>This is the Collapsing text when we click right button to show what is in it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!----------------->
+    <section class="bubbles-categories-section">
+        <div class="container">
+            <div class="row">
+                <h3>CHOOSE A TASK CATEGORIES TO GET STARTED</h3>
+                <div class="col-md-5 homepage-bubbles-left-part">
+                    <div class="buble homepage-bubbles">
+                        <a id="category-1">
+                            <h3>Cleaning</h3>
+                            <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                        </a>
+                    </div>
+                    <div class="buble homepage-bubbles">
+                        <a id="category-2">
+                            <h3>Landscaping</h3>
+                            <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                        </a>
+                    </div>
+                    <div class="buble homepage-bubbles">
+                        <a id="category-3">
+                            <h3>Handywork</h3>
+                            <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                        </a>
+                    </div>
+                    <div class="buble homepage-bubbles">
+                        <a id="category-4">
+                            <h3>Moving</h3>
+                            <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                        </a>
+                    </div>
+                    <div class="buble homepage-bubbles">
+                        <a id="category-5">
+                            <h3>Removal</h3>
+                            <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                        </a>
+                    </div>
+                    <div class="buble homepage-bubbles">
+                        <a id="category-6">
+                            <h3>General Help</h3>
+                            <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                        </a>
+                    </div>
+                    <div class="buble homepage-bubbles last-bubble">
+                        <a id="category-7">
+                            <h3>Special Occasion</h3>
+                            <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="Sub-categories-Right-part">
+                        <h3>Sub Categories</h3>
+
+                        <div class="Sub-category-Box-Sample-content">
+                            <p>Choose categories from left to see <br>sub categories here.</p>
+                            <img src="{{ asset('assets/frontpage/img/arrow.png') }}">
+                        </div>
+                        <!--category-1-content---->
+                        <div class="first-sub-category hidden">
+
+                            <div class="homepage-bubbles-left-part">
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>General</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Carpet</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Duct</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Windows</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Pressure<br>Washing</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Driveway</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Garage</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Shed<br>Organization</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Deck</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Pool</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Category-2-Content---->
+                        <div class="second-sub-category hidden">
+                            <div class="homepage-bubbles-left-part">
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Lawn<br>Mowing</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Gardening</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Pruning</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Category-3-Content---->
+                        <div class="third-sub-category hidden">
+                            <div class="homepage-bubbles-left-part">
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>General</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Furniture<br>Assembly</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Mounting<br>/<br>Installation</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Painting</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Plumbing</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Picture<br>Hanging</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Electrical<br>Work</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Carpentry<br>/<br>Construction</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Category-4-Content---->
+                        <div class="fourth-sub-category hidden">
+                            <div class="homepage-bubbles-left-part">
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Hauling</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Packing<br>/<br>Unpacking</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Furniture<br>Removal</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Junk<br>Removal</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Category-5-Content---->
+                        <div class="fifth-sub-category hidden">
+                            <div class="homepage-bubbles-left-part">
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Bartending</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Cooking</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Décor<br>Installation</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Entertainment</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Help<br>/<br>Wait Staff</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Event<br>Planning</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Category-6-Content---->
+                        <div class="sixth-sub-category hidden">
+                            <div class="homepage-bubbles-left-part">
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Personal<br>Assistant</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Virtual<br>Assistant</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Errand<br>Running</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Shopping</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Queuer</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Delivery</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Donation Pick-up<br>/<br>Drop-off</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>Organize<br>/<br>Declutter</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Category-7-Content---->
+                        <div class="seventh-sub-category hidden">
+                            <div class="homepage-bubbles-left-part">
+                                <div class="buble homepage-bubbles">
+                                    <a href="#">
+                                        <h3>TBD</h3>
+                                        <!-- <img class="img-responsive" src="img/bubble.png"> -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- -----Slide-box------ -->
+
+
+
+    <!-- ------Slide-Box-Ended------ -->
+
+    <!-- Footer
+================================================== -->
+    <div id="footer">
+
+        <!-- Footer Top Section -->
+        <div class="footer-top-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+
+                        <!-- Footer Rows Container -->
+                        <div class="footer-rows-container">
+
+                            <!-- Left Side -->
+                            <div class="footer-rows-left">
+                                <div class="footer-row">
+                                    <div class="footer-row-inner footer-logo">
+                                        <img src="img/logo.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Side -->
+                            <div class="footer-rows-right">
+
+                                <!-- Social Icons -->
+                                <div class="footer-row">
+                                    <div class="footer-row-inner">
+                                        <ul class="footer-social-links">
+                                            <li>
+                                                <a href="#" title="Facebook" data-tippy-placement="bottom" data-tippy-theme="light">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" title="Twitter" data-tippy-placement="bottom" data-tippy-theme="light">
+                                                    <i class="fab fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" title="Google Plus" data-tippy-placement="bottom" data-tippy-theme="light">
+                                                    <i class="fab fa-google-plus-g"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" title="LinkedIn" data-tippy-placement="bottom" data-tippy-theme="light">
+                                                    <i class="fab fa-linkedin-in"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Language Switcher -->
+                                <!-- <div class="footer-row">
+                                    <div class="footer-row-inner">
+                                        <select class="selectpicker language-switcher" data-selected-text-format="count" data-size="5">
+                                            <option selected>English</option>
+                                            <option>Français</option>
+                                            <option>Español</option>
+                                            <option>Deutsch</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                        </div>
+                        <!-- Footer Rows Container / End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Top Section / End -->
+
+        <!-- Footer Middle Section -->
+        <div class="footer-middle-section">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Links -->
+                    <!-- <div class="col-xl-2 col-lg-2 col-md-3">
+                        <div class="footer-links">
+                            <h3>For Candidates</h3>
+                            <ul>
+                                <li><a href="#"><span>Browse Jobs</span></a></li>
+                                <li><a href="#"><span>Add Resume</span></a></li>
+                                <li><a href="#"><span>Job Alerts</span></a></li>
+                                <li><a href="#"><span>My Bookmarks</span></a></li>
+                            </ul>
+                        </div>
+                    </div> -->
+
+                    <!-- Links -->
+                    <!--  <div class="col-xl-2 col-lg-2 col-md-3">
+                         <div class="footer-links">
+                             <h3>For Employers</h3>
+                             <ul>
+                                 <li><a href="#"><span>Browse Candidates</span></a></li>
+                                 <li><a href="#"><span>Post a Job</span></a></li>
+                                 <li><a href="#"><span>Post a Task</span></a></li>
+                                 <li><a href="#"><span>Plans & Pricing</span></a></li>
+                             </ul>
+                         </div>
+                     </div> -->
+
+                    <!-- Links -->
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+                        <div class="footer-links">
+                            <h3>Helpful Links</h3>
+                            <ul>
+                                <li><a href="#"><span>Contact</span></a></li>
+                                <li><a href="#"><span>Privacy Policy</span></a></li>
+                                <li><a href="#"><span>Terms of Use</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+                        <div class="footer-links">
+                            <h3>Account</h3>
+                            <ul>
+                                <li><a href="#"><span>Log In</span></a></li>
+                                <li><a href="#"><span>My Account</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+                        <div class="footer-links">
+                            <h3>Support</h3>
+                            <ul>
+                                <li><a href="#"><span>Customer Support</span></a></li>
+                                <li><a href="#"><span>Team Support</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <!-- <div class="col-xl-4 col-lg-4 col-md-12">
+                        <h3><i class="far fa-envelope"></i> Sign Up For a Newsletter</h3>
+                        <p>Weekly breaking news, analysis and cutting edge advices on job searching.</p>
+                        <form action="#" method="get" class="newsletter">
+                            <input type="text" name="fname" placeholder="Enter your email address">
+                            <button type="submit"><i class="fa fa-arrow-right"></i></button>
+                        </form>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <!-- Footer Middle Section / End -->
+
+        <!-- Footer Copyrights -->
+        <div class="footer-bottom-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        © 2018 <strong>Taskbee</strong>. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Copyrights / End -->
+
+    </div>
+    <!-- Footer / End -->
+
+    <script src="{{ asset('assets/frontpage/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/frontpage/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/frontpage/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/frontpage/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/frontpage/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/frontpage/js/side-menu.js') }}"></script>
+</body>
+</html>

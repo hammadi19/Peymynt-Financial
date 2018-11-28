@@ -1,0 +1,130 @@
+{% extends 'page-dashboard.html.twig' %}
+
+{% block title %} .: Task Bee :.{% endblock %}
+
+{% block body %}
+
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+        <h3>Post a Task</h3>
+
+        <!-- Breadcrumbs -->
+        <nav id="breadcrumbs" class="dark">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li>Post a Task</li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+    <!-- Row -->
+    <div class="row">
+
+        <div class="col-xl-12">
+            {% if app.session.flashBag.has('success') %}
+                <div class="notification success closeable">
+                    {% for msg in app.session.flashBag.get('success') %}
+                        <p>{{ msg }}</p>
+                    {% endfor %}
+                    <a class="close"></a>
+                </div>
+            {% endif %}
+            {% if errors %}
+                <div class="notification error closeable">
+                    <ul style="margin-bottom:0px;">
+                        {% for error in errors %}
+                            <li style="color: darkred">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a class="close"></a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Dashboard Box -->
+        <form method="post" action="{{ path('app_poster_task.create') }}" id="createTaskForm" name="createTaskForm">
+        <div class="col-xl-12">
+            <div class="dashboard-box margin-top-0">
+
+                <!-- Headline -->
+                <div class="headline">
+                    <h3><i class="icon-feather-folder-plus"></i> Task Submission Form</h3>
+                </div>
+
+                <div class="content with-padding padding-bottom-10">
+                    <div class="row">
+
+                        <div class="col-xl-4">
+                            <div class="submit-field">
+                                <h5>Task Title</h5>
+                                <input type="text" name="createTaskForm[task_title]" id="task_title" class="with-border" placeholder="e.g. Help me moving house">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4">
+                            <div class="submit-field">
+                                <h5>Category</h5>
+                                <select name="createTaskForm[task_cat]" id="task_cat" class="selectpicker with-border" data-size="7" title="Select Category">
+                                    <option value="1">Cleaning</option>
+                                    <option value="2">Landscaping</option>
+                                    <option value="3">Handywork</option>
+                                    <option value="4">Moving</option>
+                                    <option value="5">Events</option>
+                                    <option value="6">General Help</option>
+                                    <option value="7">Special Occasion</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4">
+                            <div class="submit-field">
+                                <h5>Location</h5>
+                                <div class="input-with-icon">
+                                    <div id="autocomplete-container">
+                                        <input name="createTaskForm[task_location]" id="autocomplete-input" class="with-border" type="text" placeholder="Anywhere">
+                                    </div>
+                                    <i class="icon-material-outline-location-on"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4">
+                            <div class="submit-field">
+                                <h5>Task Budget</h5>
+                                        <div class="input-with-icon">
+                                            <input class="with-border" name="createTaskForm[task_price]" id="task_price" type="number" placeholder="Amount">
+                                            <i class="currency">USD</i>
+                                        </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-xl-12">
+                            <div class="submit-field">
+                                <h5>Describe Your Task</h5>
+                                <textarea name="createTaskForm[task_detail]" id="task_detail" cols="30" rows="5" class="with-border"></textarea>
+                                {#<div class="uploadButton margin-top-30">#}
+                                    {#<input class="uploadButton-input" type="file" accept="image/*, application/pdf" id="upload" multiple/>#}
+                                    {#<label class="uploadButton-button ripple-effect" for="upload">Upload Files</label>#}
+                                    {#<span class="uploadButton-file-name">Images or documents that might be helpful in describing your project</span>#}
+                                {#</div>#}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12">
+            <button type="submit" class="button ripple-effect big margin-top-30"><i class="icon-feather-plus"></i> Post a Task</button>
+        </div>
+        </form>
+    </div>
+    <!-- Row / End -->
+
+{% endblock %}

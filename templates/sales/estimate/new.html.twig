@@ -1,0 +1,1431 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        ul.myErrorClass, input.myErrorClass, textarea.myErrorClass, select.myErrorClass {
+            border-width: 1px !important;
+            border-style: solid !important;
+            border-color: #cc0000 !important;
+            background-color: #f3d8d8 !important;
+            background-image: url(http://goo.gl/GXVcmC) !important;
+            background-position: 50% 50% !important;
+            background-repeat: repeat !important;
+        }
+        ul.myErrorClass input {
+            color: #666 !important;
+        }
+        label.myErrorClass {
+            color: red;
+            font-size: 11px;
+            /*    font-style: italic;*/
+            display: block;
+        }
+    </style>
+
+
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+        <h3>Add an Estimate</h3>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+
+                <form id="estimateForm">
+                    <div class="row no-gutters eBorderBottom">
+                        <div class="col-3">
+                            <input class="form-control margin-bottom-10 input-minHeight" value="Estimate" name="estimate_title"
+                                   required>
+                        </div>
+                        <div class="col-3">
+                            <input class="form-control margin-bottom-10 input-minHeight margin-left-5" value="{{ (data.total+1) }}"
+                                   name="estimate_id" required>
+                        </div>
+                    </div>
+
+
+                    <div class="row margin-top-10">
+                        <div class="col-4">
+                            <div class="row margin-bottom-15">
+                                <div class="col-4">
+                                    <label class="padding-top-10">Customer <span class="red-text">*</span></label>
+                                </div>
+                                <div class="col-8">
+                                    <select name="customer" class="customer_list required form-control">
+                                        <option></option>
+                                        {% for customer in data.customer_list %}
+                                            <option value="{{ customer.id }}">{{ customer.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <a href="#addcus" class="addEst popup-with-zoom-anim"><b><span
+                                                    class="icon-feather-plus-circle"></span>Add new customer</b></a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="padding-top-10">Currency</label>
+                                </div>
+                                <div class="col-8">
+                                    <select name="currency" id="currency_select" class="select2-n form-control">
+                                        {% for code,currency in currencies %}
+                                            {% if business_currency == code %}
+                                                <option value={{ code }} selected>{{ currency }}</option>
+                                            {% else %}
+                                                {% set user_currency = currency %}
+                                                <option value={{ code }}>{{ currency }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="padding-top-10">Exchange rate</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" id='exchange_rate' value="1" class="form-control">
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="padding-top-10">Date</label>
+                                </div>
+                                <div class="col-8">
+
+                                    <div class="input-with-icon-left">
+                                        <input class="form-control calendare padding-left-15"
+                                               name="estimate_date" id="datepicker" placeholder="YYYY-MM-DD">
+                                        <i class="icon-feather-calendar iconRight borderRIcon2"></i>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="padding-top-10">Expires on</label>
+                                </div>
+                                <div class="col-8">
+
+                                    <div class="input-with-icon-left">
+
+                                        <input class="form-control calendare padding-left-15"
+                                               name="expires_date" id="expireOn" placeholder="YYYY-MM-DD">
+                                        <i class="icon-feather-calendar iconRight borderRIcon2"></i>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="padding-top-10">P.O./S.O.</label>
+                                </div>
+                                <div class="col-8">
+                                    <input name="po_so" class="form-control" type="text" placeholder="">
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--//-->
+
+                        <div class="col-4">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="padding-top-10">Subheading</label>
+                                </div>
+                                <div class="col-8">
+                                    <input name="sub_heading" class="form-control" type="text" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="padding-top-10">Footer</label>
+                                </div>
+                                <div class="col-8">
+                                    <input name="footer" class="form-control" type="text" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="padding-top-10">Memo</label>
+                                </div>
+                                <div class="col-8">
+                                    <textarea name="memo" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--//-->
+
+                    </div>
+                </form>
+
+                <div class="estimateTable">
+                    <!--table-->
+                    <table class="margin-top-20">
+                        <thead>
+                        <tr>
+                            <th>Items</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Tax</th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody id="RowContainer">
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td valign="top" colspan="4" style="text-align: left;">
+                                <a href="#" class="addAline"><b><span class="icon-feather-plus-circle"></span> Add a
+                                        line</b></a>
+                            </td>
+                            <td colspan="3" style="text-align: right;">
+                                <table class="totals-table">
+                                    <thead>
+                                    <tr>
+                                        <td width="210">Subtotal:</td>
+                                        <td id="subTotalAmount"></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="taxPanel"></tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td width="210">Total (<span id="totalAmountSpanCurrency">{{
+                                                business_currency_short }}</span>):</td>
+                                        <td id="totalAmount"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="210">Total ({{ business_currency_short }} at <span
+                                                    id="totalAmountSpanSelectedCurrency">1</span>)
+                                            :</td>
+                                        <td id="totalAmountExchangeRate"></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+
+                <div class="margin-top-40">
+                    <button class="btn btn-4 btn-lg" id="submitButton">Save</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script id="abcRowTpl" type="text/x-handlebars-template">
+        {% verbatim %}
+            <td width="260">
+                <div>
+                    <select class="product_list form-control">
+                        <option></option>
+                    </select>
+                </div>
+                <a href="#addProduct" class="addEst addTaxX popup-with-zoom-anim dynamicPopup"><b><span
+                class="icon-feather-plus-circle"></span>Add new Product</b></a>
+            </td>
+            <td width="320">
+                <textarea class="tableTextarea product_description" style="width: 160px !important;"></textarea>
+            </td>
+            <td width="120">
+                <input class="product_quantity form-control" type="number">
+            </td>
+            <td width="120">
+                <input class="product_price form-control" type="number" >
+            </td>
+            <td width="210">
+                <select class="tax_list form-control" multiple="multiple">
+                </select>
+                 <a href="#addTax" class="addEst addTaxX popup-with-zoom-anim dynamicPopup"><b><span
+                 class="icon-feather-plus-circle"></span>Add new tax</b></a>
+            </td>
+            <td width="150">
+                <b class="product_amount">Rs:0.00</b>
+            </td>
+            <td class="remove-button">
+                <a href="#" ><span class="icon-material-outline-delete deleteicon"></span></a>
+            </td>
+        {% endverbatim %}
+    </script>
+
+
+    <!-- Popup
+   ================================================== -->
+    <div id="addcus" class="zoom-anim-dialog mfp-hide modelBox">
+        <form id="addCustomer" action="{{ path('sales.customer.new-ajax') }}" novalidate>
+            <div class="popupInner">
+                <div class="popupHead">
+                    <h1>Add New Customer ​</h1>
+                </div>
+                <div class="popupbody">
+
+                    <div class="row">
+                        <div class="col-5">Customer name *</div>
+                        <div class="col-7">
+                            <input class="form-control" name="addCustomerForm[company_name]" type="text" placeholder=""
+                                   required>
+                        </div>
+                        <div class="w-100"></div>
+
+
+                        <div class="col-5">
+                            Business *
+                        </div>
+                        <div class="col-7">
+                            <select class="form-control" name="addCustomerForm[business_id]">
+                                {% for business in businesses %}
+                                    <option value={{ business.id }}>{{ business.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Email</div>
+                        <div class="col-7">
+                            <input class="form-control" type="email" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-5">First name</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-5">Last name</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="">
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-5">Currency</div>
+                        <div class="col-7">
+
+                            <select class="form-control">
+                                <option value="c377">AED - UAE dirham</option>
+                                <option value="c1">AFN - Afghani</option>
+                                <option value="c5">ALL - Lek</option>
+                                <option value="c20">AMD - Armenian dram</option>
+                                <option value="c101">ANG - Netherlands Antillean Guilder</option>
+                                <option value="c12">AOA - Kwanza</option>
+                                <option value="c18">ARS - Argentinian peso</option>
+                                <option value="c24">AUD - Australian dollar</option>
+                                <option value="c22">AWG - Aruban Guilder</option>
+                                <option value="c399">AZN - New Manat</option>
+                                <option value="c51">BAM - Convertible Marks</option>
+                                <option value="c35">BBD - Barbados dollar</option>
+                                <option value="c33">BDT - Taka</option>
+                                <option value="c62">BGN - Lev</option>
+                                <option value="c31">BHD - Bahraini dinar</option>
+                                <option value="c65">BIF - Burundi franc</option>
+                                <option value="c44">BMD - Bermuda dollar</option>
+                                <option value="c60">BND - Brunei dollar</option>
+                                <option value="c48">BOB - Boliviano</option>
+                                <option value="c57">BRL - Real</option>
+                                <option value="c29">BSD - Bahamian dollar</option>
+                                <option value="c46">BTN - Ngultrum</option>
+                                <option value="c53">BWP - Pula</option>
+                                <option value="c37">BYR - Belarussian rouble</option>
+                                <option value="c40">BZD - Belize dollar</option>
+                                <option value="c71">CAD - Canadian dollar</option>
+                                <option value="c90">CDF - Franc congolais</option>
+                                <option value="c213">CHF - Swiss franc</option>
+                                <option value="c79">CLP - Chilean peso</option>
+                                <option value="c81">CNY - Ren-Min-Bi yuan</option>
+                                <option value="c85">COP - Colombian peso</option>
+                                <option value="c94">CRC - Costa Rican colon</option>
+                                <option value="c99">CUP - Cuban peso</option>
+                                <option value="c73">CVE - Cape Verde escudo</option>
+                                <option value="c104">CZK - Czech koruna</option>
+                                <option value="c108">DJF - Djibouti franc</option>
+                                <option value="c106">DKK - Danish krone</option>
+                                <option value="c111">DOP - Dominican peso</option>
+                                <option value="c7">DZD - Algerian dinar</option>
+                                <option value="c400">EEK - Estonian kroon</option>
+                                <option value="c114">EGP - Egyptian pound</option>
+                                <option value="c118">ERN - Nakfa</option>
+                                <option value="c121">ETB - Ethiopian birr</option>
+                                <option value="c3">EUR - Euro</option>
+                                <option value="c126">FJD - Fiji dollar</option>
+                                <option value="c123">FKP - Falkland Islands (Malvinas) Pound</option>
+                                <option value="c151">GBP - Pound sterling</option>
+                                <option value="c137">GEL - Lari</option>
+                                <option value="c140">GHS - Ghana Cedi</option>
+                                <option value="c142">GIP - Gibraltar pound</option>
+                                <option value="c135">GMD - Dalasi</option>
+                                <option value="c153">GNF - Guinean franc</option>
+                                <option value="c149">GTQ - Quetzal</option>
+                                <option value="c401">GWP - Guinean bissau Peso</option>
+                                <option value="c156">GYD - Guyana dollar</option>
+                                <option value="c164">HKD - Hong Kong dollar</option>
+                                <option value="c162">HNL - Lempira</option>
+                                <option value="c97">HRK - Kuna</option>
+                                <option value="c158">HTG - Haitian gourde</option>
+                                <option value="c166">HUF - Forint</option>
+                                <option value="c172">IDR - Rupiah</option>
+                                <option value="c180">ILS - New Israeli sheqel</option>
+                                <option value="c170">INR - Indian rupee</option>
+                                <option value="c176">IQD - Iraqi dinar</option>
+                                <option value="c174">IRR - Iranian rial</option>
+                                <option value="c168">ISK - Icelandic Krona</option>
+                                <option value="c183">JMD - Jamaican dollar</option>
+                                <option value="c188">JOD - Jordanian dinar</option>
+                                <option value="c185">JPY - Yen</option>
+                                <option value="c192">KES - Kenyan shilling</option>
+                                <option value="c200">KGS - Kyrgyz Som</option>
+                                <option value="c67">KHR - Riel</option>
+                                <option value="c87">KMF - Comoro franc</option>
+                                <option value="c195">KRW - Won</option>
+                                <option value="c198">KWD - Kuwaiti dinar</option>
+                                <option value="c75">KYD - Cayman Islands dollar</option>
+                                <option value="c190">KZT - Tenge</option>
+                                <option value="c202">LAK - Kip</option>
+                                <option value="c205">LBP - Lebanese pound</option>
+                                <option value="c337">LKR - Sri Lankan rupee</option>
+                                <option value="c209">LRD - Liberian dollar</option>
+                                <option value="c207">LSL - Loti</option>
+                                <option value="c402">LTL - Lithuanian litus</option>
+                                <option value="c403">LVL - Latvian lats</option>
+                                <option value="c211">LYD - Libyan dinar</option>
+                                <option value="c248">MAD - Moroccan dirham</option>
+                                <option value="c241">MDL - Moldovan leu</option>
+                                <option value="c221">MGA - Malagasy Ariary</option>
+                                <option value="c219">MKD - Denar</option>
+                                <option value="c252">MMK - Kyat</option>
+                                <option value="c244">MNT - Tugrik</option>
+                                <option value="c217">MOP - Pataca</option>
+                                <option value="c404">MRO - Ouguiya</option>
+                                <option value="c233">MRU - Ouguiya</option>
+                                <option value="c235">MUR - Mauritian rupee</option>
+                                <option value="c227">MVR - Rufiyaa</option>
+                                <option value="c223">MWK - Kwacha</option>
+                                <option value="c238">MXN - Mexican peso</option>
+                                <option value="c225">MYR - Malaysian ringgit</option>
+                                <option value="c250">MZN - Metical</option>
+                                <option value="c254">NAD - Namibian dollar</option>
+                                <option value="c265">NGN - Naira</option>
+                                <option value="c262">NIO - Cordoba Oro</option>
+                                <option value="c55">NOK - Norwegian krone</option>
+                                <option value="c257">NPR - Nepalese rupee</option>
+                                <option value="c92">NZD - New Zealand dollar</option>
+                                <option value="c271">OMR - Omani rial</option>
+                                <option value="c276">PAB - Balboa</option>
+                                <option value="c282">PEN - Nuevo Sol</option>
+                                <option value="c278">PGK - Kina</option>
+                                <option value="c284">PHP - Philippine peso</option>
+                                <option value="c273">PKR - Pakistani rupee</option>
+                                <option value="c287">PLN - Zloty</option>
+                                <option value="c280">PYG - Guarani</option>
+                                <option value="c291">QAR - Qatari riyal</option>
+                                <option value="c294">RON - New Leu</option>
+                                <option value="c316">RSD - Serbian Dinar</option>
+                                <option value="c296">RUB - Russian rouble</option>
+                                <option value="c298">RWF - Rwanda franc</option>
+                                <option value="c313">SAR - Saudi riyal</option>
+                                <option value="c327">SBD - Solomon Islands Dollar</option>
+                                <option value="c318">SCR - Seychelles rupee</option>
+                                <option value="c334">SDG - Sudanese Pound</option>
+                                <option value="c346">SEK - Swedish Krona</option>
+                                <option value="c322">SGD - Singapore dollar</option>
+                                <option value="c301">SHP - Saint Helena Pound</option>
+                                <option value="c320">SLL - Leone</option>
+                                <option value="c329">SOS - Somali shilling</option>
+                                <option value="c341">SRD - Surinam dollar</option>
+                                <option value="c405">SSP - South Sudanese pound</option>
+                                <option value="c311">STD - Dobra</option>
+                                <option value="c406">SVC - El Salvador colon</option>
+                                <option value="c349">SYP - Syrian pound</option>
+                                <option value="c344">SZL - Lilangeni</option>
+                                <option value="c357">THB - Baht</option>
+                                <option value="c353">TJS - Somoni</option>
+                                <option value="c27">TMM - Manat</option>
+                                <option value="c366">TND - Tunisian dinar</option>
+                                <option value="c362">TOP - Pa'anga</option>
+                                <option value="c368">TRY - Turkish Lira</option>
+                                <option value="c364">TTD - Trinidad and Tobago dollar</option>
+                                <option value="c351">TWD - Taiwan New Dollar</option>
+                                <option value="c355">TZS - Tanzanian shilling</option>
+                                <option value="c375">UAH - Hryvnia</option>
+                                <option value="c373">UGX - Ugandan shilling</option>
+                                <option value="c9">USD - U.S. dollar</option>
+                                <option value="c382">UYU - Uruguayo peso</option>
+                                <option value="c407">UZS - Uzbekistan sum</option>
+                                <option value="c387">VEF - Bolivar Fuerte</option>
+                                <option value="c389">VND - Dong</option>
+                                <option value="c385">VUV - Vatu</option>
+                                <option value="c308">WST - Samoan Tala</option>
+                                <option value="c42">XAF - CFA Franc - BEAC</option>
+                                <option value="c14">XCD - Eastern Caribbean dollar</option>
+                                <option value="c69">XOF - CFA franc - BCEAO</option>
+                                <option value="c131">XPF - Comptoirs Francais du Pacifique Francs</option>
+                                <option value="c395">YER - Yemeni rial</option>
+                                <option value="c331">ZAR - Rand</option>
+                                <option value="c408">ZMK - Kwacha</option>
+                                <option value="c409">ZMW - Kwacha</option>
+                                <option value="c398">ZWD - Zimbabwean dollar</option>
+                            </select>
+
+                        </div>
+
+                        <div class="w-100"></div>
+
+                        <div class="col-5"></div>
+                        <div class="col-7 margin-top-15">
+
+                            <a href="#" id="showCustomerAdditionalInformation"><span
+                                        class="icon-material-outline-keyboard-arrow-down
+                            popuparrowdown"></span>Add
+                                additional information</a>
+
+                        </div>
+                        <div class="row Addshow" id='customerAdditionalInformation' style="display: none">
+                            <div class="w-100 margin-bottom-15"></div>
+
+                            <div class="col-5">Account number</div>
+                            <div class="col-7">
+                                <input class="form-control" type="text" placeholder="">
+                            </div>
+
+
+                            <div class="w-100"></div>
+
+                            <div class="col-5">Address line 1</div>
+                            <div class="col-7">
+                                <input class="form-control" type="text" placeholder="">
+                            </div>
+
+                            <div class="col-5">
+                                Account number
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="addCustomerForm[account_number]" class="form-control"
+                                       placeholder="" required>
+                            </div>
+
+                            <div class="col-5">
+                                Phone
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="addCustomerForm[phone]" class="form-control" placeholder=""
+                                       required>
+                            </div>
+
+
+                            <div class="col-5">
+                                Fax
+                            </div>
+                            <div class="col-7">
+                                <input type="text" class="form-control" name="addCustomerForm[fax]" placeholder=""
+                                       required>
+                            </div>
+
+                            <div class="col-5">
+                                Mobile
+                            </div>
+                            <div class="col-7">
+                                <input type="text" class="form-control" name="addCustomerForm[mobile]" placeholder=""
+                                       required>
+                            </div>
+
+                            <div class="col-5">
+                                Toll free
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="addCustomerForm[toll_free]" class="form-control" placeholder=""
+                                       required>
+                            </div>
+
+                            <div class="col-5">
+                                Website
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="addCustomerForm[website]" class="form-control" placeholder=""
+                                       required>
+                            </div>
+                            <!--//-->
+
+                            <div class="col-5">
+                                Country
+                            </div>
+                            <div class="col-7">
+                                <select class="form-control"
+                                        name="addCustomerForm[country]">
+                                    <option value="">---------</option>
+                                    <option value="1">Afghanistan</option>
+                                    <option value="2">Åland Islands</option>
+                                    <option value="3">Albania</option>
+                                    <option value="4">Algeria</option>
+                                    <option value="5">American Samoa</option>
+                                    <option value="6">Andorra</option>
+                                    <option value="7">Angola</option>
+                                    <option value="8">Anguilla</option>
+                                    <option value="9">Antarctica</option>
+                                    <option value="10">Antigua and Barbuda</option>
+                                    <option value="11">Argentina</option>
+                                    <option value="12">Armenia</option>
+                                    <option value="13">Aruba</option>
+                                    <option value="14">Australia</option>
+                                    <option value="15">Austria</option>
+                                    <option value="16">Azerbaijan</option>
+                                    <option value="17">Bahamas</option>
+                                    <option value="18">Bahrain</option>
+                                    <option value="19">Bangladesh</option>
+                                    <option value="20">Barbados</option>
+                                    <option value="21">Belarus</option>
+                                    <option value="22">Belgium</option>
+                                    <option value="23">Belize</option>
+                                    <option value="24">Benin</option>
+                                    <option value="25">Bermuda</option>
+                                    <option value="26">Bhutan</option>
+                                    <option value="27">Bolivia, Plurinational State of</option>
+                                    <option value="4202">Bonaire, Sint Eustatius and Saba</option>
+                                    <option value="28">Bosnia and Herzegovina</option>
+                                    <option value="29">Botswana</option>
+                                    <option value="30">Bouvet Island</option>
+                                    <option value="31">Brazil</option>
+                                    <option value="32">British Indian Ocean Territory</option>
+                                    <option value="33">Brunei Darussalam</option>
+                                    <option value="34">Bulgaria</option>
+                                    <option value="35">Burkina Faso</option>
+                                    <option value="36">Burundi</option>
+                                    <option value="37">Cambodia</option>
+                                    <option value="38">Cameroon</option>
+                                    <option value="39">Canada</option>
+                                    <option value="40">Cape Verde</option>
+                                    <option value="41">Cayman Islands</option>
+                                    <option value="42">Central African Republic</option>
+                                    <option value="43">Chad</option>
+                                    <option value="44">Chile</option>
+                                    <option value="45">China</option>
+                                    <option value="46">Christmas Island</option>
+                                    <option value="47">Cocos (keeling) Islands</option>
+                                    <option value="48">Colombia</option>
+                                    <option value="49">Comoros</option>
+                                    <option value="50">Congo</option>
+                                    <option value="51">Congo, The Democratic Republic of the</option>
+                                    <option value="52">Cook Islands</option>
+                                    <option value="53">Costa Rica</option>
+                                    <option value="54">Cote D'ivoire</option>
+                                    <option value="55">Croatia</option>
+                                    <option value="56">Cuba</option>
+                                    <option value="156">Curaçao</option>
+                                    <option value="57">Cyprus</option>
+                                    <option value="58">Czech Republic</option>
+                                    <option value="59">Denmark</option>
+                                    <option value="60">Djibouti</option>
+                                    <option value="61">Dominica</option>
+                                    <option value="62">Dominican Republic</option>
+                                    <option value="63">Ecuador</option>
+                                    <option value="64">Egypt</option>
+                                    <option value="65">El Salvador</option>
+                                    <option value="66">Equatorial Guinea</option>
+                                    <option value="67">Eritrea</option>
+                                    <option value="68">Estonia</option>
+                                    <option value="69">Ethiopia</option>
+                                    <option value="70">Falkland Islands (malvinas)</option>
+                                    <option value="71">Faroe Islands</option>
+                                    <option value="72">Fiji</option>
+                                    <option value="73">Finland</option>
+                                    <option value="74">France</option>
+                                    <option value="75">French Guiana</option>
+                                    <option value="76">French Polynesia</option>
+                                    <option value="77">French Southern Territories</option>
+                                    <option value="78">Gabon</option>
+                                    <option value="79">Gambia</option>
+                                    <option value="80">Georgia</option>
+                                    <option value="81">Germany</option>
+                                    <option value="82">Ghana</option>
+                                    <option value="83">Gibraltar</option>
+                                    <option value="84">Greece</option>
+                                    <option value="85">Greenland</option>
+                                    <option value="86">Grenada</option>
+                                    <option value="87">Guadeloupe</option>
+                                    <option value="88">Guam</option>
+                                    <option value="89">Guatemala</option>
+                                    <option value="90">Guernsey</option>
+                                    <option value="91">Guinea</option>
+                                    <option value="92">Guinea-bissau</option>
+                                    <option value="93">Guyana</option>
+                                    <option value="94">Haiti</option>
+                                    <option value="95">Heard Island and McDonald Islands</option>
+                                    <option value="96">Holy See (vatican City State)</option>
+                                    <option value="97">Honduras</option>
+                                    <option value="98">Hong Kong</option>
+                                    <option value="99">Hungary</option>
+                                    <option value="100">Iceland</option>
+                                    <option value="101">India</option>
+                                    <option value="102">Indonesia</option>
+                                    <option value="103">Iran, Islamic Republic of</option>
+                                    <option value="104">Iraq</option>
+                                    <option value="105">Ireland</option>
+                                    <option value="106">Isle of Man</option>
+                                    <option value="107">Israel</option>
+                                    <option value="108">Italy</option>
+                                    <option value="109">Jamaica</option>
+                                    <option value="110">Japan</option>
+                                    <option value="111">Jersey</option>
+                                    <option value="112">Jordan</option>
+                                    <option value="113">Kazakhstan</option>
+                                    <option value="114">Kenya</option>
+                                    <option value="115">Kiribati</option>
+                                    <option value="116">Korea, Democratic People's Republic of</option>
+                                    <option value="117">Korea, Republic of</option>
+                                    <option value="118">Kuwait</option>
+                                    <option value="119">Kyrgyzstan</option>
+                                    <option value="120">Lao People's Democratic Republic</option>
+                                    <option value="121">Latvia</option>
+                                    <option value="122">Lebanon</option>
+                                    <option value="123">Lesotho</option>
+                                    <option value="124">Liberia</option>
+                                    <option value="125">Libya</option>
+                                    <option value="126">Liechtenstein</option>
+                                    <option value="127">Lithuania</option>
+                                    <option value="128">Luxembourg</option>
+                                    <option value="129">Macao</option>
+                                    <option value="130">Macedonia, The Former Yugoslav Republic of</option>
+                                    <option value="131">Madagascar</option>
+                                    <option value="132">Malawi</option>
+                                    <option value="133">Malaysia</option>
+                                    <option value="134">Maldives</option>
+                                    <option value="135">Mali</option>
+                                    <option value="136">Malta</option>
+                                    <option value="137">Marshall Islands</option>
+                                    <option value="138">Martinique</option>
+                                    <option value="139">Mauritania</option>
+                                    <option value="140">Mauritius</option>
+                                    <option value="141">Mayotte</option>
+                                    <option value="142">Mexico</option>
+                                    <option value="143">Micronesia, Federated States of</option>
+                                    <option value="144">Moldova, Republic of</option>
+                                    <option value="145">Monaco</option>
+                                    <option value="146">Mongolia</option>
+                                    <option value="147">Montenegro</option>
+                                    <option value="148">Montserrat</option>
+                                    <option value="149">Morocco</option>
+                                    <option value="150">Mozambique</option>
+                                    <option value="151">Myanmar</option>
+                                    <option value="152">Namibia</option>
+                                    <option value="153">Nauru</option>
+                                    <option value="154">Nepal</option>
+                                    <option value="155">Netherlands</option>
+                                    <option value="157">New Caledonia</option>
+                                    <option value="158">New Zealand</option>
+                                    <option value="159">Nicaragua</option>
+                                    <option value="160">Niger</option>
+                                    <option value="161">Nigeria</option>
+                                    <option value="162">Niue</option>
+                                    <option value="163">Norfolk Island</option>
+                                    <option value="164">Northern Mariana Islands</option>
+                                    <option value="165">Norway</option>
+                                    <option value="166">Oman</option>
+                                    <option value="167">Pakistan</option>
+                                    <option value="168">Palau</option>
+                                    <option value="170">Panama</option>
+                                    <option value="171">Papua New Guinea</option>
+                                    <option value="172">Paraguay</option>
+                                    <option value="173">Peru</option>
+                                    <option value="174">Philippines</option>
+                                    <option value="175">Pitcairn</option>
+                                    <option value="176">Poland</option>
+                                    <option value="177">Portugal</option>
+                                    <option value="178">Puerto Rico</option>
+                                    <option value="179">Qatar</option>
+                                    <option value="180">Réunion</option>
+                                    <option value="181">Romania</option>
+                                    <option value="182">Russian Federation</option>
+                                    <option value="183">Rwanda</option>
+                                    <option value="184">Saint Barthelemy</option>
+                                    <option value="185">Saint Helena, Ascension and Tristan da Cunha</option>
+                                    <option value="186">Saint Kitts and Nevis</option>
+                                    <option value="187">Saint Lucia</option>
+                                    <option value="188">Saint Martin</option>
+                                    <option value="189">Saint Pierre and Miquelon</option>
+                                    <option value="190">Saint Vincent and the Grenadines</option>
+                                    <option value="191">Samoa</option>
+                                    <option value="192">San Marino</option>
+                                    <option value="193">Sao Tome and Principe</option>
+                                    <option value="194">Saudi Arabia</option>
+                                    <option value="195">Senegal</option>
+                                    <option value="196">Serbia</option>
+                                    <option value="197">Seychelles</option>
+                                    <option value="198">Sierra Leone</option>
+                                    <option value="199">Singapore</option>
+                                    <option value="4201">Sint Maarten</option>
+                                    <option value="200">Slovakia</option>
+                                    <option value="201">Slovenia</option>
+                                    <option value="202">Solomon Islands</option>
+                                    <option value="203">Somalia</option>
+                                    <option value="204">South Africa</option>
+                                    <option value="205">South Georgia and the South Sandwich Islands</option>
+                                    <option value="4203">South Sudan</option>
+                                    <option value="206">Spain</option>
+                                    <option value="207">Sri Lanka</option>
+                                    <option value="169">State of Palestine</option>
+                                    <option value="208">Sudan</option>
+                                    <option value="209">Suriname</option>
+                                    <option value="210">Svalbard and Jan Mayen</option>
+                                    <option value="211">Swaziland</option>
+                                    <option value="212">Sweden</option>
+                                    <option value="213">Switzerland</option>
+                                    <option value="214">Syrian Arab Republic</option>
+                                    <option value="215">Taiwan</option>
+                                    <option value="216">Tajikistan</option>
+                                    <option value="217">Tanzania, United Republic of</option>
+                                    <option value="218">Thailand</option>
+                                    <option value="219">Timor-leste</option>
+                                    <option value="220">Togo</option>
+                                    <option value="221">Tokelau</option>
+                                    <option value="222">Tonga</option>
+                                    <option value="223">Trinidad and Tobago</option>
+                                    <option value="224">Tunisia</option>
+                                    <option value="225">Turkey</option>
+                                    <option value="226">Turkmenistan</option>
+                                    <option value="227">Turks and Caicos Islands</option>
+                                    <option value="228">Tuvalu</option>
+                                    <option value="229">Uganda</option>
+                                    <option value="230">Ukraine</option>
+                                    <option value="231">United Arab Emirates</option>
+                                    <option value="232">United Kingdom</option>
+                                    <option value="233" selected="selected">United States</option>
+                                    <option value="234">United States Minor Outlying Islands</option>
+                                    <option value="235">Uruguay</option>
+                                    <option value="236">Uzbekistan</option>
+                                    <option value="237">Vanuatu</option>
+                                    <option value="238">Venezuela, Bolivarian Republic of</option>
+                                    <option value="239">Viet Nam</option>
+                                    <option value="240">Virgin Islands, British</option>
+                                    <option value="241">Virgin Islands, U.s.</option>
+                                    <option value="242">Wallis and Futuna</option>
+                                    <option value="243">Western Sahara</option>
+                                    <option value="244">Yemen</option>
+                                    <option value="245">Zambia</option>
+                                    <option value="246">Zimbabwe</option>
+                                </select>
+                            </div>
+
+                            <div class="w-100"></div>
+                            <div class="col-5">
+                                Province/State
+                            </div>
+                            <div class="col-7">
+                                <select class="form-control"
+                                        name="addCustomerForm[province_state]">
+                                    <option value="">---------</option>
+
+                                    <option value="3900">Alabama</option>
+
+                                    <option value="3901">Alaska</option>
+
+                                    <option value="3902">Arizona</option>
+
+                                    <option value="3903">Arkansas</option>
+
+                                    <option value="3904">California</option>
+
+                                    <option value="3905">Colorado</option>
+
+                                    <option value="3906">Connecticut</option>
+
+                                    <option value="3907">Delaware</option>
+
+                                    <option value="3908">District of Columbia</option>
+
+                                    <option value="3909">Florida</option>
+
+                                    <option value="3910">Georgia</option>
+
+                                    <option value="3911">Hawaii</option>
+
+                                    <option value="3912">Idaho</option>
+
+                                    <option value="3913">Illinois</option>
+
+                                    <option value="3914">Indiana</option>
+
+                                    <option value="3915">Iowa</option>
+
+                                    <option value="3916">Kansas</option>
+
+                                    <option value="3917">Kentucky</option>
+
+                                    <option value="3918">Louisiana</option>
+
+                                    <option value="3919">Maine</option>
+
+                                    <option value="3920">Maryland</option>
+
+                                    <option value="3921">Massachusetts</option>
+
+                                    <option value="3922">Michigan</option>
+
+                                    <option value="3923">Minnesota</option>
+
+                                    <option value="3924">Mississippi</option>
+
+                                    <option value="3925">Missouri</option>
+
+                                    <option value="3926">Montana</option>
+
+                                    <option value="3927">Nebraska</option>
+
+                                    <option value="3928">Nevada</option>
+
+                                    <option value="3929">New Hampshire</option>
+
+                                    <option value="3930">New Jersey</option>
+
+                                    <option value="3931">New Mexico</option>
+
+                                    <option value="3932">New York</option>
+
+                                    <option value="3933">North Carolina</option>
+
+                                    <option value="3934">North Dakota</option>
+
+                                    <option value="3935">Ohio</option>
+
+                                    <option value="3936">Oklahoma</option>
+
+                                    <option value="3937">Oregon</option>
+
+                                    <option value="3938">Pennsylvania</option>
+
+                                    <option value="3939">Rhode Island</option>
+
+                                    <option value="3940">South Carolina</option>
+
+                                    <option value="3941">South Dakota</option>
+
+                                    <option value="3942">Tennessee</option>
+
+                                    <option value="3943">Texas</option>
+
+                                    <option value="3944">Utah</option>
+
+                                    <option value="3945">Vermont</option>
+
+                                    <option value="3946">Virginia</option>
+
+                                    <option value="3947">Washington</option>
+
+                                    <option value="3948">West Virginia</option>
+
+                                    <option value="3949">Wisconsin</option>
+
+                                    <option value="3950">Wyoming</option>
+                                </select>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-5">
+                                Address line 1
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="addCustomerForm[address1]" class="form-control" placeholder=""
+                                       required>
+                            </div>
+
+                            <div class="col-5">
+                                Address line 2
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="addCustomerForm[address2]" class="form-control" placeholder=""
+                                       required>
+                            </div>
+                            <div class="w-100"></div>
+                            <!--//-->
+
+                            <div class="col-5">
+                                City
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="addCustomerForm[city]" class="form-control" placeholder=""
+                                       required>
+                            </div>
+
+                            <div class="col-5">
+                                Postal/Zip code
+                            </div>
+                            <div class="col-7">
+                                <input type="text" name="addCustomerForm[postal_code]" class="form-control"
+                                       placeholder="" required>
+                            </div>
+
+                        </div>
+                        <!--//-->
+
+                    </div>
+
+                </div>
+                <div class="popupbfoot">
+                    <button type="submit" class="btn btn-4">Add customer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div id="addTax" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Add Tax</h1>
+            </div>
+            <form class="addTaxForm" action="{{ path('sales.tax.ajax-create') }}">
+            <div class="popupbody">
+
+                <div class="row">
+                    <div class="col-7">Tax name *</div>
+                    <div class="col-5">
+                        <input class="form-control" type="text" placeholder="" required name="name">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Abbreviation *</div>
+                    <div class="col-5">
+                        <input class="form-control" type="text" placeholder="" required name="abbreviation">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Tax rate (%) *</div>
+                    <div class="col-5">
+                        <input class="form-control" type="number" placeholder="" name="tax_rate">
+                        <p style="font-size: 12px; line-height: 15px;">Tax rate should be a number only, without a
+                            percent sign.</p>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Description</div>
+                    <div class="col-5">
+                        <input class="form-control" type="text" placeholder="" name="description">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Your tax number</div>
+                    <div class="col-5">
+
+                        <input class="form-control" type="text" placeholder="" name="tax_number">
+
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col-7">Show tax number on invoices</div>
+                    <div class="col-5">
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="is_tax_no_show" name="is_tax_no_show">
+                            <label for="is_tax_no_show"><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+                    <div class="w-100 margin-bottom-15"></div>
+
+                    <div class="col-7">Is this tax recoverable?</div>
+                    <div class="col-5">
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="is_tax_recoverable" name="is_tax_recoverable">
+                            <label for="is_tax_recoverable"><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+                    <div class="w-100 margin-bottom-15"></div>
+
+                    <div class="col-7">Is this a compound tax?</div>
+                    <div class="col-5">
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="is_compound_tax" name="is_compound_tax">
+                            <label for="is_compound_tax"><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="popupbfoot">
+                <button type="submit" class="btn btn-4 margin-right-10">Add tax</button>  <a href="#"
+                                                                                         class="btn btn-2 mfp-close">Cancel</a>
+            </div>
+            </form>
+        </div>
+
+    </div>
+
+
+    <div id="addProduct" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Add Product</h1>
+            </div>
+            <form class="addProductForm" action="{{ path('sales.product_services.ajax-new') }}">
+                <div class="popupbody">
+
+                    <div class="row">
+
+                        <div class="col-5">Name *</div>
+                        <div class="col-7">
+                            <input class="form-control" type="text" placeholder="" required name="name">
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-5">Income account *</div>
+                        <div class="col-7">
+                            <select class="form-control selectPadding" name="income_account">
+                                <option>Consulting Income</option>
+                                <option>Sales</option>
+                            </select>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-5">Price *</div>
+                        <div class="col-7">
+                            <input class="form-control" placeholder="" type="number" required name="price">
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-5">Description</div>
+                        <div class="col-7">
+                            <textarea class="form-control" name="description"></textarea>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+                    </div>
+                    <!--//-->
+                </div>
+                <!--//-->
+                <div class="popupbfoot">
+                    <button type="submit" class="btn btn-4 margin-right-10">Add product</button>
+
+                        <a href="#" class="btn btn-2 mfp-close">Cancel</a>
+                </div>
+                <!--//-->
+            </form>
+        </div>
+
+    </div>
+
+    <!-- popup / End -->
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/handlebars-v4.0.12.js') }}"></script>
+    <script src="{{ asset('assets/vendor/require.js') }}"></script>
+    <script src="{{ asset('assets/vendor/require.js') }}"></script>
+    <script src="{{ asset('pey-framework/AppConfig.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            // $( "#datepicker" ).datepicker();
+            var _default_data = '{{ data|json_encode|raw }}';
+            var _products = JSON.parse('{{ data.default_products|json_encode|raw }}');
+            var _taxes = JSON.parse('{{ data.tax_list|json_encode|raw }}');
+            var _customers = JSON.parse('{{ data.customer_list|json_encode|raw }}');
+            var _transform_data = JSON.parse(_default_data);
+
+            $(".customer_list .required").select2({placeholder: "Choose"});
+
+            window.APP = null;
+            require(["App"], function (AppControl) {
+                window.APP = AppControl.App;
+                window.APP.setParameters(_default_data, {});
+                // default create a row
+                window.APP.addRow();
+                $(".dynamicPopup").magnificPopup();
+            });
+
+            $(".addAline").on('click', function (evt) {
+                window.APP.addRow();
+                $(".dynamicPopup").magnificPopup();
+                evt.preventDefault();
+            });
+
+            $("#estimateForm").validate(
+                {
+                    rules: {
+                        estimate_title: {
+                            required: true,
+                            // Using the normalizer to trim the value of the element
+                            // before validating it.
+                            //
+                            // The value of `this` inside the `normalizer` is the corresponding
+                            // DOMElement. In this example, `this` references the `username` element.
+                            normalizer: function(value) {
+                                return $.trim(value);
+                            }
+                        },
+                        estimate_id: {
+                            required: true
+                        }
+                    },
+                    errorClass: "myErrorClass",
+
+                    //put error message behind each form element
+                    errorPlacement: function (error, element) {
+                        var elem = $(element);
+                        error.insertAfter(element);
+                    },
+
+                    //When there is an error normally you just add the class to the element.
+                    // But in the case of select2s you must add it to a UL to make it visible.
+                    // The select element, which would otherwise get the class, is hidden from
+                    // view.
+                    highlight: function (element, errorClass, validClass) {
+                        var elem = $(element);
+                        if (elem.hasClass("select2-offscreen")) {
+                            $("#s2id_" + elem.attr("id") + " ul").addClass(errorClass);
+                        } else {
+                            elem.addClass(errorClass);
+                        }
+                    },
+
+                    //When removing make the same adjustments as when adding
+                    unhighlight: function (element, errorClass, validClass) {
+                        var elem = $(element);
+                        if (elem.hasClass("select2-offscreen")) {
+                            $("#s2id_" + elem.attr("id") + " ul").removeClass(errorClass);
+                        } else {
+                            elem.removeClass(errorClass);
+                        }
+                    }
+                }
+            );
+
+            $(document).on("change", ".select2-offscreen", function () {
+                if (!$.isEmptyObject(validobj.submitted)) {
+                    validobj.form();
+                }
+            });
+
+            //A select2 visually resembles a textbox and a dropdown.  A textbox when
+            //unselected (or searching) and a dropdown when selecting. This code makes
+            //the dropdown portion reflect an error if the textbox portion has the
+            //error class. If no error then it cleans itself up.
+            $(document).on("select2-opening", function (arg) {
+                var elem = $(arg.target);
+                if ($("#s2id_" + elem.attr("id") + " ul").hasClass("myErrorClass")) {
+                    //jquery checks if the class exists before adding.
+                    $(".select2-drop ul").addClass("myErrorClass");
+                } else {
+                    $(".select2-drop ul").removeClass("myErrorClass");
+                }
+            });
+
+            $("#submitButton").on('click', function (evt) {
+                if($("#estimateForm").valid()){
+                    var excelFormData = window.APP.getExcelFormData();
+                    var calculationData = window.APP.getCalculationData();
+                    var formData = $("#estimateForm").serializeArray();
+                    calculationData.forEach(function (element){
+                        formData.push(element);
+                    });
+                    if (excelFormData.length > 0 && window.APP.checkIsAllProductSet()) {
+                        SubmitForm(formData, excelFormData);
+                    }else if(excelFormData.length <= 0) {
+                        alert("Please select minimum one product");
+                    }
+                }
+            });
+
+            function SubmitForm(formData, productData) {
+
+                var _data = {form_data: formData, product_data: productData};
+                $.ajax({
+                    url: '/sales/estimate/new/store',
+                    type: 'POST',
+                    dataType: "json",
+                    data: _data,
+                    //data: {data: formData},
+                    success: function (response) {
+                        if (response.code == 200) {
+                            //window.location = '/sales/estimate/manage';
+                            window.location = '/sales/estimate/' + response.data.last_id + '/view'
+                            //response.data
+                            console.log(response);
+                        }
+                    },
+                    error: function () {
+                        console.log("Error Message");
+                    },
+                });
+            }
+
+            $('#showCustomerAdditionalInformation').on('click', function (e) {
+                e.preventDefault();
+                $('#customerAdditionalInformation').toggle();
+            });
+
+            // ADD CUSTOMER
+            $("#addCustomer").submit(function (e) {
+                var form = $(this);
+                var url = form.attr('action');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function (data) {
+                        var name =  $(form).find('input[name="addCustomerForm[company_name]"]').val();
+                        var magnificPopup = $.magnificPopup.instance;
+                        magnificPopup.close();
+                        form.trigger('reset');
+                        var newOption = new Option(name, data.id, false, true);
+                        $('.customer_list').append(newOption).trigger('change');
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    },
+                });
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+            });
+
+            // ADD PRODUCT
+            $(".addProductForm").submit(function (e) {
+                var form = $(this);
+                var url = form.attr('action');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function (data) {
+                        var magnificPopup = $.magnificPopup.instance;
+                        var name =  $(form).find('input[name="name"]').val();
+                        var price =  $(form).find('input[name="price"]').val();
+                        var description =  $(form).find('textarea[name="description"]').val();
+                        magnificPopup.close();
+                        form.trigger('reset');
+                        var newProduct = {'text': name, 'id': data.id, 'price': price, 'description' : description};
+                        require(["App"], function (AppControl) {
+                            window.APP = AppControl.App;
+                            var obj = JSON.parse(_default_data);
+                            obj['default_products'].push(newProduct);
+                            window.APP.updateParameters(JSON.stringify(obj), {});
+                        });
+
+                        _products.push(newProduct);
+                        $(".product_list").select2({placeholder: "Choose", data: _products});
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    },
+                });
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+            });
+
+            // ADD TAX
+            $(".addTaxForm").submit(function (e) {
+                var form = $(this);
+                var url = form.attr('action');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function (data) {
+                        //TODO add product in list of products
+                        var magnificPopup = $.magnificPopup.instance;
+                        magnificPopup.close();
+                        var name =  $(form).find('input[name="name"]').val();
+                        var tax_rate =  $(form).find('input[name="tax_rate"]').val();
+                        var abbreviation =  $(form).find('input[name="abbreviation"]').val();
+                        form.trigger('reset');
+                        var newTax = {'text': name, 'id': data.id, 'tax_rate': tax_rate, 'abbreviation': abbreviation};
+                        require(["App"], function (AppControl) {
+                            window.APP = AppControl.App;
+                            var obj = JSON.parse(_default_data);
+                            obj['tax_list'].push(newTax);
+                            window.APP.updateParameters(JSON.stringify(obj), {});
+                        });
+                        _taxes.push(newTax);
+                        $(".tax_list").select2({placeholder: "Choose", data: _taxes});
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    },
+                });
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+            });
+
+            $('#exchange_rate').on('keyup', function () {
+                var value = this.value;
+                $('#totalAmountSpanSelectedCurrency').text(value);
+                require(["App"], function () {
+                    window.APP.updateExchangeCurrency(value);
+                });
+            });
+            $('#currency_select').on('change', function () {
+                var value = this.value;
+                var text = $(this).find("option:selected").text();
+                $.ajax({
+                    type: "GET",
+                    url: '/currency/get-exchange-rate?to=' + value,
+                    success: function (data) {
+                        $('#exchange_rate').val(data.rate);
+                        $('#totalAmountSpanCurrency').text(text.substr(0, text.indexOf(' ')));
+                        $('#totalAmountSpanSelectedCurrency').text(data.rate);
+                        require(["App"], function () {
+                            window.APP.updateCurrency(value);
+                            window.APP.updateExchangeCurrency(data.rate);
+                        });
+                    },
+                })
+            });
+        });
+
+
+    </script>
+    <script>
+
+        $(function () {
+            $(".calendare").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+                showButtonPanel: false,
+                yearRange: '1980:2040'
+            });
+        });
+        $(document).ready(function () {
+            $('.select2-n').select2();
+            $('.select2-np').select2();
+        });
+    </script>
+{% endblock javascripts %}

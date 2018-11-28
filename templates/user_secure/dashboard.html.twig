@@ -1,0 +1,59 @@
+{% extends 'page-secure.html.twig' %}
+
+
+
+{% block body %}
+
+
+    <!-- Dashboard Headline -->
+
+    <header class="page header">
+        <div class="content">
+            <h1 class="display-4 mb-0">Welcome {{ user_personal_info().first_name }}</h1>
+            <p class="lead text-muted">We are glad to see you again!</p>
+        </div>
+    </header>
+
+
+
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div id="WelcomeScreen">
+                <div class="wv-box card-container fadeInUp card-invoicing">
+                    <div class="wv-box__content"> <a href="{{ path('sales.invoice.manage') }}" data-app="Invoicing" class="welcome-choice-container card">
+                            <div class="card-front-new"> <img class="welcome-choice-container__image" src="https://d3pgswpng8id0l.cloudfront.net/sitestatic/dashboard/images/spot-invoice-2.svg">
+                                <h2 class="wv-heading--subsection-title">Get Paid for Your Work</h2>
+                                <p class="wv-text wv-text--body">Send unlimited invoices <br>
+                                    and estimates.</p>
+                            </div>
+                        </a> </div>
+                </div>
+                <div class="wv-box card-container fadeInUp card-accounting">
+                    <div class="wv-box__content"> <a href="{{ path('sales.estimate.manage') }}" data-app="accounting" class="welcome-choice-container card">
+                            <div class="card-front-new"> <img class="welcome-choice-container__image" src="https://d3pgswpng8id0l.cloudfront.net/sitestatic/dashboard/images/spot-accounting-2.svg">
+                                <h2 class="wv-heading--subsection-title">Organize Your Finances</h2>
+                                <p class="wv-text wv-text--body">Automate income and <br>
+                                    expense tracking.</p>
+                            </div>
+                        </a> </div>
+                </div>
+                <div class="wv-box card-container fadeInUp card-receipts">
+                    <div class="wv-box__content"> <a href="{{ path('sales.product_services.manage') }}" data-app="receipts" id="welcome-button-receipts" class="welcome-choice-container card">
+                            <div class="card-front-new"> <img class="welcome-choice-container__image" src="https://d3pgswpng8id0l.cloudfront.net/sitestatic/dashboard/images/spot-receipt-2.svg">
+                                <h2 class="wv-heading--subsection-title">Capture Your Receipts</h2>
+                                <p class="wv-text wv-text--body">Stay compliant by keeping <br>
+                                    accurate records.</p>
+                            </div>
+                        </a> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+

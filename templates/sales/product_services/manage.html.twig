@@ -1,0 +1,97 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+<!-- Dashboard Headline -->
+
+
+
+    <div class="dashboard-headline">
+        <div class="row">
+            <div class="col-6">
+                <h3>Products & Services (Sales)</h3>
+            </div>
+            <div class="col-6 text-right">
+
+                <a href="{{ path('sales.product_services.new') }}" class="btn btn-4" >Add a product or service</a>
+
+            </div>
+        </div>
+    </div>
+ {% if app.session.flashBag.has('success') %}
+    <div class="notification success closeable">
+        {% for msg in app.session.flashBag.get('success') %}
+            <p>{{ msg }}</p>
+        {% endfor %}
+        <a class="close"></a>
+    </div>
+{% endif %}
+
+{% if app.session.flashBag.has('error') %}
+    <div class="notification error closeable">
+        <ul style="margin-bottom:0px;">
+            {% for error in app.session.flashBag.get('error') %}
+                <li style="color: darkred">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        <a class="close"></a>
+    </div>
+{% endif %}
+
+{% if errors %}
+    <div class="notification error closeable">
+        <ul style="margin-bottom:0px;">
+            {% for error in errors %}
+                <li style="color: darkred">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        <a class="close"></a>
+    </div>
+{% endif %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+                <table class="margin-top-20">
+                    <tbody>
+                   
+    {% if data|length > 0 %}
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+
+            <th>Action</th>
+        </tr>
+         {% for product in data %}
+
+                    <tr>
+                        <td style="width: 80%;">
+                           {{ product.name }}
+                        </td>
+
+                        <td>${{ product.price }}</td>
+                        <td>
+                            <a href="{{ path('sales.product_services.view',{'id':product.id}) }}" ><span
+                                        class="icon-feather-edit-2" data-tippy-placement="top" data-tippy="" data-original-title="Edit"></span></a>
+                            <a href="{{ path('sales.product_services.delete',{'id':product.id}) }}" >
+                            <span class="icon-material-outline-delete" data-tippy-placement="top" data-tippy="" data-original-title="Delete"></span></a>
+                        </td>
+                    </tr>
+                      {% endfor %}
+
+    {% endif %}
+                    </tbody>
+                </table>
+
+
+                <div class="notification notice closeable hidden">
+                    <p>You don't have any products or services. Why not  <a href="{{ path('sales.product_services.new') }}">create a product?</a></p>
+                    <a class="close"></a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

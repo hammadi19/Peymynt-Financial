@@ -1,0 +1,327 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+        <h3>Edit customer</h3>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <form class="col-xl-10 col-lg-10 content-left-offset offset-1" name="addCustomerForm"
+                  id="addCustomerForm" action="{{ path('sales.customer.edit', {'id': customer.id }) }}" method="post"
+                  novalidate>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Customer or company name
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="addCustomerForm[company_name]" class="form-control"
+                               value="{{ customer.name }}"
+                               placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Business
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control" name="addCustomerForm[business_id]" >
+                            {% for business in businesses %}
+                                <option value={{ business.id }}>{{ business.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Email
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <input type="email" name="addCustomerForm[email]" class="form-control" placeholder=""
+                               value="{{ customer.email }}"
+                               required>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            First name
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="addCustomerForm[first_name]" class="form-control" placeholder=""
+                               value="{{ customer.first_name }}"
+                               required>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Last name
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="addCustomerForm[last_name]" class="form-control"
+                               value="{{ customer.last_name }}"
+                               placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Currency
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control" name="addCustomerForm[currency]" >
+                            {% for key, currency in currencies %}
+                                {% if key == customer.currency %}
+                                    <option value="{{ key }}" selected>{{ currency }}</option>
+                                {% else %}
+                                    <option value="{{ key }}">{{ currency }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-4">  </div>
+                    <div class="col-4 padding-bottom-15">
+                        <a href="#" id="customer_additional_data" class="ripple-effect">View additional info</a>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+                    <div class="viewMore row" style="display: none">
+
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Account number
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="addCustomerForm[account_number]" class="form-control"
+                                   value="{{ customer.account_no }}"
+                                   placeholder="" required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Phone
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="addCustomerForm[phone]" class="form-control" placeholder=""
+                                   value="{{ customer.phone }}"
+                                   required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Fax
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" name="addCustomerForm[fax]"
+                                   value="{{ customer.fax }}"
+                                   placeholder="" required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Mobile
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="with-border" name="addCustomerForm[mobile]"
+                                   value="{{ customer.mobile }}"
+                                   placeholder="" required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Toll free
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="addCustomerForm[toll_free]" class="form-control"
+                                   value="{{ customer.toll_free }}"
+                                   placeholder="" required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Website
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="addCustomerForm[website]" class="form-control"
+                                   value="{{ customer.website }}"
+                                   placeholder="" required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Country
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control" name="addCustomerForm[country]">
+                                <option value="">--------</option>
+                                {% for key, country in countries %}
+                                    {% if key == customer.country %}
+                                        <option value="{{ key }}" selected>{{ country }}</option>
+                                    {% else %}
+                                        <option value="{{ key }}">{{ country }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Province/State
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control" name="addCustomerForm[state]">
+                                {% for key, province in provinces %}
+                                    {% if key == customer.state %}
+                                        <option value="{{ key }}" selected>{{ province }}</option>
+                                    {% else %}
+                                        <option value="{{ key }}">{{ province }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Address line 1
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="addCustomerForm[address1]" class="form-control"
+                                   value="{{ customer.address_1 }}"
+                                   placeholder="" required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Address line 2
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="addCustomerForm[address2]" class="form-control"
+                                   value="{{ customer.address_2 }}"
+                                   placeholder="" required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                City
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="text" name="addCustomerForm[city]" class="form-control"
+                                   value="{{ customer.city }}"
+                                   placeholder="" required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                                Postal/Zip code
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="addCustomerForm[postal_code]" class="form-control"
+                                   value="{{ customer.zip_code }}"
+                                   placeholder="" required>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+
+                        <div class="col-4">
+                            <div class="text-right padding-top-8">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="checkbox">
+                                <input type="checkbox" id="shipping_address_chkbox" name="addCustomerForm[shipping_address_chkbox]">
+                                <label for="chekcbox1"><span class="checkbox-icon"></span> Shipping address</label>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <!--//-->
+                    </div>
+
+
+                    <div class="col-4">  </div>
+                    <div class="col-4">
+                        <input type="submit" class="btn btn-4 ripple-effect" value="Save">
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+
+
+
+
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $("#customer_additional_data").on("click", function(){
+            $(".viewMore").toggle();
+        });
+
+    </script>
+
+
+{% endblock %}

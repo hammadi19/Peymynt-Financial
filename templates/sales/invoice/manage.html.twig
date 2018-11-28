@@ -1,0 +1,254 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+<!-- Dashboard Headline -->
+
+
+
+
+
+    <div class="dashboard-headline">
+
+        <h3>Create the perfect invoice to match your brand.</h3>
+
+                <h3 class="d-none">Invoices</h3>
+
+                <a href="{{ path('sales.invoice.new') }}" class="btn btn-4 pull-right d-none">Create an Invoice</a>
+
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Invoices-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+                <div class="invoiceBox">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="uploadBox">
+                                <div class="in-heading">Add Your Logo</div>
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn">
+                                        <img src="{{ asset('assets/images/uploadfile.svg') }}" alt="">
+                                        <p>
+                                            <span><b>Browse</b> or drop your logo here.</span>
+                                            <br> Maximum 5MB in size.
+                                            <br> JPG, PNG, or GIF formats.
+                                            <br> Recommended size: 300 x 200 pixels.</p>
+                                    </button>
+                                    <input type="file" name="myfile" />
+                                </div>
+                            </div>
+                            <!--uploadBox-->
+
+                            <div class="colorPicker">
+                                <div class="in-heading">Pick Your Accent Color</div>
+                                <div class="upload-btn-wrapper">
+
+                                </div>
+                            </div>
+                            <!--colorPicker-->
+
+                        </div>
+
+                        <div class="col-7">
+                            <div class="in-heading">Choose Your Template</div>
+                            <div class="center invoiceSlider">
+                                {#<div>
+                                    <img src="{{ asset('assets/images/slider-1.png') }}" alt="">
+                                </div>#}
+                                {##}<div>
+                                    <img src="{{ asset('assets/images/slider-2.png') }}" alt="">
+                                </div>
+                                {#<div>
+                                    <img src="{{ asset('assets/images/slider-3.png') }}" alt="">
+                                </div>#}
+                            </div>
+
+                        </div>
+                        <!--Slider-->
+
+                    </div>
+                    <div class="text-center margin-top-50">
+                        <a href="{{ path('sales.invoice.new') }}" class="btn btn-4">Looks Great, Let's Go</a>
+                        <p class="margin-top-10">
+                            You can <a href="#">skip this</a> and make changes later by going to Settings.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="createInvoice">
+
+                    <!--Title Row-->
+                    <div class="invoiceSummry">
+                        <div class="row">
+                            <div class="col-5">
+                                <h6>Overdue</h6>
+                                <h4>₨0.00<span>PKR</span> </h4>
+                                <h6>Last updated 38 minutes ago. <a href="#">Refresh</a></h6>
+                            </div>
+
+                            <div class="col-4">
+                                <h6>Coming due within 30 days</h6>
+                                <h4>₨0.00<span>PKR</span> </h4>
+
+                            </div>
+
+                            <div class="col-3">
+                                <h6>Average time to get paid</h6>
+                                <h4>0<span>days</span> </h4>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--invoiceSummry-->
+
+                    <div class="invoiceFilters">
+                        <div class="row no-gutters">
+                            <div class="col margin-right-10">
+                                <select class="selectpicker form-control" data-live-search="true">
+                                    <option>All Customers</option>
+                                    <option>Demo-2</option>
+                                </select>
+                            </div>
+                            <!--col-->
+
+                            <div class="col margin-right-10">
+                                <select class="form-control">
+                                    <option>All Statuses</option>
+                                    <option disabled>Draft</option>
+                                    <option>Unsent</option>
+                                    <option>Sent</option>
+                                    <option>Viewed</option>
+                                    <option>Partial</option>
+                                    <option disabled>Paid</option>
+                                    <option>Overdue</option>
+                                </select>
+                            </div>
+                            <!--col-->
+
+                            <div class="col">
+                                <div class="input-with-icon-left">
+                                    <input class="form-control calendar padding-left-15" placeholder="From">
+                                    <a href="#">  <i class="icon-feather-calendar iconRight borderRIcon2"></i></a>
+                                </div>
+                            </div>
+                            <!--col-->
+
+                            <div class="col margin-right-10">
+                                <div class="input-with-icon-left">
+                                    <input class="form-control calendar padding-left-15 borderRIcon" placeholder="To">
+                                    <a href="#">  <i class="icon-feather-calendar iconRight borderRIcon1"></i></a>
+                                </div>
+                            </div>
+                            <!--col-->
+
+                            <div class="col">
+                                <div class="input-with-icon-left">
+                                    <input type="text" class="form-control input-text padding-left-15" placeholder="Search">
+
+                                    <a href="#">  <i class="icon-material-outline-search iconRight"></i></a>
+
+                                </div>
+                            </div>
+                            <!--col-->
+
+                        </div>
+                    </div>
+                    <!--invoiceFilters-->
+
+                    <div class="invoiceTabs">
+                        <!-- Tabs Container -->
+                        <div class="tabs">
+                            <div class="tabs-header">
+                                <ul>
+                                    <li class="active"><a href="#tab-1" data-tab-id="1">Unpaid (0)</a></li>
+                                    <li><a href="#tab-2" data-tab-id="2">Draft (0)</a></li>
+                                    <li><a href="#tab-3" data-tab-id="3">All Invoices</a></li>
+                                </ul>
+                                <div class="tab-hover"></div>
+
+                            </div>
+                            <!-- Tab Content -->
+                            <div class="tabs-content">
+                                <div class="tab active" data-tab-id="1">
+                                    <div class="padding-bottom-20">
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <th class="width100">Status</th>
+                                                <th class="width150">Due</th>
+                                                <th class="width150">Date</th>
+                                                <th class="width90px">Number</th>
+                                                <th>Customer</th>
+                                                <th class="width150">Amount Due</th>
+                                                <th class="width100">Actions</th>
+                                            </tr>
+
+                                            <tr>
+                                                <td><span class="saved wv-badge">Saved</span></td>
+                                                <td>2018-10-21</td>
+                                                <td>2018-10-21</td>
+                                                <td>1</td>
+                                                <td>vigossgamerz@gmail.com</td>
+                                                <td>Rs:500.00</td>
+                                                <td>
+
+
+
+
+                                                    <button id="inv-view-drop" type="button" class="btn btn-circle btn-outline-2 btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-arrow-down"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="inv-view-drop">
+                                                        <a class="dropdown-item" href="#">View</a>
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Print</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="#">Convert to invoice</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="#">Send</a>
+                                                        <a class="dropdown-item" href="#">Export as PDF</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="#">Delete</a>
+                                                    </div>
+
+
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <div class="tab" data-tab-id="2">
+                                    <div class="text-center emptytabContent">
+                                        <h1>You haven't created any invoices yet.</h1>
+                                        <p>Create your first invoice and get paid for your excellent work.</p>
+                                        <a href="{{ path('sales.invoice.new') }}">Create Your First Invoice</a>
+                                    </div>
+                                </div>
+                                <div class="tab" data-tab-id="3">
+                                    <div class="text-center emptytabContent">
+                                        <h1>You haven't created any invoices yet.</h1>
+                                        <p>Create your first invoice and get paid for your excellent work.</p>
+                                        <a href="{{ path('sales.invoice.new') }}">Create Your First Invoice</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tabs Container / End -->
+                    </div>
+
+                </div>
+                <!--createInvoice-->
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

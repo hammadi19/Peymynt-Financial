@@ -1,0 +1,688 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+    <!-- Dashboard Headline -->
+
+    <div class="dashboard-headline">
+        <div class="row">
+            <div class="col">
+                <h3>New Invoice</h3>
+
+            </div>
+            <div class="col text-right">
+                <a class="btn btn-4 margin-right-15" href="javascript:;">Success</a>
+                <a href="javascript:;" class="btn btn-outline-2 ripple-effect-dark  demo-4">Error</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-12 content-left-offset offset-1 offset-lg-0 offset-xl-1">
+
+                <div class="add-Invoice">
+                    <!-- Accordion -->
+                    <div class="accordion js-accordion">
+
+                        <!-- Accordion Item -->
+                        <div class="accordion__item js-accordion-item">
+                            <div class="accordion-header js-accordion-header">Business address and contact details, title, summary, and logo</div>
+
+                            <!-- Accordion Body -->
+                            <div class="accordion-body js-accordion-body">
+
+                                <!-- Accordion Content -->
+                                <div class="accordion-body__contents">
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="upload-btn-wrapper">
+                                                <button class="btn">
+                                                    <img src="{{ asset('assets/images/uploadfile.svg') }}" alt="">
+                                                    <p>
+                                                        <span><b>Browse</b> or drop your logo here.</span>
+                                                        <br> Maximum 5MB in size.
+                                                        <br> JPG, PNG, or GIF formats.
+                                                        <br> Recommended size: 300 x 200 pixels.</p>
+                                                </button>
+                                                <input type="file" name="myfile">
+                                            </div>
+                                        </div>
+                                        <!-- col-6 -->
+                                        <div class="col-6">
+                                            <div class="text-right addInvoiceRight">
+
+                                                <input class="form-control text-right margin-bottom-10" value="Invoice">
+                                                <input class="form-control text-right margin-bottom-10" value="Summary (e.g. project name, description of invoice)">
+                                                <p> <b>Meet Logic
+                                                        </b> </p>
+                                                <p>California <br>
+                                                    United States</p>
+                                                <a href="#editBusinessDetails" class=" popup-with-zoom-anim"><b>Edit your business address and contact details</b></a>
+
+                                            </div>
+                                        </div>
+                                        <!-- col-6 -->
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- Accordion Body / End -->
+                        </div>
+                        <!-- Accordion Item / End -->
+
+                    </div>
+                    <!-- Accordion / End -->
+
+                    <div class="add-InvoiceMainSec">
+                        <div class="addInhead">
+                            <div class="row">
+
+                                <div class="col-4">
+                                    <div class="addCusBox">
+
+                                        <button type="button" name="button">
+                                            <img src="{{ asset('assets/images/addInvoice.svg') }}" alt=""> Add a customer
+                                        </button>
+
+                                    </div>
+                                </div>
+                                <!-- col-6 -->
+                                <div class="col-2">
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="invoiceInnerform">
+                                        <div class="row">
+                                            <div class="col-5">Invoice number</div>
+                                            <div class="col-7">
+                                                <input class="form-control" type="text" class="data" placeholder="" required>
+                                            </div>
+                                            <div class="w-100"></div>
+                                            <div class="col-5">P.O./S.O. number</div>
+                                            <div class="col-7">
+                                                <input class="form-control data" type="text" placeholder="" required>
+                                            </div>
+                                            <div class="w-100"></div>
+                                            <div class="col-5">Invoice date</div>
+                                            <div class="col-7">
+
+                                                <div class="input-with-icon-left">
+                                                    <input class="form-control calendar padding-left-15" placeholder="2018-11-07">
+                                                    <a href="#"> <i class="icon-feather-calendar iconRight borderRIcon2"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="w-100"></div>
+                                            <div class="col-5">Payment due</div>
+                                            <div class="col-7">
+
+                                                <div class="input-with-icon-left">
+                                                    <input class="form-control calendar padding-left-15 marginZero" placeholder="2018-11-07">
+                                                    <a href="#"> <i class="icon-feather-calendar iconRight borderRIcon2"></i></a>
+                                                </div>
+                                                <span>On receipt</span>
+                                            </div>
+                                            <div class="w-100"></div>
+
+                                        </div>
+                                        <!-- row -->
+                                    </div>
+
+
+
+                                </div>
+                                <!-- col-6-->
+                            </div>
+                        </div>
+                        <!-- addInhead / End -->
+                        <div class="addInvoicetable">
+                            <div class="editColModel margin-top-20 ">
+                                <a href="#editColInvoice" class="addEst popup-with-zoom-anim"><b><span class="icon-feather-edit"></span>Edit columns</b></a>
+
+                            </div>
+                            <table class="firstTable">
+                                <tbody>
+                                <tr>
+                                    <th class="width220">Items</th>
+                                    <th class="width300"></th>
+                                    <th class="width100">Quantity</th>
+                                    <th class="width100">Price</th>
+                                    <th class="width150">Amount</th>
+
+                                </tr>
+
+                                <tr>
+                                    <td><input class="form-control" placeholder="Enter item name"></td>
+                                    <td><input class="form-control" placeholder="Enter item description"></td>
+                                    <td><input class="form-control paddingRL10 text-right" value="1"></td>
+                                    <td><input class="form-control paddingRL10 text-right" value="0"></td>
+                                    <td><b>₨0.00</b>
+                                        <a href="#"><span class="icon-material-outline-delete"> </span></a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td> <a href="#"> <b>Edit Income Accounts</b> </a> </td>
+                                    <td > </td>
+                                    <td class="text-right"> <span >Tax</span> </td>
+                                    <td><input class="form-control paddingRL10 text-right" value="0"></td>
+                                    <td>--</b>
+
+                                    </td>
+
+                                </tr>
+
+
+                                </tbody>
+
+
+                            </table>
+                            <div class="addinCus">
+
+                                <a href="#" class=""><b><span class="icon-feather-plus-circle"></span>Add new customer</b></a>
+
+                            </div>
+
+
+                            <table class="margin-top-20 margin-bottom-20 bottomTable">
+                                <tbody>
+                                <tr>
+                                    <th class="text-right">Subtotal</th>
+                                    <th class="width150">₨0.00</th>
+                                </tr>
+                                <tr>
+                                    <td class="text-right totalInput">
+
+                                        <div class="totalText">
+                                            <strong>Total:</strong>
+                                        </div>
+                                        <div style="width: 200px;margin: 5px;float: right;">
+                                        <select class="form-control select2" >
+                                            <option value="c377">AED - UAE dirham</option>
+                                            <option value="c1">AFN - Afghani</option>
+                                            <option value="c5">ALL - Lek</option>
+                                            <option value="c20">AMD - Armenian dram</option>
+                                            <option value="c101">ANG - Netherlands Antillean Guilder</option>
+                                            <option value="c12">AOA - Kwanza</option>
+                                            <option value="c18">ARS - Argentinian peso</option>
+                                            <option value="c24">AUD - Australian dollar</option>
+                                            <option value="c22">AWG - Aruban Guilder</option>
+                                            <option value="c399">AZN - New Manat</option>
+                                            <option value="c51">BAM - Convertible Marks</option>
+                                            <option value="c35">BBD - Barbados dollar</option>
+                                            <option value="c33">BDT - Taka</option>
+                                            <option value="c62">BGN - Lev</option>
+                                            <option value="c31">BHD - Bahraini dinar</option>
+                                            <option value="c65">BIF - Burundi franc</option>
+                                            <option value="c44">BMD - Bermuda dollar</option>
+                                            <option value="c60">BND - Brunei dollar</option>
+                                            <option value="c48">BOB - Boliviano</option>
+                                            <option value="c57">BRL - Real</option>
+                                            <option value="c29">BSD - Bahamian dollar</option>
+                                            <option value="c46">BTN - Ngultrum</option>
+                                            <option value="c53">BWP - Pula</option>
+                                            <option value="c37">BYR - Belarussian rouble</option>
+                                            <option value="c40">BZD - Belize dollar</option>
+                                            <option value="c71">CAD - Canadian dollar</option>
+                                            <option value="c90">CDF - Franc congolais</option>
+                                            <option value="c213">CHF - Swiss franc</option>
+                                            <option value="c79">CLP - Chilean peso</option>
+                                            <option value="c81">CNY - Ren-Min-Bi yuan</option>
+                                            <option value="c85">COP - Colombian peso</option>
+                                            <option value="c94">CRC - Costa Rican colon</option>
+                                            <option value="c99">CUP - Cuban peso</option>
+                                            <option value="c73">CVE - Cape Verde escudo</option>
+                                            <option value="c104">CZK - Czech koruna</option>
+                                            <option value="c108">DJF - Djibouti franc</option>
+                                            <option value="c106">DKK - Danish krone</option>
+                                            <option value="c111">DOP - Dominican peso</option>
+                                            <option value="c7">DZD - Algerian dinar</option>
+                                            <option value="c400">EEK - Estonian kroon</option>
+                                            <option value="c114">EGP - Egyptian pound</option>
+                                            <option value="c118">ERN - Nakfa</option>
+                                            <option value="c121">ETB - Ethiopian birr</option>
+                                            <option value="c3">EUR - Euro</option>
+                                            <option value="c126">FJD - Fiji dollar</option>
+                                            <option value="c123">FKP - Falkland Islands (Malvinas) Pound</option>
+                                            <option value="c151">GBP - Pound sterling</option>
+                                            <option value="c137">GEL - Lari</option>
+                                            <option value="c140">GHS - Ghana Cedi</option>
+                                            <option value="c142">GIP - Gibraltar pound</option>
+                                            <option value="c135">GMD - Dalasi</option>
+                                            <option value="c153">GNF - Guinean franc</option>
+                                            <option value="c149">GTQ - Quetzal</option>
+                                            <option value="c401">GWP - Guinean bissau Peso</option>
+                                            <option value="c156">GYD - Guyana dollar</option>
+                                            <option value="c164">HKD - Hong Kong dollar</option>
+                                            <option value="c162">HNL - Lempira</option>
+                                            <option value="c97">HRK - Kuna</option>
+                                            <option value="c158">HTG - Haitian gourde</option>
+                                            <option value="c166">HUF - Forint</option>
+                                            <option value="c172">IDR - Rupiah</option>
+                                            <option value="c180">ILS - New Israeli sheqel</option>
+                                            <option value="c170">INR - Indian rupee</option>
+                                            <option value="c176">IQD - Iraqi dinar</option>
+                                            <option value="c174">IRR - Iranian rial</option>
+                                            <option value="c168">ISK - Icelandic Krona</option>
+                                            <option value="c183">JMD - Jamaican dollar</option>
+                                            <option value="c188">JOD - Jordanian dinar</option>
+                                            <option value="c185">JPY - Yen</option>
+                                            <option value="c192">KES - Kenyan shilling</option>
+                                            <option value="c200">KGS - Kyrgyz Som</option>
+                                            <option value="c67">KHR - Riel</option>
+                                            <option value="c87">KMF - Comoro franc</option>
+                                            <option value="c195">KRW - Won</option>
+                                            <option value="c198">KWD - Kuwaiti dinar</option>
+                                            <option value="c75">KYD - Cayman Islands dollar</option>
+                                            <option value="c190">KZT - Tenge</option>
+                                            <option value="c202">LAK - Kip</option>
+                                            <option value="c205">LBP - Lebanese pound</option>
+                                            <option value="c337">LKR - Sri Lankan rupee</option>
+                                            <option value="c209">LRD - Liberian dollar</option>
+                                            <option value="c207">LSL - Loti</option>
+                                            <option value="c402">LTL - Lithuanian litus</option>
+                                            <option value="c403">LVL - Latvian lats</option>
+                                            <option value="c211">LYD - Libyan dinar</option>
+                                            <option value="c248">MAD - Moroccan dirham</option>
+                                            <option value="c241">MDL - Moldovan leu</option>
+                                            <option value="c221">MGA - Malagasy Ariary</option>
+                                            <option value="c219">MKD - Denar</option>
+                                            <option value="c252">MMK - Kyat</option>
+                                            <option value="c244">MNT - Tugrik</option>
+                                            <option value="c217">MOP - Pataca</option>
+                                            <option value="c404">MRO - Ouguiya</option>
+                                            <option value="c233">MRU - Ouguiya</option>
+                                            <option value="c235">MUR - Mauritian rupee</option>
+                                            <option value="c227">MVR - Rufiyaa</option>
+                                            <option value="c223">MWK - Kwacha</option>
+                                            <option value="c238">MXN - Mexican peso</option>
+                                            <option value="c225">MYR - Malaysian ringgit</option>
+                                            <option value="c250">MZN - Metical</option>
+                                            <option value="c254">NAD - Namibian dollar</option>
+                                            <option value="c265">NGN - Naira</option>
+                                            <option value="c262">NIO - Cordoba Oro</option>
+                                            <option value="c55">NOK - Norwegian krone</option>
+                                            <option value="c257">NPR - Nepalese rupee</option>
+                                            <option value="c92">NZD - New Zealand dollar</option>
+                                            <option value="c271">OMR - Omani rial</option>
+                                            <option value="c276">PAB - Balboa</option>
+                                            <option value="c282">PEN - Nuevo Sol</option>
+                                            <option value="c278">PGK - Kina</option>
+                                            <option value="c284">PHP - Philippine peso</option>
+                                            <option value="c273">PKR - Pakistani rupee</option>
+                                            <option value="c287">PLN - Zloty</option>
+                                            <option value="c280">PYG - Guarani</option>
+                                            <option value="c291">QAR - Qatari riyal</option>
+                                            <option value="c294">RON - New Leu</option>
+                                            <option value="c316">RSD - Serbian Dinar</option>
+                                            <option value="c296">RUB - Russian rouble</option>
+                                            <option value="c298">RWF - Rwanda franc</option>
+                                            <option value="c313">SAR - Saudi riyal</option>
+                                            <option value="c327">SBD - Solomon Islands Dollar</option>
+                                            <option value="c318">SCR - Seychelles rupee</option>
+                                            <option value="c334">SDG - Sudanese Pound</option>
+                                            <option value="c346">SEK - Swedish Krona</option>
+                                            <option value="c322">SGD - Singapore dollar</option>
+                                            <option value="c301">SHP - Saint Helena Pound</option>
+                                            <option value="c320">SLL - Leone</option>
+                                            <option value="c329">SOS - Somali shilling</option>
+                                            <option value="c341">SRD - Surinam dollar</option>
+                                            <option value="c405">SSP - South Sudanese pound</option>
+                                            <option value="c311">STD - Dobra</option>
+                                            <option value="c406">SVC - El Salvador colon</option>
+                                            <option value="c349">SYP - Syrian pound</option>
+                                            <option value="c344">SZL - Lilangeni</option>
+                                            <option value="c357">THB - Baht</option>
+                                            <option value="c353">TJS - Somoni</option>
+                                            <option value="c27">TMM - Manat</option>
+                                            <option value="c366">TND - Tunisian dinar</option>
+                                            <option value="c362">TOP - Pa'anga</option>
+                                            <option value="c368">TRY - Turkish Lira</option>
+                                            <option value="c364">TTD - Trinidad and Tobago dollar</option>
+                                            <option value="c351">TWD - Taiwan New Dollar</option>
+                                            <option value="c355">TZS - Tanzanian shilling</option>
+                                            <option value="c375">UAH - Hryvnia</option>
+                                            <option value="c373">UGX - Ugandan shilling</option>
+                                            <option value="c9">USD - U.S. dollar</option>
+                                            <option value="c382">UYU - Uruguayo peso</option>
+                                            <option value="c407">UZS - Uzbekistan sum</option>
+                                            <option value="c387">VEF - Bolivar Fuerte</option>
+                                            <option value="c389">VND - Dong</option>
+                                            <option value="c385">VUV - Vatu</option>
+                                            <option value="c308">WST - Samoan Tala</option>
+                                            <option value="c42">XAF - CFA Franc - BEAC</option>
+                                            <option value="c14">XCD - Eastern Caribbean dollar</option>
+                                            <option value="c69">XOF - CFA franc - BCEAO</option>
+                                            <option value="c131">XPF - Comptoirs Francais du Pacifique Francs</option>
+                                            <option value="c395">YER - Yemeni rial</option>
+                                            <option value="c331">ZAR - Rand</option>
+                                            <option value="c408">ZMK - Kwacha</option>
+                                            <option value="c409">ZMW - Kwacha</option>
+                                            <option value="c398">ZWD - Zimbabwean dollar</option>
+                                        </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <b>₨0.00</b>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="tableTextIn">
+                                <b>Note</b>
+                                <textarea placeholder="Enter notes that are visible to your customer"></textarea>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <!-- add-Invoice-mid / End -->
+
+                    <!-- Accordion -->
+                    <div class="accordion js-accordion">
+
+                        <!-- Accordion Item -->
+                        <div class="accordion__item js-accordion-item">
+                            <div class="accordion-header js-accordion-header">Footer</div>
+
+                            <!-- Accordtion Body -->
+                            <div class="accordion-body js-accordion-body">
+
+                                <!-- Accordion Content -->
+                                <div class="accordion-body__contents">
+                                    <textarea placeholder="Enter a footer for this invoice (e.g. tax information, thank you note)"></textarea>
+
+                                </div>
+
+                            </div>
+                            <!-- Accordion Body / End -->
+                        </div>
+                        <!-- Accordion Item / End -->
+
+                    </div>
+                    <!-- Accordion / End -->
+
+                </div>
+                <!--add-Invoice-->
+            </div>
+            <!--col-xl-10 col-lg-10 content-left-offset offset-1-->
+        </div>
+    </div>
+
+    <div id="editColInvoice" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Customize this Invoice</h1>
+            </div>
+            <div class="popupbody">
+                <h3 class="invoiceEditHeading">Edit the titles of the columns on this invoice:</h3>
+                <div class="row">
+                    <div class="col-5">Items</div>
+                    <div class="col-7">
+                        <div class="radio">
+                            <input id="radio-1" name="radio" type="radio" checked>
+                            <label for="radio-1"><span class="radio-label"></span> Items <i>(Default)</i></label>
+                        </div>
+                        <br>
+                        <div class="radio">
+                            <input id="radio-2" name="radio" type="radio">
+                            <label for="radio-2"><span class="radio-label"></span> Products</label>
+                        </div>
+                        <br>
+                        <div class="radio">
+                            <input id="radio-3" name="radio" type="radio">
+                            <label for="radio-3"><span class="radio-label"></span> Services</label>
+                        </div>
+                        <br>
+                        <div class="radio">
+                            <input id="radio-4" name="radio" type="radio">
+                            <label for="radio-4"><span class="radio-label"></span> Other</label>
+                        </div>
+                        <div class="radioInput">
+                            <input class="form-control" type="text" name="" value="">
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <hr class="hrStyle">
+
+                    <div class="col-5">Units</div>
+                    <div class="col-7">
+                        <div class="radio">
+                            <input id="radio-5" name="radio" type="radio" checked>
+                            <label for="radio-5"><span class="radio-label"></span> Quantity <i>(Default)</i> </label>
+                        </div>
+                        <br>
+                        <div class="radio">
+                            <input id="radio-6" name="radio" type="radio">
+                            <label for="radio-6"><span class="radio-label"></span> Hours</label>
+                        </div>
+                        <br>
+                        <div class="radio">
+                            <input id="radio-7" name="radio" type="radio">
+                            <label for="radio-7"><span class="radio-label"></span> Other</label>
+                        </div>
+                        <div class="radioInput">
+                            <input class="form-control" type="text" name="" value="">
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <hr class="hrStyle">
+
+                    <div class="col-5">Price</div>
+                    <div class="col-7">
+                        <div class="radio">
+                            <input id="radio-8" name="radio" type="radio" checked>
+                            <label for="radio-8"><span class="radio-label"></span> Price <i>(Default)</i> </label>
+                        </div>
+                        <br>
+                        <div class="radio">
+                            <input id="radio-9" name="radio" type="radio">
+                            <label for="radio-9"><span class="radio-label"></span> Rate</label>
+                        </div>
+                        <br>
+                        <div class="radio">
+                            <input id="radio-10" name="radio" type="radio">
+                            <label for="radio-10"><span class="radio-label"></span> Other</label>
+                        </div>
+                        <div class="radioInput">
+                            <input class="form-control" type="text" name="" value="">
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <hr class="hrStyle">
+
+                    <div class="col-5">Amount</div>
+                    <div class="col-7">
+                        <div class="radio">
+                            <input id="radio-11" name="radio" type="radio" checked>
+                            <label for="radio-11"><span class="radio-label"></span> Amount <i>(Default)</i> </label>
+                        </div>
+                        <br>
+                        <div class="radio">
+                            <input id="radio-12" name="radio" type="radio">
+                            <label for="radio-12"><span class="radio-label"></span> Other</label>
+                        </div>
+                        <div class="radioInput">
+                            <input class="form-control" type="text" name="" value="">
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <hr class="hrStyle">
+
+                    <div class="col-5">
+                        <b>Hide columns:</b>
+                    </div>
+                    <div class="col-7">
+                        <div class="checkbox">
+                            <input type="checkbox margin-right-25" id="chekcbox1">
+                            <label for="chekcbox1"><span class="checkbox-icon"></span> Hide item name</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="chekcbox2">
+                            <label for="chekcbox2"><span class="checkbox-icon"></span> Hide item description</label>
+                        </div>
+                        <p> <small>Your invoice must show at least one of the above.</small> </p>
+                        <div class="checkbox">
+                            <input type="checkbox" id="chekcbox2">
+                            <label for="chekcbox2"><span class="checkbox-icon"></span> Hide units </label>
+                        </div>
+                        <br>
+                        <div class="checkbox">
+                            <input type="checkbox" id="chekcbox2">
+                            <label for="chekcbox2"><span class="checkbox-icon"></span> Hide price</label>
+                        </div>
+                        <br>
+                        <div class="checkbox">
+                            <input type="checkbox" id="chekcbox2">
+                            <label for="chekcbox2"><span class="checkbox-icon"></span> Hide amount</label>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <hr class="hrStyle">
+
+                    <div class="col-5">
+
+                    </div>
+                    <div class="col-7">
+                        <div class="checkbox">
+                            <input type="checkbox margin-right-25" id="chekcbox1">
+                            <label for="chekcbox1"><span class="checkbox-icon"></span> <b>Apply these settings for all future invoices.</b> </label>
+
+                        </div>
+                        <p style="line-height: 18px;">
+                            <small>These settings will apply to recurring and non-recurring invoices. You can change these anytime from Invoice Customization settings.</small>
+                        </p>
+                    </div>
+                    <div class="w-100"></div>
+
+                </div>
+
+            </div>
+            <div class="popupbfoot">
+                <a href="#" class="btn btn-2 mfp-close">Cancel</a> <a href="#" class="btn btn-4">Save</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="editBusinessDetails" class="zoom-anim-dialog mfp-hide editBusModel">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Edit Business Address and Contact Details</h1>
+            </div>
+            <div class="popupbody">
+
+                <div class="row">
+                    <div class="col-4">editBusinessDetails *</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" class="data" placeholder="" required>
+                    </div>
+                    <h3>Address</h3>
+                    <div class="w-100"></div>
+                    <div class="col-4">Address Line 1</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" placeholder="Enter a location" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-4">Address Line 2</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-4">City</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-4">Postal/ZIP Code</div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" placeholder="">
+                    </div>
+
+                    <div class="w-100"></div>
+                    <div class="col-4">Country</div>
+                    <div class="col-7">
+
+                        <select class="" name="">
+                            <option value="">Pakistan</option>
+                        </select>
+
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-4">Province/State</div>
+                    <div class="col-7">
+
+                        <select class="" name="">
+                            <option value="">Select a province/state...</option>
+                        </select>
+
+                    </div>
+
+                    <div class="w-100"></div>
+                    <h3>Contact</h3>
+                    <div class="w-100"></div>
+                    <div class="col-4">Phone</div>
+                    <div class="col-7">
+
+                        <input class="form-control" type="text" placeholder="">
+
+                    </div>
+                    <div class="w-100"></div>
+
+                    <div class="col-4">Fax</div>
+                    <div class="col-7">
+
+                        <input class="form-control" type="text" placeholder="">
+
+                    </div>
+                    <div class="w-100"></div>
+
+                    <div class="col-4">Mobile</div>
+                    <div class="col-7">
+
+                        <input class="form-control" type="text" placeholder="">
+
+                    </div>
+                    <div class="w-100"></div>
+
+                    <div class="col-4">Toll-Free</div>
+                    <div class="col-7">
+
+                        <input class="form-control" type="text" placeholder="">
+
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-4">Website</div>
+                    <div class="col-7">
+
+                        <input class="form-control" type="text" placeholder="">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="popupbfoot">
+                <a href="#" class="btn btn-2 mfp-close">Cancel</a> <a href="#" class="btn btn-4">Save</a>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

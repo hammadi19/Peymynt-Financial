@@ -1,0 +1,336 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+
+        <h3>Add a Product or Service</h3>
+        <p>Products and services that you buy from vendors are used as items on Bills to record those purchases, and the ones that you sell to customers are used as items on Invoices to record those sales.</p>
+    </div>
+ {% if app.session.flashBag.has('success') %}
+    <div class="notification success closeable">
+        {% for msg in app.session.flashBag.get('success') %}
+            <p>{{ msg }}</p>
+        {% endfor %}
+        <a class="close"></a>
+    </div>
+{% endif %}
+{% if errors %}
+    <div class="notification error closeable">
+        <ul style="margin-bottom:0px;">
+            {% for error in errors %}
+                <li style="color: darkred">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        <a class="close"></a>
+    </div>
+{% endif %}
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+            <form method="post" action="{{ path('sales.product_services.update',{'id':product.id}) }}" id="createProductForm" name="createProductForm" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Name 
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="createProductForm[name]" value="{{ product.name }}"
+                               class="form-control" placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Description 
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <textarea class="form-control" name="createProductForm[description]">{{ product.description }}</textarea>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Price
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="createProductForm[price]" class="form-control" placeholder="" value="{{ product.price }}" >
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Sell
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="checkbox">
+                        {% set dataIsSell = "" %}
+                        {% if data.form.update is defined %} 
+                            {% if data.form.is_sell is defined %}
+                                {% set dataIsSell = data.form.is_sell %}
+                            {% endif %}
+                        {% else %}
+                            {% set dataIsSell = product.is_sell %}
+                        {% endif %}
+
+
+                            <input {% if dataIsSell %} checked="checked" {% endif %}
+                                    name="createProductForm[is_sell]" type="checkbox" id="isSell">
+                            <label for="isSell"><span class="checkbox-icon"></span> Allow this product or service to be added to Invoices.</label>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+
+                    <div class="col-4 income-account" {% if not dataIsSell %} style="display: none" {% endif %}>
+                        <div class="text-right padding-top-8">
+                            Income account
+                        </div>
+                    </div>
+                    <div class="col-4 income-account" {% if not dataIsSell %} style="display: none" {% endif %}>
+                     {% set dataIncomeAccount = "" %}
+                    {% if data.form.update is defined %} 
+                      {% set dataIncomeAccount = data.form.income_account %}
+                    {% else %}
+                        {% set dataIncomeAccount = product.income_account %}
+                    {% endif %}
+
+                        <select class="form-control" data-add-new-label="Create a new account"  id="id_income_account" name="createProductForm[income_account]" tabindex="5">
+                            <option value="" selected="selected">--------------------</option>
+                            <optgroup label="Income">
+                            {% for key, account in incomeAccountArray %}
+                               <option {% if dataIncomeAccount == key %} selected="selected" {% endif %} value="{{ key }}">{{ account }}</option>
+                             {% endfor %}
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="w-100 margin-bottom-20"></div>
+                    <!--//-->
+
+
+                    <div class="col-4">
+                        <div class="text-right">
+                            Buy
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="checkbox">
+                        {% set dataIsBuy = "" %}
+                        {% if data.form.update is defined %} 
+                            {% if data.form.is_buy is defined %}
+                                {% set dataIsBuy = data.form.is_buy %}
+                            {% endif %}
+                        {% else %}
+                            {% set dataIsBuy = product.is_buy %}
+                        {% endif %}
+
+                            <input {% if dataIsBuy %} checked="checked" {% endif %}  name="createProductForm[is_buy]"
+                                                                                     type="checkbox" id="isBuy">
+                            <label for="isBuy"><span class="checkbox-icon"></span> Allow this product or service to be added to Invoices.</label>
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+
+                    <div class="col-4 expense-account" {% if not dataIsBuy %} style="display: none" {% endif %} >
+                        <div class="text-right padding-top-8">
+                            Expense account
+                         </div>
+                    </div>
+                     {% set dataExpenseAccount = "" %}
+                    {% if data.form.update is defined %} 
+                      {% set dataExpenseAccount = data.form.expense_account %}
+                   {% else %}
+                        {% set dataExpenseAccount = product.expense_account %}
+                    {% endif %}
+                    <div class="col-4 expense-account" {% if not dataIsBuy %} style="display: none" {% endif %}>
+                        <select class="form-control" data-add-new-label="Create a new account"   id="id_expense_account" name="createProductForm[expense_account]" tabindex="7">
+                            <option value="" selected="selected">--------------------</option>
+                            <optgroup label="Expense">
+                            {% for key, account in expenseAccountArray %}
+                               <option {% if dataExpenseAccount == key %} selected="selected" {% endif %}  value="{{ key }}">{{ account }}</option>
+                             {% endfor %}   
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="w-100 margin-bottom-20"></div>
+
+                    <!--//-->
+
+
+                    <div class="col-4">
+                        <div class="text-right padding-top-8">
+                            Sales Tax
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control tax_list" id="taxSelect" name="createProductForm[sales_tax]">
+                            {% for tax in taxes %}
+                                {% if product.tax_id == tax.id %}
+                                    <option value="{{ tax.id }}" selected>{{ tax.name }}</option>
+                                {% else %}
+                                    <option value="{{ tax.id }}">{{ tax.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <a href="#addTax" class="addEst addTaxX popup-with-zoom-anim dynamicPopup"><b>
+                                <span class="icon-feather-plus-circle"></span>Add new tax</b></a>
+                    </div>
+                    <div class="w-100"></div>
+
+                    <div class="col-4">  </div>
+                    <div class="col-4">
+                        <input type="submit" name="createProductForm[update]" class="btn btn-4 margin-top-30" value="Save" >
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="addTax" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Add Tax</h1>
+            </div>
+            <form class="addTaxForm" action="{{ path('sales.tax.ajax-create') }}">
+                <div class="popupbody">
+
+                    <div class="row">
+                        <div class="col-7">Tax name *</div>
+                        <div class="col-5">
+                            <input class="with-border" type="text" placeholder="" required name="name">
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-7">Abbreviation *</div>
+                        <div class="col-5">
+                            <input class="with-border" type="text" placeholder="" required name="abbreviation">
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-7">Tax rate (%) *</div>
+                        <div class="col-5">
+                            <input class="with-border" type="number" placeholder="" name="tax_rate">
+                            <p style="font-size: 12px; line-height: 15px;">Tax rate should be a number only, without a
+                                percent sign.</p>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-7">Description</div>
+                        <div class="col-5">
+                            <input class="with-border" type="text" placeholder="" name="description">
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-7">Your tax number</div>
+                        <div class="col-5">
+
+                            <input class="with-border" type="text" placeholder="" name="tax_number">
+
+                        </div>
+
+                        <div class="w-100"></div>
+
+                        <div class="col-7">Show tax number on invoices</div>
+                        <div class="col-5">
+
+                            <div class="checkbox">
+                                <input type="checkbox" id="is_tax_no_show" name="is_tax_no_show">
+                                <label for="is_tax_no_show"><span class="checkbox-icon"></span></label>
+                            </div>
+
+                        </div>
+
+                        <div class="w-100 margin-bottom-15"></div>
+
+                        <div class="col-7">Is this tax recoverable?</div>
+                        <div class="col-5">
+
+                            <div class="checkbox">
+                                <input type="checkbox" id="is_tax_recoverable" name="is_tax_recoverable">
+                                <label for="is_tax_recoverable"><span class="checkbox-icon"></span></label>
+                            </div>
+
+                        </div>
+
+                        <div class="w-100 margin-bottom-15"></div>
+
+                        <div class="col-7">Is this a compound tax?</div>
+                        <div class="col-5">
+
+                            <div class="checkbox">
+                                <input type="checkbox" id="is_compound_tax" name="is_compound_tax">
+                                <label for="is_compound_tax"><span class="checkbox-icon"></span></label>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="popupbfoot">
+                    <button type="submit" class="btn btn-4">Add tax</button>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        $(function () {
+            $("#isSell").on("click", function () {
+                $(".income-account").toggle();
+            });
+
+            $("#isBuy").on("click", function () {
+                $(".expense-account").toggle();
+            });
+            $("#taxSelect").select2();
+
+            $(".addTaxForm").submit(function (e) {
+                var form = $(this);
+                var url = form.attr('action');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function (data) {
+                        var magnificPopup = $.magnificPopup.instance;
+                        magnificPopup.close();
+                        var name =  $(form).find('input[name="name"]').val();
+                        form.trigger('reset');
+                        var option = new Option(name, data.id, false, true);
+                        $(".tax_list").append(option).trigger('change');
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    },
+                });
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+            });
+        });
+    </script>
+
+
+{% endblock %}

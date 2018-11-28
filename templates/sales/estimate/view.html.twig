@@ -1,0 +1,539 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+
+
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+        <h3>{{ data.estimate_data.title }} #{{ data.estimate_data.estimate_no }}</h3>
+
+    </div>
+    <div id="mail-sent-message" class="notification success closeable" style="display: none">
+        <p>The estimate has been sent successfully</p>
+        <a class="close"></a>
+    </div>
+
+    <div id="mail-not-sent-message" class="notification error closeable" style="display: none">
+        <p>The estimate is not sent</p>
+        <a class="close"></a>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+
+
+            <!--Estimates-->
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+
+
+
+
+                <div class="row btn-container padding-bottom-25">
+                    <div class="col-xl-6 padding-left-0 padding-right-0">
+
+                        <a href="{{ path('sales.estimate.edit', {'estimate_id': data.estimate_data.id}) }}" class="btn btn-outline-2">Edit</a>
+                        <a href="{{ path('sales.estimate.view', {'estimate_id': data.estimate_data.id, 'customer' :'customer'}) }}"
+                           class="btn btn-outline-2">Customer view</a>
+
+                    </div>
+                    <div class="col-xl-6 text-right  padding-left-0 padding-right-0">
+
+
+                        <a href="#send_email" class="btn btn-4 popup-with-zoom-anim">Send</a>
+
+
+                        <button id="est-view-drop" type="button" class="btn btn-outline-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            More
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="est-view-drop">
+
+                            <a href="{{ path('sales.estimate.view',{'estimate_id': data.estimate_data.id,'customer':'customer'}) }}" class="dropdown-item print-chrome-link-js">Print
+                                estimate</a>
+                            <a class="dropdown-item print-pdf-link-js" href="{{ path('sales.estimate.view',{'estimate_id': data.estimate_data.id, 'customer':'pdf'}) }}">Export as
+                                PDF</a>
+                            <div class="dropdown-divider"></div>
+
+                            <a class="dropdown-item" href="{{ path('sales.estimate.delete', {'estimate_id': data.estimate_data.id}) }}">Delete</a>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                </div>
+                <div id="NextModernTemplate" class="export-template">
+
+
+
+
+                    <section class="modern-template__header" style="color: #FFFFFF;">
+                        <div class="modern-template__header__label fs-exclude" style="background-color: #0093d6;"> <span class="modern-template__header__label__valign_wrapper">
+                    <div class="modern-template__header__label__title">{{ data.estimate_data.title }}</div>
+                    <div class="modern-template__header__label__subtitle">{{ data.estimate_data.sub_heading }}</div>
+                    </span> </div>
+                        <div class="modern-template__header__amount-due fs-exclude" style="background-color: #2076ab;"> <span class="modern-template__header__amount-due__valign_wrapper">
+                    <div> Grand Total
+                      ({{ currency }}) </div>
+                    <div class="modern-template__header__amount-due__value"> {{ data.estimate_data.total_amount|number_format(2, '.', ',') }} </div>
+                    </span> </div>
+                    </section>
+                    <section class="modern-template__metadata">
+                        <div class="modern-template__metadata__customer">
+                            <div class="modern-template__metadata__customer--billing fs-exclude">
+                                <div class="modern-template__metadata__address-subheader">BILL TO</div>
+                                <strong class="wv-text--strong">{{data.customer_data.name}}</strong>
+                                {#<div class="modern-template__metadata__customer__address"> {{data.customer_data.name}}
+                                </div>#}
+                            </div>
+                        </div>
+                        <div class="invoice-template-details">
+                            <table class="wv-table">
+                                <tbody>
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell"><strong class="wv-text--strong">Estimate Number:</strong></td>
+                                    <td class="wv-table__cell"><span>{{ data.estimate_data.estimate_no }}</span></td>
+                                </tr>
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell"><strong class="wv-text--strong">P.O./S.O. Number:</strong></td>
+                                    <td class="wv-table__cell"><span>{{ data.estimate_data.po_so }}</span></td>
+                                </tr>
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell"><strong class="wv-text--strong">Estimate Date:</strong></td>
+                                    <td class="wv-table__cell"><span>{{ data.estimate_data.estimate_date|date('F d, Y') }}</span></td>
+                                </tr>
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell"><strong class="wv-text--strong">Expires On:</strong></td>
+                                    <td class="wv-table__cell"><span>{{ data.estimate_data.expire_date|date('F d, Y') }}</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <section class="modern-template__items">
+                        <table class="wv-table">
+                            <thead class="wv-table__header">
+                            <tr class="wv-table__row">
+                                <th class="wv-table__cell" colspan="4">Items</th>
+                                <th class="wv-table__cell--amount" colspan="1">Quantity</th>
+                                <th class="wv-table__cell--amount" colspan="1">Price</th>
+                                <th class="wv-table__cell--amount" colspan="1">Amount</th>
+                            </tr>
+                            </thead>
+                            <tbody class="wv-table__body">
+                            {% set subTotal = 0 %}
+                            {% for product in data.estimate_product_data %}
+                                <tr class="wv-table__row">
+                                    <td class="wv-table__cell" colspan="4"><span class="fs-exclude">
+                                            <span class="wv-text--strong invoice-product-name">{{ product.name }}</span>
+                          <p class="wv-table__cell--nested invoice-product-description"> {{ product.description }} </p>
+                          </span></td>
+                                    <td class="wv-table__cell modern-template__items__column--center" colspan="1"><span>{{ product.quantity }}</span></td>
+                                    <td class="wv-table__cell--amount" colspan="1"><span>{{ currency }}{{ product.price|number_format(2, '.', ',') }}</span></td>
+                                    <td class="wv-table__cell--amount" colspan="1"><span>{{ currency}}{{ (product.price *product.quantity)|number_format(2, '.', ',') }}</span></td>
+                                    {% set subTotal = subTotal + product.price * product.quantity %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
+                    <section>
+                        <section class="modern-template__totals">
+                            <div class="modern-template__totals__blank"></div>
+                            <div class="modern-template__totals__amounts">
+                                <div class="modern-template__totals__amounts__line">
+                                    <div class="modern-template__totals__amounts__line__label"> <strong class="wv-text--strong">Subtotal:</strong> </div>
+                                    <div class="modern-template__totals__amounts__line__amount"> <span>{{ currency }}{{ subTotal|number_format(2, '.', ',') }}</span>
+                                    </div>
+                                </div>
+                                {% for tax in taxes %}
+                                <div class="modern-template__totals__amounts__line">
+                                    <div class="modern-template__totals__amounts__line__label fs-exclude">
+                                        <span>{{ tax.name }} {{ tax.rate }}%</span>: </div>
+                                    <div class="modern-template__totals__amounts__line__amount"> <span> {{tax.value|number_format(2, '.', ',')}}</span> </div>
+                                </div>
+                                {% endfor %}
+                                <hr class="modern-template__divider">
+                                <div class="modern-template__totals__amounts__line">
+                                    <div class="modern-template__totals__amounts__line__label"> <strong class="wv-text--strong">Total:</strong> </div>
+                                    <div class="modern-template__totals__amounts__line__amount"> <span>{{ currency }}{{ data.estimate_data.total_amount|number_format(2, '.', ',') }} </span> </div>
+                                </div>
+                                <hr class="modern-template__divider modern-template__divider--bold">
+                                <div>
+                                    <div class="modern-template__totals__amounts__line">
+                                        <div class="modern-template__totals__amounts__line__label"> <strong class="wv-text--strong"> Grand Total
+
+                                                ({{ currency }})
+                                                : </strong> </div>
+                                        <div class="modern-template__totals__amounts__line__amount"> <strong
+                                                    class="wv-text--strong">{{ currency }}{{ data.estimate_data.total_amount|number_format(2, '.', ',') }}
+                                            </strong> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    {% if data.estimate_data.memo %}
+                        <section class="modern-template__memo fs-exclude"><span><strong
+                                        class="wv-text--strong">Notes</strong></span> <span
+                                    class="wv-text wv-text--small">{{ data.estimate_data.memo }}</span></section>
+                    {% endif %}
+                    <span class="modern-template__sticky-bottom">
+                <section class="modern-template__footer fs-exclude"><span class="wv-text wv-text--fine-print">
+
+                    </span></section>
+                <hr>
+                <section class="modern-template__business-info">
+                  <div class="modern-template__business-info__logo fs-exclude">
+                      <img class="classic-template__business-logo fs-exclude" src="{{ asset('assets/img/logo.png') }}" title="Company Logo">
+                  </div>
+                  <div class="modern-template__business-info__address fs-exclude"> <strong
+                              class="wv-text--strong">{{data.business_data.business_name}}</strong>
+                    <div> {{data.business_data.business_state}}<br>
+                        {{data.business_data.business_country}}<br>
+                    </div>
+                  </div>
+                  <div class="modern-template__business-info__contact fs-exclude">
+                    <div> </div>
+                  </div>
+                </section>
+                </span> </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup
+   ================================================== -->
+    <div id="addcus" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Add a Customer</h1>
+            </div>
+            <div class="popupbody">
+
+                <div class="row">
+                    <div class="col-5">Customer name *</div>
+                    <div class="col-7">
+                        <input class="with-border" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-5">Email</div>
+                    <div class="col-7">
+                        <input class="with-border" type="email" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-5">First name</div>
+                    <div class="col-7">
+                        <input class="with-border" type="text" placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-5">Last name</div>
+                    <div class="col-7">
+                        <input class="with-border" type="text" placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-5">Currency</div>
+                    <div class="col-7">
+
+                        <select class="selectpicker" data-live-search="true">
+                            <option>Pick</option>
+                        </select>
+
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col-5"></div>
+                    <div class="col-7 margin-top-15">
+
+                        <a href="#"><span class="icon-material-outline-keyboard-arrow-down popuparrowdown"></span>Add additional information</a>
+
+                    </div>
+                    <div class="row Addshow">
+                        <div class="w-100 margin-bottom-15"></div>
+
+                        <div class="col-5">Account number</div>
+                        <div class="col-7">
+                            <input class="with-border" type="text" placeholder="">
+                        </div>
+
+
+                        <div class="w-100"></div>
+
+                        <div class="col-5">Address line 1</div>
+                        <div class="col-7">
+                            <input class="with-border" type="text" placeholder="">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="popupbfoot">
+                <a href="#" class="button ripple-effect">Add customer</a><span> Or </span> <a href="#" class="button dark ripple-effect mfp-close">Cancel</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="addTax" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Add Tax</h1>
+            </div>
+            <div class="popupbody">
+
+                <div class="row">
+                    <div class="col-7">Tax name *</div>
+                    <div class="col-5">
+                        <input class="with-border" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Abbreviation *</div>
+                    <div class="col-5">
+                        <input class="with-border" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Tax rate (%) *</div>
+                    <div class="col-5">
+                        <input class="with-border" type="text" placeholder="">
+                        <p style="font-size: 12px; line-height: 15px;">Tax rate should be a number only, without a percent sign.</p>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Description</div>
+                    <div class="col-5">
+                        <input class="with-border" type="text" placeholder="">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-7">Your tax number</div>
+                    <div class="col-5">
+
+                        <input class="with-border" type="text" placeholder="">
+
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col-7">Show tax number on invoices</div>
+                    <div class="col-5">
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="" checked="">
+                            <label for=""><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+                    <div class="w-100 margin-bottom-15"></div>
+
+                    <div class="col-7">Is this tax recoverable?</div>
+                    <div class="col-5">
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="" checked="">
+                            <label for=""><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+                    <div class="w-100 margin-bottom-15"></div>
+
+                    <div class="col-7">Is this a compound tax?</div>
+                    <div class="col-5">
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="" checked="">
+                            <label for=""><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="popupbfoot">
+                <a href="#" class="button ripple-effect">Add tax</a><span> Or </span> <a href="#" class="button dark ripple-effect mfp-close">Cancel</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="addProduct" class="zoom-anim-dialog mfp-hide modelBox">
+
+        <div class="popupInner">
+            <div class="popupHead">
+                <h1>Add Product</h1>
+            </div>
+            <div class="popupbody">
+
+                <div class="row">
+                    <div class="col-5">Name *</div>
+                    <div class="col-7">
+                        <input class="with-border" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-5">Income account *</div>
+                    <div class="col-7">
+                        <select class="with-border selectPadding">
+                            <option>Consulting Income</option>
+                            <option>Sales</option>
+                        </select>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-5">Price *</div>
+                    <div class="col-7">
+                        <input class="with-border" type="text" placeholder="" required>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+                    <div class="col-5">Description</div>
+                    <div class="col-7">
+                        <textarea class="with-border"></textarea>
+                    </div>
+                    <div class="w-100"></div>
+                    <!--//-->
+
+
+
+
+
+                </div>
+                <!--//-->
+            </div>
+            <!--//-->
+            <div class="popupbfoot">
+                <a href="#" class="button ripple-effect">Add customer</a><span> Or </span> <a href="#" class="button dark ripple-effect mfp-close" >Cancel</a>
+            </div>
+            <!--//-->
+        </div>
+
+    </div>
+
+    <!-- popup / End -->
+
+    <div id="send_email" class="container zoom-anim-dialog mfp-hide modelBox">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <p class="alert alert-icon alert-primary mb-5">
+                    <small>Please check the email address carefully.</small></p>
+                <form action="{{ path('sales.estimate.send', {'estimate_id':data.estimate_data.id}) }}"
+                      method="post" class="form-signup"
+                      id="send-email-form"
+                      name="form-signup"
+                      data-response-message-animation="slide-in-up">
+                    <div class="form-group">
+                        <label for="to" class="bold mb-0">To</label>
+                        <select name="to" id="to" class="form-control" multiple="multiple">
+                        </select>
+
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="bold mb-0">Message</label>
+                        <small id="message_help" class="form-text color-2 mt-0 mb-2 italic">
+                            <i class="fas fa-info-circle icon"></i> Please include the message.</small>
+                        <textarea name="message" rows="6" id="message" class="form-control"  required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="bold mb-0 mt-1 mr-2 pull-left">Send a copy to
+                            {{ app.user.email }}</label>
+                        <div class="checkbox">
+                        <input type="checkbox" id="send_own_email"  name="send_own_email" class="checkbox">
+                            <label for="send_own_email"><span class="checkbox-icon"></span></label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <button id="email_send" data-loading-text="Send estimate" name="submit" type="submit"
+                                class="btn btn-rounded btn-primary mt-4">Send estimate</button>
+                    </div>
+                </form>
+                <div class="response-message">
+                    <i class="fas fa-envelope font-lg"></i>
+                    <p class="font-md m-0">The estimate has been sent successfully </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(function () {
+            $('a.print-pdf-link-js').click(function () {
+                var w = window.open($(this).attr('href'));
+
+                w.onload = function () {
+                    w.close();
+                };
+
+                return false;
+            });
+
+            $('a.print-chrome-link-js').click(function () {
+                var w = window.open($(this).attr('href'));
+
+                w.onload = function () {
+                    w.print();
+                };
+
+                return false;
+            });
+
+            $('#to').select2({tags:true});
+            $('a.send-email-js').on('click', function (e) {
+                var id = $(this).data('special');
+                var url = '/sales/estimate/send-email/' + id;
+                $("#send-email-form").attr("action", url);
+            });
+
+            $("#send-email-form").submit(function(e){
+                e.preventDefault();
+                var url = $("#send-email-form").attr("action");
+                var _data = { 'text': $('#message').val(), 'own' : $('#send_own_email').val(), 'emails' : $("#to").select2("val")};
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    dataType: "json",
+                    data: _data,
+                    success: function (response) {
+                        var magnificPopup = $.magnificPopup.instance;
+                        magnificPopup.close();
+                        $('#mail-sent-message').toggle('display');
+                    },
+                    error: function () {
+                        var magnificPopup = $.magnificPopup.instance;
+                        magnificPopup.close();
+                        $('#mail-not-sent-message').toggle('display');
+                    },
+                });
+            });
+        });
+    </script>
+{% endblock javascripts %}

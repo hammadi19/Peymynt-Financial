@@ -1,0 +1,99 @@
+{% extends 'page-secure.html.twig' %}
+
+{% block body %}
+<!-- Dashboard Headline -->
+<div class="dashboard-headline">
+
+    <div class="row">
+        <div class="col-6">
+            <h3>Customers</h3>
+        </div>
+        <div class="col-6 text-right">
+
+
+            <button id="Import" type="button" class="margin-right-10 btn btn-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Import from
+            </button>
+            <div class="dropdown-menu" aria-labelledby="Import">
+                <a class="dropdown-item" href="#">File</a>
+
+            </div>
+
+
+
+            <a href="{{ path('sales.customer.new') }}" class="btn btn-4 button-sliding-icon" >Add a customer</a>
+
+        </div>
+    </div>
+
+
+</div>
+
+    {% for success in app.session.flashbag.get('success') %}
+        <div class="notification notice closeable hidden">
+            <p>{{ success }}</p>
+            <a class="close"></a>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+
+
+            <div class="col-xl-10 col-lg-10 content-left-offset offset-1">
+                {% if customers is not empty %}
+                    <table class="margin-top-20">
+                        <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for customer in customers %}
+                            <tr>
+                                <td>
+                                    {{ customer.name }}
+                                </td>
+                                <td>{{ customer.email }}</td>
+                                <td>{{ customer.phone }}</td>
+                                <td>
+                                    <a href="{{ path('sales.customer.view', {'id': customer.id }) }}"><span
+                                                class="icon-feather-edit-2"></span></a>
+                                    <a id="deleteCustomer"
+                                       href="{{ path('sales.customer.delete', {'id': customer.id }) }}"><span
+                                       class="icon-material-outline-delete"></span></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+
+                    <div class="notification notice closeable hidden">
+                        <p>You don't have any customers. Why not <a href="{{ path('sales.customer.new') }}">create a
+                                customer?</a></p>
+                        <a class="close"></a>
+                    </div>
+                {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $("#deleteCustomer").on("click", function(e){
+            const message = "Are you sure you want to delete this customer? This cannot be undone.";
+            if(!confirm(message)){
+                e.preventDefault();
+            }
+        });
+
+    </script>
+
+
+{% endblock %}

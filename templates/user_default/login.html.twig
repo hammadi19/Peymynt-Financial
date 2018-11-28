@@ -1,0 +1,154 @@
+{% extends 'front/base-front-login.html.twig' %}
+
+{% block title %} Peymynt - Login {% endblock %}
+
+{% block body %}
+
+
+    <main>
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-7 fullscreen-md d-flex justify-content-center align-items-center overlay gradient gradient-53 alpha-7 image-background cover" style="background-image:url(https://picsum.photos/1920/1200/?random&gravity=south)">
+                    <div class="content">
+                        <h2 class="display-4 display-md-3 color-1 mt-4 mt-md-0 text-center">Welcome to
+                            <span class="bold d-block"> <a href="{{ path('peymynt.welcome') }}">
+
+                                    Peymynt
+
+
+                            </a></span>
+                        </h2>
+                        <p class="lead color-1 alpha-5"></p>
+                        <hr class="mt-md-6 w-25">
+                        <div class="d-flex flex-column">
+                            <p class="small bold color-1">Or sign in with</p>
+                            <nav class="nav mb-4">
+                                <a class="btn btn-rounded btn-outline-2 brand-facebook mr-2" href="#">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a class="btn btn-rounded btn-outline-2 brand-twitter mr-2" href="#">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a class="btn btn-rounded btn-outline-2 brand-linkedin" href="#">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-4 mx-auto">
+                    <div class="login-form mt-5 mt-md-0">
+                        {#<img src="{{ asset('assets/img/logo.png') }}" class="logo img-responsive mb-4 mb-md-6" alt="">#}
+                        <h1 class="color-5 bold">Login</h1>
+                        <p class="color-2 mt-0 mb-4 mb-md-6">Don't have an account yet?
+                            <a href="{{ path('register') }}" class="accent bold">Create it here</a>
+                        </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div id="loginError" class=" btn-status text-danger failed text-center mb-3"></div>
+                        <div id="loginSuccess" class=" btn-status text-success success text-center mb-3"></div>
+
+                        <form class="cozy" method="post" id="login-form" onsubmit="return do_login()" data-validate-on="submit" novalidate>
+                            <label class="control-label bold small text-uppercase color-2">Username</label>
+                            <div class="form-group has-icon">
+                                <input type="text" class="form-control form-control-rounded" name="emailaddress" id="emailaddress" placeholder="Your registered username" required/>
+
+                                <i class="icon fas fa-user"></i>
+                            </div>
+                            <label class="control-label bold small text-uppercase color-2">Password</label>
+                            <div class="form-group has-icon">
+                                <input type="password" class="form-control form-control-rounded" name="password" id="password" placeholder="Your Password" required/>
+
+                                <i class="icon fas fa-lock"></i>
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-between">
+                                <a href="{{ path('app_user_forgot_password') }}" class="text-warning small">Forgot your password?</a>
+
+                                <div class="ajax-button">
+
+
+                                    <button id="login-button" type="submit"
+                                            form="login-form" class="btn btn-accent btn-rounded">Login
+                                        <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script>
+
+        function do_login(){
+
+            var errFLAG = false;
+            var email_ref = $("#login-form #emailaddress");
+            var password_ref = $("#login-form #password");
+
+
+            if(email_ref.val() == ""){
+                email_ref.siblings("span").text("*Please provide valid info in above field.");
+                //email_ref.addClass("error-class");
+                errFLAG = true;
+            }else{
+                email_ref.siblings("span").text("");
+                //email_ref.removeClass("error-class");
+            }
+            if(password_ref.val() == ""){
+                password_ref.siblings("span").text("*Please provide valid info in above field.");
+                //password_ref.addClass("error-class");
+                errFLAG = true;
+            }else{
+                password_ref.siblings("span").text("");
+                //password_ref.removeClass("error-class");
+            }
+
+            if(errFLAG){
+                //$("#signInError").text("Invalid info in highlighted fields.");
+                return false;
+            }else{
+                $("#loginButton").text("Please wait...").prop("disabled", true);
+                var url = '{{ path('app_secure_login_check') }}';
+                $.ajax({type: "POST", url: url, data: {"_username":email_ref.val(), "_password":password_ref.val()}, success: function(data){
+
+                        if(data.success){
+                            var redirectSuccessURL = '{{ path('app_user_dashboard') }}';
+                            window.location.href = redirectSuccessURL;
+                            $("#loginSuccess").html("Login Successful.");
+                            $("#login-button").text("Login");
+                        }else{
+                            $("#loginError").text(data.message);
+                            $("#login-button").text("Login").prop("disabled", false);
+                        }
+
+                    }});
+            }
+
+            return false;
+        }
+
+    </script>
+
+{% endblock %}
